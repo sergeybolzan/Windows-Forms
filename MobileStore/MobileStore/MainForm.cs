@@ -25,26 +25,76 @@ namespace MobileStore
         {
             //phones = new BindingList<Phone>()
             //{
-            //    new Phone("Iphone", "IOS", 2.2, 700),
+            //    new Phone("Apple", "IOS", 2.2, 700),
             //    new Phone("Samsung", "Android", 2.5, 650),
             //    new Phone("Huawei", "Android", 2.0, 600),
             //    new Phone("Xiaomi", "Android", 2.5, 400)
             //};
 
-            //using (FileStream file = new FileStream(@"PhonesList.bin", FileMode.Create))
-            //{
-            //    BinaryFormatter binFormat = new BinaryFormatter();
-            //    binFormat.Serialize(file, phones);
-            //}
+        }
 
-
-            using (FileStream file = new FileStream(@"PhonesList.bin", FileMode.Open))
+        private void listBoxPhones_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(listBoxPhones.SelectedItem != null)
             {
-                BinaryFormatter binFormat = new BinaryFormatter();
-                phones = (BindingList<Phone>)binFormat.Deserialize(file);
+                Phone selPhone = (Phone)listBoxPhones.SelectedItem;
+                tbModel.Text = selPhone.Model;
+                tbOS.Text = selPhone.OperatingSystem;
+                tbProcessor.Text = selPhone.Processor.ToString();
+                tbPrice.Text = selPhone.Price.ToString();
             }
-            listPhones.DataSource = phones;
+        }
 
+        private void btnDeletePhone_Click(object sender, EventArgs e)
+        {
+            if (listBoxPhones.SelectedItem != null)
+            {
+                if (DialogResult.Yes == MessageBox.Show("Вы точно хотите удалить элемент?", "Удалить элемент?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                {
+                    Phone selPhone = (Phone)listBoxPhones.SelectedItem;
+                    phones.Remove(selPhone);
+                    listBoxPhones.DataSource = phones;
+                }
+            }
+            else MessageBox.Show("Нечего удалять", "Список пуст", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void btnClearList_Click(object sender, EventArgs e)
+        {
+            if (listBoxPhones.SelectedItem != null)
+            {
+                if (DialogResult.Yes == MessageBox.Show("Вы точно хотите очистить список?", "Очистить список?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                {
+                    listBoxPhones.DataSource = null;
+                }
+            }
+            else MessageBox.Show("Нечего очищать", "Список пуст", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void btnReadFromFile_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.Yes == MessageBox.Show("Загрузить список из файла?", "Загрузить список?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+            {
+                using (FileStream file = new FileStream(@"PhonesList.bin", FileMode.Open))
+                {
+                    BinaryFormatter binFormat = new BinaryFormatter();
+                    phones = (BindingList<Phone>)binFormat.Deserialize(file);
+                }
+                listBoxPhones.DataSource = phones;
+            }
+        }
+
+        private void btnSaveToFile_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.Yes == MessageBox.Show("Сохранить список в файл?", "Сохранить список?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+            {
+
+                using (FileStream file = new FileStream(@"PhonesList.bin", FileMode.Create))
+                {
+                    BinaryFormatter binFormat = new BinaryFormatter();
+                    binFormat.Serialize(file, phones);
+                }
+            }
         }
     }
 }
