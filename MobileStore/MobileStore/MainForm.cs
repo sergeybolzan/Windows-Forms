@@ -96,5 +96,21 @@ namespace MobileStore
                 }
             }
         }
+
+
+        //private void button1_Click(object sender, EventArgs e)
+        //{
+        //    if (listBox1.SelectedItem != null)
+        //    {
+        //        FuelInfo selFuel = (FuelInfo)listBox1.SelectedItem;
+        //        selFuel.Name = textBox2.Text;
+        //        selFuel.Price = Decimal.Parse(textBox1.Text);
+        //    }
+
+
+        //    listBox1.DataSource = null;
+        //    listBox1.DataSource = fuels;
+        //}
+
     }
 }
