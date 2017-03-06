@@ -14,6 +14,7 @@ namespace MobileStore
         private string operatingSystem;
         private double processor;
         private double price;
+        private string pathToImage;
         #endregion
 
         #region PROPERTIES
@@ -37,15 +38,21 @@ namespace MobileStore
             get { return price; }
             set { price = value; }
         }
+        public string PathToImage
+        {
+            get { return pathToImage; }
+            set { pathToImage = value; }
+        }
         #endregion
 
         #region CTOR
-        public Phone(string model, string operatingSystem, double processor, double price)
+        public Phone(string model, string operatingSystem, double processor, double price, string pathToImage)
         {
             this.model = model;
             this.operatingSystem = operatingSystem;
             this.processor = processor;
             this.price = price;
+            this.pathToImage = pathToImage;
         }
         #endregion
 

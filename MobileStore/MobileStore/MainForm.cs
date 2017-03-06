@@ -23,14 +23,14 @@ namespace MobileStore
 
         void MainForm_Load(object sender, EventArgs e)
         {
-            //phones = new BindingList<Phone>()
-            //{
-            //    new Phone("Apple", "IOS", 2.2, 700),
-            //    new Phone("Samsung", "Android", 2.5, 650),
-            //    new Phone("Huawei", "Android", 2.0, 600),
-            //    new Phone("Xiaomi", "Android", 2.5, 400)
-            //};
-            //listBoxPhones.DataSource = phones;
+            phones = new BindingList<Phone>()
+            {
+                new Phone("Apple", "IOS", 2.2, 700, "Apple.jpg"),
+                new Phone("Samsung", "Android", 2.5, 650, "Samsung.jpg"),
+                new Phone("Huawei", "Android", 2.0, 600, "Huawei.jpg"),
+                new Phone("Xiaomi", "Android", 2.5, 400, "Xiaomi.jpg")
+            };
+            listBoxPhones.DataSource = phones;
 
 
         }
@@ -40,6 +40,7 @@ namespace MobileStore
             if(listBoxPhones.SelectedItem != null)
             {
                 Phone selPhone = (Phone)listBoxPhones.SelectedItem;
+                pictureBox1.ImageLocation = selPhone.PathToImage;
                 tbModel.Text = selPhone.Model;
                 tbOS.Text = selPhone.OperatingSystem;
                 tbProcessor.Text = selPhone.Processor.ToString();
