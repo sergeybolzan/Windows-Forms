@@ -30,6 +30,8 @@ namespace MobileStore
             //    new Phone("Huawei", "Android", 2.0, 600),
             //    new Phone("Xiaomi", "Android", 2.5, 400)
             //};
+            //listBoxPhones.DataSource = phones;
+
 
         }
 
@@ -88,7 +90,6 @@ namespace MobileStore
         {
             if (DialogResult.Yes == MessageBox.Show("Сохранить список в файл?", "Сохранить список?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
             {
-
                 using (FileStream file = new FileStream(@"PhonesList.bin", FileMode.Create))
                 {
                     BinaryFormatter binFormat = new BinaryFormatter();
