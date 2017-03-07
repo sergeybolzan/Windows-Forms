@@ -23,14 +23,14 @@ namespace MobileStore
 
         void MainForm_Load(object sender, EventArgs e)
         {
-            phones = new BindingList<Phone>()
-            {
-                new Phone("Apple", "IOS", 2.2, 700, "Apple.jpg", new BindingList<string>(){"WiFi", "GPS", "3D-Touch"}),
-                new Phone("Samsung", "Android", 2.5, 650, "Samsung.jpg", new BindingList<string>(){"WiFi", "GPS", "NFC"}),
-                new Phone("Huawei", "Android", 2.0, 600, "Huawei.jpg", new BindingList<string>(){"WiFi", "GPS"}),
-                new Phone("Xiaomi", "Android", 2.5, 400, "Xiaomi.jpg", new BindingList<string>())
-            };
-            listBoxPhones.DataSource = phones;
+            //phones = new BindingList<Phone>()
+            //{
+            //    new Phone("Apple", "IOS", 2.2, 700, "Apple.jpg", new BindingList<string>(){"WiFi", "GPS", "3D-Touch"}),
+            //    new Phone("Samsung", "Android", 2.5, 650, "Samsung.jpg", new BindingList<string>(){"WiFi", "GPS", "NFC"}),
+            //    new Phone("Huawei", "Android", 2.0, 600, "Huawei.jpg", new BindingList<string>(){"WiFi", "GPS"}),
+            //    new Phone("Xiaomi", "Android", 2.5, 400, "Xiaomi.jpg", new BindingList<string>())
+            //};
+            //listBoxPhones.DataSource = phones;
         }
 
         private void listBoxPhones_SelectedIndexChanged(object sender, EventArgs e)
@@ -48,7 +48,7 @@ namespace MobileStore
                 tbPrice1.Text = selPhone.Price.ToString();
                 tbPrice2.Text = selPhone.Price.ToString();
                 listBoxOptions.DataSource = selPhone.Options;
-                checkedListBoxOptions.Items.AddRange(selPhone.Options);
+                checkedListBoxOptions.DataSource = selPhone.Options;
             }
         }
 

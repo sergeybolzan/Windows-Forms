@@ -385,6 +385,7 @@
             // 
             // checkedListBoxOptions
             // 
+            this.checkedListBoxOptions.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkedListBoxOptions.FormattingEnabled = true;
             this.checkedListBoxOptions.Location = new System.Drawing.Point(22, 157);
             this.checkedListBoxOptions.Name = "checkedListBoxOptions";
