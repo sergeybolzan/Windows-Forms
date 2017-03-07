@@ -191,6 +191,7 @@
             this.tbPrice1.Name = "tbPrice1";
             this.tbPrice1.Size = new System.Drawing.Size(182, 22);
             this.tbPrice1.TabIndex = 4;
+            this.tbPrice1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tbProcessor1
             // 
@@ -200,6 +201,7 @@
             this.tbProcessor1.Name = "tbProcessor1";
             this.tbProcessor1.Size = new System.Drawing.Size(182, 22);
             this.tbProcessor1.TabIndex = 3;
+            this.tbProcessor1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tbOS1
             // 
@@ -209,6 +211,7 @@
             this.tbOS1.Name = "tbOS1";
             this.tbOS1.Size = new System.Drawing.Size(182, 22);
             this.tbOS1.TabIndex = 2;
+            this.tbOS1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tbModel1
             // 
@@ -218,6 +221,7 @@
             this.tbModel1.Name = "tbModel1";
             this.tbModel1.Size = new System.Drawing.Size(182, 22);
             this.tbModel1.TabIndex = 1;
+            this.tbModel1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // pictureBox1
             // 
@@ -347,6 +351,7 @@
             this.tbPrice2.Name = "tbPrice2";
             this.tbPrice2.Size = new System.Drawing.Size(182, 22);
             this.tbPrice2.TabIndex = 12;
+            this.tbPrice2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tbProcessor2
             // 
@@ -356,6 +361,7 @@
             this.tbProcessor2.Name = "tbProcessor2";
             this.tbProcessor2.Size = new System.Drawing.Size(182, 22);
             this.tbProcessor2.TabIndex = 11;
+            this.tbProcessor2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tbOS2
             // 
@@ -365,6 +371,7 @@
             this.tbOS2.Name = "tbOS2";
             this.tbOS2.Size = new System.Drawing.Size(182, 22);
             this.tbOS2.TabIndex = 10;
+            this.tbOS2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tbModel2
             // 
@@ -374,6 +381,7 @@
             this.tbModel2.Name = "tbModel2";
             this.tbModel2.Size = new System.Drawing.Size(182, 22);
             this.tbModel2.TabIndex = 9;
+            this.tbModel2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // checkedListBoxOptions
             // 

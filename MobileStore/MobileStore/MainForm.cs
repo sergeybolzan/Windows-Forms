@@ -48,6 +48,7 @@ namespace MobileStore
                 tbPrice1.Text = selPhone.Price.ToString();
                 tbPrice2.Text = selPhone.Price.ToString();
                 listBoxOptions.DataSource = selPhone.Options;
+                checkedListBoxOptions.Items.AddRange(selPhone.Options);
             }
         }
 
