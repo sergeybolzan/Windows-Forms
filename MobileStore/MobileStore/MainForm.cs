@@ -25,14 +25,12 @@ namespace MobileStore
         {
             phones = new BindingList<Phone>()
             {
-                new Phone("Apple", "IOS", 2.2, 700, "Apple.jpg"),
-                new Phone("Samsung", "Android", 2.5, 650, "Samsung.jpg"),
-                new Phone("Huawei", "Android", 2.0, 600, "Huawei.jpg"),
-                new Phone("Xiaomi", "Android", 2.5, 400, "Xiaomi.jpg")
+                new Phone("Apple", "IOS", 2.2, 700, "Apple.jpg", new BindingList<string>(){"WiFi", "GPS", "3D-Touch"}),
+                new Phone("Samsung", "Android", 2.5, 650, "Samsung.jpg", new BindingList<string>(){"WiFi", "GPS", "NFC"}),
+                new Phone("Huawei", "Android", 2.0, 600, "Huawei.jpg", new BindingList<string>(){"WiFi", "GPS"}),
+                new Phone("Xiaomi", "Android", 2.5, 400, "Xiaomi.jpg", new BindingList<string>())
             };
             listBoxPhones.DataSource = phones;
-
-
         }
 
         private void listBoxPhones_SelectedIndexChanged(object sender, EventArgs e)
@@ -41,10 +39,15 @@ namespace MobileStore
             {
                 Phone selPhone = (Phone)listBoxPhones.SelectedItem;
                 pictureBox1.ImageLocation = selPhone.PathToImage;
-                tbModel.Text = selPhone.Model;
-                tbOS.Text = selPhone.OperatingSystem;
-                tbProcessor.Text = selPhone.Processor.ToString();
-                tbPrice.Text = selPhone.Price.ToString();
+                tbModel1.Text = selPhone.Model;
+                tbModel2.Text = selPhone.Model;
+                tbOS1.Text = selPhone.OperatingSystem;
+                tbOS2.Text = selPhone.OperatingSystem;
+                tbProcessor1.Text = selPhone.Processor.ToString();
+                tbProcessor2.Text = selPhone.Processor.ToString();
+                tbPrice1.Text = selPhone.Price.ToString();
+                tbPrice2.Text = selPhone.Price.ToString();
+                listBoxOptions.DataSource = selPhone.Options;
             }
         }
 

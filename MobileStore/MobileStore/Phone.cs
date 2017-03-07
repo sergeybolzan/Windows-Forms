@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace MobileStore
         private double processor;
         private double price;
         private string pathToImage;
+        private BindingList<string> options;
         #endregion
 
         #region PROPERTIES
@@ -43,16 +45,22 @@ namespace MobileStore
             get { return pathToImage; }
             set { pathToImage = value; }
         }
+        public BindingList<string> Options
+        {
+            get { return options; }
+            set { options = value; }
+        }
         #endregion
 
         #region CTOR
-        public Phone(string model, string operatingSystem, double processor, double price, string pathToImage)
+        public Phone(string model, string operatingSystem, double processor, double price, string pathToImage, BindingList<string> options)
         {
             this.model = model;
             this.operatingSystem = operatingSystem;
             this.processor = processor;
             this.price = price;
             this.pathToImage = pathToImage;
+            this.options = options;
         }
         #endregion
 
