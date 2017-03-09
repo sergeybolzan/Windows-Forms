@@ -138,8 +138,9 @@ namespace MobileStore
                 Phone selPhone = (Phone)listBoxPhones.SelectedItem;
                 selPhone.Model = tbModel2.Text;
                 selPhone.OperatingSystem = tbOS2.Text;
-                selPhone.Processor = Double.Parse(tbProcessor2.Text);
-                selPhone.Price = Double.Parse(tbPrice2.Text);
+                double a;
+                if (Double.TryParse(tbProcessor2.Text, out a)) selPhone.Processor = a;
+                if (Double.TryParse(tbPrice2.Text, out a)) selPhone.Price = a;
                 selPhone.PathToImage = tbPicture.Text;
                 selPhone.Options.Clear();
                 for (int i = 0; i < checkedListBoxOptions.CheckedItems.Count; i++)
@@ -193,8 +194,9 @@ namespace MobileStore
             Phone newPhone = new Phone();
             newPhone.Model = tbModel2.Text;
             newPhone.OperatingSystem = tbOS2.Text;
-            newPhone.Processor = Double.Parse(tbProcessor2.Text);
-            newPhone.Price = Double.Parse(tbPrice2.Text);
+            double a;
+            if (Double.TryParse(tbProcessor2.Text, out a)) newPhone.Processor = a;
+            if (Double.TryParse(tbPrice2.Text, out a)) newPhone.Price = a;
             newPhone.PathToImage = tbPicture.Text;
             newPhone.Options = new BindingList<string>();
             for (int i = 0; i < checkedListBoxOptions.CheckedItems.Count; i++)
