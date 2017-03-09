@@ -52,7 +52,11 @@ namespace MobileStore
         }
         #endregion
 
-        #region CTOR
+        #region CTORS
+        public Phone()
+        {
+
+        }
         public Phone(string model, string operatingSystem, double processor, double price, string pathToImage, BindingList<string> options)
         {
             this.model = model;

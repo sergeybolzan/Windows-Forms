@@ -33,8 +33,24 @@ namespace MobileStore
             //};
             //listBoxPhones.DataSource = phones;
 
-            options = new BindingList<string>() { "WiFi", "GPS", "3D-Touch", "NFC", "LTE", "Bluetooth", "QuickCharge", "FM" };
+            //options = new BindingList<string>() { "WiFi", "GPS", "3D-Touch", "NFC", "LTE", "Bluetooth", "QuickCharge", "FM" };
+            
+
+
+            using (FileStream file = new FileStream(@"OptionList.bin", FileMode.Open))
+            {
+                BinaryFormatter binFormat = new BinaryFormatter();
+                options = (BindingList<string>)binFormat.Deserialize(file);
+            }
             checkedListBoxOptions.DataSource = options;
+
+            using (FileStream file = new FileStream(@"PhonesList.bin", FileMode.Open))
+            {
+                BinaryFormatter binFormat = new BinaryFormatter();
+                phones = (BindingList<Phone>)binFormat.Deserialize(file);
+            }
+            listBoxPhones.DataSource = phones;
+
         }
 
         private void listBoxPhones_SelectedIndexChanged(object sender, EventArgs e)
@@ -133,6 +149,59 @@ namespace MobileStore
                 listBoxPhones.DataSource = null;
                 listBoxPhones.DataSource = phones;
             }
+        }
+
+        private void btnAddOption_Click(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(tbOptionName.Text) && !checkedListBoxOptions.Items.Contains(tbOptionName.Text))
+            {
+                options.Add(tbOptionName.Text);
+                using (FileStream file = new FileStream(@"OptionList.bin", FileMode.Create))
+                {
+                    BinaryFormatter binFormat = new BinaryFormatter();
+                    binFormat.Serialize(file, options);
+                }
+            }
+        }
+
+        private void btnDeleteOption_Click(object sender, EventArgs e)
+        {
+            if(checkedListBoxOptions.SelectedItem != null)
+            {
+                string selOption = (string)checkedListBoxOptions.SelectedItem;
+                options.Remove(selOption);
+                checkedListBoxOptions.DataSource = options;
+                using (FileStream file = new FileStream(@"OptionList.bin", FileMode.Create))
+                {
+                    BinaryFormatter binFormat = new BinaryFormatter();
+                    binFormat.Serialize(file, options);
+                }
+            }
+        }
+
+        private void btnClearFields_Click(object sender, EventArgs e)
+        {
+            tbModel2.Clear();
+            tbOS2.Clear();
+            tbProcessor2.Clear();
+            tbPrice2.Clear();
+            tbPicture.Clear();
+        }
+
+        private void btnAddNewPhone_Click(object sender, EventArgs e)
+        {
+            Phone newPhone = new Phone();
+            newPhone.Model = tbModel2.Text;
+            newPhone.OperatingSystem = tbOS2.Text;
+            newPhone.Processor = Double.Parse(tbProcessor2.Text);
+            newPhone.Price = Double.Parse(tbPrice2.Text);
+            newPhone.PathToImage = tbPicture.Text;
+            newPhone.Options = new BindingList<string>();
+            for (int i = 0; i < checkedListBoxOptions.CheckedItems.Count; i++)
+            {
+                newPhone.Options.Add(checkedListBoxOptions.CheckedItems[i].ToString());
+            }
+            phones.Add(newPhone);
         }
     }
 }
