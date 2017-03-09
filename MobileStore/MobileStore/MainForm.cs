@@ -15,6 +15,7 @@ namespace MobileStore
     public partial class MainForm : Form
     {
         BindingList<Phone> phones;
+        BindingList<string> options;
         public MainForm()
         {
             InitializeComponent();
@@ -31,6 +32,9 @@ namespace MobileStore
             //    new Phone("Xiaomi", "Android", 2.5, 400, "Xiaomi.jpg", new BindingList<string>())
             //};
             //listBoxPhones.DataSource = phones;
+
+            options = new BindingList<string>() { "WiFi", "GPS", "3D-Touch", "NFC", "LTE", "Bluetooth", "QuickCharge", "FM" };
+            checkedListBoxOptions.DataSource = options;
         }
 
         private void listBoxPhones_SelectedIndexChanged(object sender, EventArgs e)
@@ -47,9 +51,16 @@ namespace MobileStore
                 tbProcessor2.Text = selPhone.Processor.ToString();
                 tbPrice1.Text = selPhone.Price.ToString();
                 tbPrice2.Text = selPhone.Price.ToString();
-                listBoxOptions.DataSource = selPhone.Options;
-                checkedListBoxOptions.DataSource = selPhone.Options;
                 tbPicture.Text = selPhone.PathToImage;
+                listBoxOptions.DataSource = selPhone.Options;
+                for (int i = 0; i < options.Count; i++)
+                {
+                    checkedListBoxOptions.SetItemChecked(i, false);
+                    for (int j = 0; j < selPhone.Options.Count; j++)
+                    {
+                        if (options[i] == selPhone.Options[j]) checkedListBoxOptions.SetItemChecked(i, true);
+                    }
+                }
             }
         }
 
@@ -104,20 +115,24 @@ namespace MobileStore
             }
         }
 
-
-        //private void button1_Click(object sender, EventArgs e)
-        //{
-        //    if (listBox1.SelectedItem != null)
-        //    {
-        //        FuelInfo selFuel = (FuelInfo)listBox1.SelectedItem;
-        //        selFuel.Name = textBox2.Text;
-        //        selFuel.Price = Decimal.Parse(textBox1.Text);
-        //    }
-
-
-        //    listBox1.DataSource = null;
-        //    listBox1.DataSource = fuels;
-        //}
-
+        private void btnSaveChanges_Click(object sender, EventArgs e)
+        {
+            if (listBoxPhones.SelectedItem != null)
+            {
+                Phone selPhone = (Phone)listBoxPhones.SelectedItem;
+                selPhone.Model = tbModel2.Text;
+                selPhone.OperatingSystem = tbOS2.Text;
+                selPhone.Processor = Double.Parse(tbProcessor2.Text);
+                selPhone.Price = Double.Parse(tbPrice2.Text);
+                selPhone.PathToImage = tbPicture.Text;
+                selPhone.Options.Clear();
+                for (int i = 0; i < checkedListBoxOptions.CheckedItems.Count; i++)
+                {
+                    selPhone.Options.Add(checkedListBoxOptions.CheckedItems[i].ToString());
+                }
+                listBoxPhones.DataSource = null;
+                listBoxPhones.DataSource = phones;
+            }
+        }
     }
 }

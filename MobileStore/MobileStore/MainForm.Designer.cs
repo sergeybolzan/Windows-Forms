@@ -59,6 +59,7 @@
             this.checkedListBoxOptions = new System.Windows.Forms.CheckedListBox();
             this.labelPicture = new System.Windows.Forms.Label();
             this.tbPicture = new System.Windows.Forms.TextBox();
+            this.btnSaveChanges = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -237,6 +238,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnSaveChanges);
             this.tabPage2.Controls.Add(this.labelPicture);
             this.tabPage2.Controls.Add(this.tbPicture);
             this.tabPage2.Controls.Add(this.checkedListBoxOptions);
@@ -417,6 +419,17 @@
             this.tbPicture.TabIndex = 18;
             this.tbPicture.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // btnSaveChanges
+            // 
+            this.btnSaveChanges.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnSaveChanges.Location = new System.Drawing.Point(22, 328);
+            this.btnSaveChanges.Name = "btnSaveChanges";
+            this.btnSaveChanges.Size = new System.Drawing.Size(349, 23);
+            this.btnSaveChanges.TabIndex = 20;
+            this.btnSaveChanges.Text = "Сохранить измениния";
+            this.btnSaveChanges.UseVisualStyleBackColor = true;
+            this.btnSaveChanges.Click += new System.EventHandler(this.btnSaveChanges_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
@@ -479,6 +492,7 @@
         private System.Windows.Forms.TextBox tbModel2;
         private System.Windows.Forms.Label labelPicture;
         private System.Windows.Forms.TextBox tbPicture;
+        private System.Windows.Forms.Button btnSaveChanges;
     }
 }
 
