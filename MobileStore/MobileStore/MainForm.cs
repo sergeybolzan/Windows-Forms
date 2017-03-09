@@ -35,8 +35,6 @@ namespace MobileStore
 
             //options = new BindingList<string>() { "WiFi", "GPS", "3D-Touch", "NFC", "LTE", "Bluetooth", "QuickCharge", "FM" };
             
-
-
             using (FileStream file = new FileStream(@"OptionList.bin", FileMode.Open))
             {
                 BinaryFormatter binFormat = new BinaryFormatter();
@@ -84,7 +82,7 @@ namespace MobileStore
         {
             if (listBoxPhones.SelectedItem != null)
             {
-                if (DialogResult.Yes == MessageBox.Show("Вы точно хотите удалить элемент?", "Удалить элемент?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                if (DialogResult.Yes == MessageBox.Show("Вы точно хотите удалить выбранный телефон?", "Удалить телефон?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
                 {
                     Phone selPhone = (Phone)listBoxPhones.SelectedItem;
                     phones.Remove(selPhone);
@@ -154,28 +152,35 @@ namespace MobileStore
 
         private void btnAddOption_Click(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(tbOptionName.Text) && !checkedListBoxOptions.Items.Contains(tbOptionName.Text))
+            if (!String.IsNullOrEmpty(tbOptionName.Text))
             {
-                options.Add(tbOptionName.Text);
-                using (FileStream file = new FileStream(@"OptionList.bin", FileMode.Create))
+                if (!checkedListBoxOptions.Items.Contains(tbOptionName.Text))
                 {
-                    BinaryFormatter binFormat = new BinaryFormatter();
-                    binFormat.Serialize(file, options);
+                    options.Add(tbOptionName.Text);
+                    using (FileStream file = new FileStream(@"OptionList.bin", FileMode.Create))
+                    {
+                        BinaryFormatter binFormat = new BinaryFormatter();
+                        binFormat.Serialize(file, options);
+                    }
                 }
+                else MessageBox.Show("Введенная опция уже имеется в списке", "Опция не добавилась в список", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+            else MessageBox.Show("Для добавления опции введите ее название", "Пустая строка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void btnDeleteOption_Click(object sender, EventArgs e)
         {
             if(checkedListBoxOptions.SelectedItem != null)
             {
-                string selOption = (string)checkedListBoxOptions.SelectedItem;
-                options.Remove(selOption);
-                checkedListBoxOptions.DataSource = options;
-                using (FileStream file = new FileStream(@"OptionList.bin", FileMode.Create))
+                if (DialogResult.Yes == MessageBox.Show("Вы точно хотите удалить выбранную опцию?", "Удалить опцию?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
                 {
-                    BinaryFormatter binFormat = new BinaryFormatter();
-                    binFormat.Serialize(file, options);
+                    options.Remove(checkedListBoxOptions.SelectedItem.ToString());
+                    checkedListBoxOptions.DataSource = options;
+                    using (FileStream file = new FileStream(@"OptionList.bin", FileMode.Create))
+                    {
+                        BinaryFormatter binFormat = new BinaryFormatter();
+                        binFormat.Serialize(file, options);
+                    }
                 }
             }
         }

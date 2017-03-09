@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.labelList = new System.Windows.Forms.Label();
             this.listBoxPhones = new System.Windows.Forms.ListBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -44,10 +45,16 @@
             this.tbModel1 = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnDeletePhone = new System.Windows.Forms.Button();
-            this.btnClearList = new System.Windows.Forms.Button();
-            this.btnSaveToFile = new System.Windows.Forms.Button();
-            this.btnReadFromFile = new System.Windows.Forms.Button();
+            this.btnAddNewPhone = new System.Windows.Forms.Button();
+            this.btnClearFields = new System.Windows.Forms.Button();
+            this.btnDeleteOption = new System.Windows.Forms.Button();
+            this.btnAddOption = new System.Windows.Forms.Button();
+            this.labelOption = new System.Windows.Forms.Label();
+            this.tbOptionName = new System.Windows.Forms.TextBox();
+            this.btnSaveChanges = new System.Windows.Forms.Button();
+            this.labelPicture = new System.Windows.Forms.Label();
+            this.tbPicture = new System.Windows.Forms.TextBox();
+            this.checkedListBoxOptions = new System.Windows.Forms.CheckedListBox();
             this.labelPrice2 = new System.Windows.Forms.Label();
             this.labelProcessor2 = new System.Windows.Forms.Label();
             this.labelOS2 = new System.Windows.Forms.Label();
@@ -56,16 +63,10 @@
             this.tbProcessor2 = new System.Windows.Forms.TextBox();
             this.tbOS2 = new System.Windows.Forms.TextBox();
             this.tbModel2 = new System.Windows.Forms.TextBox();
-            this.checkedListBoxOptions = new System.Windows.Forms.CheckedListBox();
-            this.labelPicture = new System.Windows.Forms.Label();
-            this.tbPicture = new System.Windows.Forms.TextBox();
-            this.btnSaveChanges = new System.Windows.Forms.Button();
-            this.labelOption = new System.Windows.Forms.Label();
-            this.tbOptionName = new System.Windows.Forms.TextBox();
-            this.btnAddOption = new System.Windows.Forms.Button();
-            this.btnDeleteOption = new System.Windows.Forms.Button();
-            this.btnClearFields = new System.Windows.Forms.Button();
-            this.btnAddNewPhone = new System.Windows.Forms.Button();
+            this.btnDeletePhone = new System.Windows.Forms.Button();
+            this.btnClearList = new System.Windows.Forms.Button();
+            this.btnSaveToFile = new System.Windows.Forms.Button();
+            this.btnReadFromFile = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -104,7 +105,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(399, 499);
-            this.tabControl1.TabIndex = 2;
+            this.tabControl1.TabIndex = 6;
             // 
             // tabPage1
             // 
@@ -136,7 +137,7 @@
             this.listBoxOptions.Location = new System.Drawing.Point(10, 339);
             this.listBoxOptions.Name = "listBoxOptions";
             this.listBoxOptions.Size = new System.Drawing.Size(361, 116);
-            this.listBoxOptions.TabIndex = 10;
+            this.listBoxOptions.TabIndex = 4;
             // 
             // labelOptions
             // 
@@ -200,7 +201,7 @@
             this.tbPrice1.Name = "tbPrice1";
             this.tbPrice1.ReadOnly = true;
             this.tbPrice1.Size = new System.Drawing.Size(182, 22);
-            this.tbPrice1.TabIndex = 4;
+            this.tbPrice1.TabIndex = 3;
             this.tbPrice1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tbProcessor1
@@ -211,7 +212,7 @@
             this.tbProcessor1.Name = "tbProcessor1";
             this.tbProcessor1.ReadOnly = true;
             this.tbProcessor1.Size = new System.Drawing.Size(182, 22);
-            this.tbProcessor1.TabIndex = 3;
+            this.tbProcessor1.TabIndex = 2;
             this.tbProcessor1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tbOS1
@@ -222,7 +223,7 @@
             this.tbOS1.Name = "tbOS1";
             this.tbOS1.ReadOnly = true;
             this.tbOS1.Size = new System.Drawing.Size(182, 22);
-            this.tbOS1.TabIndex = 2;
+            this.tbOS1.TabIndex = 1;
             this.tbOS1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tbModel1
@@ -233,7 +234,7 @@
             this.tbModel1.Name = "tbModel1";
             this.tbModel1.ReadOnly = true;
             this.tbModel1.Size = new System.Drawing.Size(182, 22);
-            this.tbModel1.TabIndex = 1;
+            this.tbModel1.TabIndex = 0;
             this.tbModel1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // pictureBox1
@@ -276,51 +277,112 @@
             this.tabPage2.Text = "Редактирование информации";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // btnDeletePhone
+            // btnAddNewPhone
             // 
-            this.btnDeletePhone.Location = new System.Drawing.Point(17, 375);
-            this.btnDeletePhone.Margin = new System.Windows.Forms.Padding(4);
-            this.btnDeletePhone.Name = "btnDeletePhone";
-            this.btnDeletePhone.Size = new System.Drawing.Size(113, 44);
-            this.btnDeletePhone.TabIndex = 3;
-            this.btnDeletePhone.Text = "Удалить текущую";
-            this.btnDeletePhone.UseVisualStyleBackColor = true;
-            this.btnDeletePhone.Click += new System.EventHandler(this.btnDeletePhone_Click);
+            this.btnAddNewPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnAddNewPhone.ForeColor = System.Drawing.Color.Red;
+            this.btnAddNewPhone.Location = new System.Drawing.Point(201, 419);
+            this.btnAddNewPhone.Name = "btnAddNewPhone";
+            this.btnAddNewPhone.Size = new System.Drawing.Size(170, 47);
+            this.btnAddNewPhone.TabIndex = 11;
+            this.btnAddNewPhone.Text = "Добавить новый телефон";
+            this.btnAddNewPhone.UseVisualStyleBackColor = true;
+            this.btnAddNewPhone.Click += new System.EventHandler(this.btnAddNewPhone_Click);
             // 
-            // btnClearList
+            // btnClearFields
             // 
-            this.btnClearList.Location = new System.Drawing.Point(149, 375);
-            this.btnClearList.Margin = new System.Windows.Forms.Padding(4);
-            this.btnClearList.Name = "btnClearList";
-            this.btnClearList.Size = new System.Drawing.Size(113, 44);
-            this.btnClearList.TabIndex = 4;
-            this.btnClearList.Text = "Очистить список";
-            this.btnClearList.UseVisualStyleBackColor = true;
-            this.btnClearList.Click += new System.EventHandler(this.btnClearList_Click);
+            this.btnClearFields.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnClearFields.ForeColor = System.Drawing.Color.Red;
+            this.btnClearFields.Location = new System.Drawing.Point(22, 419);
+            this.btnClearFields.Name = "btnClearFields";
+            this.btnClearFields.Size = new System.Drawing.Size(170, 47);
+            this.btnClearFields.TabIndex = 10;
+            this.btnClearFields.Text = "Очистить поля";
+            this.btnClearFields.UseVisualStyleBackColor = true;
+            this.btnClearFields.Click += new System.EventHandler(this.btnClearFields_Click);
             // 
-            // btnSaveToFile
+            // btnDeleteOption
             // 
-            this.btnSaveToFile.ForeColor = System.Drawing.Color.Blue;
-            this.btnSaveToFile.Location = new System.Drawing.Point(17, 451);
-            this.btnSaveToFile.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSaveToFile.Name = "btnSaveToFile";
-            this.btnSaveToFile.Size = new System.Drawing.Size(113, 44);
-            this.btnSaveToFile.TabIndex = 5;
-            this.btnSaveToFile.Text = "Сохранить в файл";
-            this.btnSaveToFile.UseVisualStyleBackColor = true;
-            this.btnSaveToFile.Click += new System.EventHandler(this.btnSaveToFile_Click);
+            this.btnDeleteOption.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnDeleteOption.Location = new System.Drawing.Point(201, 387);
+            this.btnDeleteOption.Name = "btnDeleteOption";
+            this.btnDeleteOption.Size = new System.Drawing.Size(170, 23);
+            this.btnDeleteOption.TabIndex = 9;
+            this.btnDeleteOption.Text = "Удалить опцию";
+            this.btnDeleteOption.UseVisualStyleBackColor = true;
+            this.btnDeleteOption.Click += new System.EventHandler(this.btnDeleteOption_Click);
             // 
-            // btnReadFromFile
+            // btnAddOption
             // 
-            this.btnReadFromFile.ForeColor = System.Drawing.Color.Blue;
-            this.btnReadFromFile.Location = new System.Drawing.Point(149, 451);
-            this.btnReadFromFile.Margin = new System.Windows.Forms.Padding(4);
-            this.btnReadFromFile.Name = "btnReadFromFile";
-            this.btnReadFromFile.Size = new System.Drawing.Size(113, 44);
-            this.btnReadFromFile.TabIndex = 6;
-            this.btnReadFromFile.Text = "Прочитать из файла";
-            this.btnReadFromFile.UseVisualStyleBackColor = true;
-            this.btnReadFromFile.Click += new System.EventHandler(this.btnReadFromFile_Click);
+            this.btnAddOption.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnAddOption.Location = new System.Drawing.Point(22, 387);
+            this.btnAddOption.Name = "btnAddOption";
+            this.btnAddOption.Size = new System.Drawing.Size(170, 23);
+            this.btnAddOption.TabIndex = 8;
+            this.btnAddOption.Text = "Добавить опцию";
+            this.btnAddOption.UseVisualStyleBackColor = true;
+            this.btnAddOption.Click += new System.EventHandler(this.btnAddOption_Click);
+            // 
+            // labelOption
+            // 
+            this.labelOption.AutoSize = true;
+            this.labelOption.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelOption.ForeColor = System.Drawing.Color.Red;
+            this.labelOption.Location = new System.Drawing.Point(19, 364);
+            this.labelOption.Name = "labelOption";
+            this.labelOption.Size = new System.Drawing.Size(108, 13);
+            this.labelOption.TabIndex = 22;
+            this.labelOption.Text = "Название опции:";
+            // 
+            // tbOptionName
+            // 
+            this.tbOptionName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbOptionName.Location = new System.Drawing.Point(201, 358);
+            this.tbOptionName.Margin = new System.Windows.Forms.Padding(4);
+            this.tbOptionName.Name = "tbOptionName";
+            this.tbOptionName.Size = new System.Drawing.Size(170, 22);
+            this.tbOptionName.TabIndex = 7;
+            // 
+            // btnSaveChanges
+            // 
+            this.btnSaveChanges.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnSaveChanges.Location = new System.Drawing.Point(22, 328);
+            this.btnSaveChanges.Name = "btnSaveChanges";
+            this.btnSaveChanges.Size = new System.Drawing.Size(349, 23);
+            this.btnSaveChanges.TabIndex = 6;
+            this.btnSaveChanges.Text = "Сохранить измениния";
+            this.btnSaveChanges.UseVisualStyleBackColor = true;
+            this.btnSaveChanges.Click += new System.EventHandler(this.btnSaveChanges_Click);
+            // 
+            // labelPicture
+            // 
+            this.labelPicture.AutoSize = true;
+            this.labelPicture.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPicture.ForeColor = System.Drawing.Color.Blue;
+            this.labelPicture.Location = new System.Drawing.Point(19, 117);
+            this.labelPicture.Name = "labelPicture";
+            this.labelPicture.Size = new System.Drawing.Size(82, 16);
+            this.labelPicture.TabIndex = 19;
+            this.labelPicture.Text = "Картинка:";
+            // 
+            // tbPicture
+            // 
+            this.tbPicture.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbPicture.Location = new System.Drawing.Point(189, 111);
+            this.tbPicture.Margin = new System.Windows.Forms.Padding(4);
+            this.tbPicture.Name = "tbPicture";
+            this.tbPicture.Size = new System.Drawing.Size(182, 22);
+            this.tbPicture.TabIndex = 3;
+            // 
+            // checkedListBoxOptions
+            // 
+            this.checkedListBoxOptions.CheckOnClick = true;
+            this.checkedListBoxOptions.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkedListBoxOptions.FormattingEnabled = true;
+            this.checkedListBoxOptions.Location = new System.Drawing.Point(22, 197);
+            this.checkedListBoxOptions.Name = "checkedListBoxOptions";
+            this.checkedListBoxOptions.Size = new System.Drawing.Size(349, 123);
+            this.checkedListBoxOptions.TabIndex = 5;
             // 
             // labelPrice2
             // 
@@ -373,7 +435,7 @@
             this.tbPrice2.Margin = new System.Windows.Forms.Padding(4);
             this.tbPrice2.Name = "tbPrice2";
             this.tbPrice2.Size = new System.Drawing.Size(182, 22);
-            this.tbPrice2.TabIndex = 12;
+            this.tbPrice2.TabIndex = 4;
             // 
             // tbProcessor2
             // 
@@ -382,7 +444,7 @@
             this.tbProcessor2.Margin = new System.Windows.Forms.Padding(4);
             this.tbProcessor2.Name = "tbProcessor2";
             this.tbProcessor2.Size = new System.Drawing.Size(182, 22);
-            this.tbProcessor2.TabIndex = 11;
+            this.tbProcessor2.TabIndex = 2;
             // 
             // tbOS2
             // 
@@ -391,7 +453,7 @@
             this.tbOS2.Margin = new System.Windows.Forms.Padding(4);
             this.tbOS2.Name = "tbOS2";
             this.tbOS2.Size = new System.Drawing.Size(182, 22);
-            this.tbOS2.TabIndex = 10;
+            this.tbOS2.TabIndex = 1;
             // 
             // tbModel2
             // 
@@ -400,113 +462,53 @@
             this.tbModel2.Margin = new System.Windows.Forms.Padding(4);
             this.tbModel2.Name = "tbModel2";
             this.tbModel2.Size = new System.Drawing.Size(182, 22);
-            this.tbModel2.TabIndex = 9;
+            this.tbModel2.TabIndex = 0;
             // 
-            // checkedListBoxOptions
+            // btnDeletePhone
             // 
-            this.checkedListBoxOptions.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkedListBoxOptions.FormattingEnabled = true;
-            this.checkedListBoxOptions.Location = new System.Drawing.Point(22, 197);
-            this.checkedListBoxOptions.Name = "checkedListBoxOptions";
-            this.checkedListBoxOptions.Size = new System.Drawing.Size(349, 124);
-            this.checkedListBoxOptions.TabIndex = 17;
+            this.btnDeletePhone.Location = new System.Drawing.Point(17, 375);
+            this.btnDeletePhone.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeletePhone.Name = "btnDeletePhone";
+            this.btnDeletePhone.Size = new System.Drawing.Size(113, 44);
+            this.btnDeletePhone.TabIndex = 2;
+            this.btnDeletePhone.Text = "Удалить телефон";
+            this.btnDeletePhone.UseVisualStyleBackColor = true;
+            this.btnDeletePhone.Click += new System.EventHandler(this.btnDeletePhone_Click);
             // 
-            // labelPicture
+            // btnClearList
             // 
-            this.labelPicture.AutoSize = true;
-            this.labelPicture.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelPicture.ForeColor = System.Drawing.Color.Blue;
-            this.labelPicture.Location = new System.Drawing.Point(19, 117);
-            this.labelPicture.Name = "labelPicture";
-            this.labelPicture.Size = new System.Drawing.Size(82, 16);
-            this.labelPicture.TabIndex = 19;
-            this.labelPicture.Text = "Картинка:";
+            this.btnClearList.Location = new System.Drawing.Point(149, 375);
+            this.btnClearList.Margin = new System.Windows.Forms.Padding(4);
+            this.btnClearList.Name = "btnClearList";
+            this.btnClearList.Size = new System.Drawing.Size(113, 44);
+            this.btnClearList.TabIndex = 3;
+            this.btnClearList.Text = "Очистить список";
+            this.btnClearList.UseVisualStyleBackColor = true;
+            this.btnClearList.Click += new System.EventHandler(this.btnClearList_Click);
             // 
-            // tbPicture
+            // btnSaveToFile
             // 
-            this.tbPicture.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbPicture.Location = new System.Drawing.Point(189, 111);
-            this.tbPicture.Margin = new System.Windows.Forms.Padding(4);
-            this.tbPicture.Name = "tbPicture";
-            this.tbPicture.Size = new System.Drawing.Size(182, 22);
-            this.tbPicture.TabIndex = 18;
+            this.btnSaveToFile.ForeColor = System.Drawing.Color.Blue;
+            this.btnSaveToFile.Location = new System.Drawing.Point(17, 451);
+            this.btnSaveToFile.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSaveToFile.Name = "btnSaveToFile";
+            this.btnSaveToFile.Size = new System.Drawing.Size(113, 44);
+            this.btnSaveToFile.TabIndex = 4;
+            this.btnSaveToFile.Text = "Сохранить в файл";
+            this.btnSaveToFile.UseVisualStyleBackColor = true;
+            this.btnSaveToFile.Click += new System.EventHandler(this.btnSaveToFile_Click);
             // 
-            // btnSaveChanges
+            // btnReadFromFile
             // 
-            this.btnSaveChanges.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnSaveChanges.Location = new System.Drawing.Point(22, 328);
-            this.btnSaveChanges.Name = "btnSaveChanges";
-            this.btnSaveChanges.Size = new System.Drawing.Size(349, 23);
-            this.btnSaveChanges.TabIndex = 20;
-            this.btnSaveChanges.Text = "Сохранить измениния";
-            this.btnSaveChanges.UseVisualStyleBackColor = true;
-            this.btnSaveChanges.Click += new System.EventHandler(this.btnSaveChanges_Click);
-            // 
-            // labelOption
-            // 
-            this.labelOption.AutoSize = true;
-            this.labelOption.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelOption.ForeColor = System.Drawing.Color.Red;
-            this.labelOption.Location = new System.Drawing.Point(19, 364);
-            this.labelOption.Name = "labelOption";
-            this.labelOption.Size = new System.Drawing.Size(108, 13);
-            this.labelOption.TabIndex = 22;
-            this.labelOption.Text = "Название опции:";
-            // 
-            // tbOptionName
-            // 
-            this.tbOptionName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbOptionName.Location = new System.Drawing.Point(201, 358);
-            this.tbOptionName.Margin = new System.Windows.Forms.Padding(4);
-            this.tbOptionName.Name = "tbOptionName";
-            this.tbOptionName.Size = new System.Drawing.Size(170, 22);
-            this.tbOptionName.TabIndex = 21;
-            // 
-            // btnAddOption
-            // 
-            this.btnAddOption.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnAddOption.Location = new System.Drawing.Point(22, 387);
-            this.btnAddOption.Name = "btnAddOption";
-            this.btnAddOption.Size = new System.Drawing.Size(170, 23);
-            this.btnAddOption.TabIndex = 23;
-            this.btnAddOption.Text = "Добавить опцию";
-            this.btnAddOption.UseVisualStyleBackColor = true;
-            this.btnAddOption.Click += new System.EventHandler(this.btnAddOption_Click);
-            // 
-            // btnDeleteOption
-            // 
-            this.btnDeleteOption.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnDeleteOption.Location = new System.Drawing.Point(201, 387);
-            this.btnDeleteOption.Name = "btnDeleteOption";
-            this.btnDeleteOption.Size = new System.Drawing.Size(170, 23);
-            this.btnDeleteOption.TabIndex = 24;
-            this.btnDeleteOption.Text = "Удалить опцию";
-            this.btnDeleteOption.UseVisualStyleBackColor = true;
-            this.btnDeleteOption.Click += new System.EventHandler(this.btnDeleteOption_Click);
-            // 
-            // btnClearFields
-            // 
-            this.btnClearFields.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnClearFields.ForeColor = System.Drawing.Color.Red;
-            this.btnClearFields.Location = new System.Drawing.Point(22, 419);
-            this.btnClearFields.Name = "btnClearFields";
-            this.btnClearFields.Size = new System.Drawing.Size(170, 47);
-            this.btnClearFields.TabIndex = 25;
-            this.btnClearFields.Text = "Очистить поля";
-            this.btnClearFields.UseVisualStyleBackColor = true;
-            this.btnClearFields.Click += new System.EventHandler(this.btnClearFields_Click);
-            // 
-            // btnAddNewPhone
-            // 
-            this.btnAddNewPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnAddNewPhone.ForeColor = System.Drawing.Color.Red;
-            this.btnAddNewPhone.Location = new System.Drawing.Point(201, 419);
-            this.btnAddNewPhone.Name = "btnAddNewPhone";
-            this.btnAddNewPhone.Size = new System.Drawing.Size(170, 47);
-            this.btnAddNewPhone.TabIndex = 26;
-            this.btnAddNewPhone.Text = "Добавить новый телефон";
-            this.btnAddNewPhone.UseVisualStyleBackColor = true;
-            this.btnAddNewPhone.Click += new System.EventHandler(this.btnAddNewPhone_Click);
+            this.btnReadFromFile.ForeColor = System.Drawing.Color.Blue;
+            this.btnReadFromFile.Location = new System.Drawing.Point(149, 451);
+            this.btnReadFromFile.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReadFromFile.Name = "btnReadFromFile";
+            this.btnReadFromFile.Size = new System.Drawing.Size(113, 44);
+            this.btnReadFromFile.TabIndex = 5;
+            this.btnReadFromFile.Text = "Прочитать из файла";
+            this.btnReadFromFile.UseVisualStyleBackColor = true;
+            this.btnReadFromFile.Click += new System.EventHandler(this.btnReadFromFile_Click);
             // 
             // MainForm
             // 
@@ -522,6 +524,7 @@
             this.Controls.Add(this.labelList);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
