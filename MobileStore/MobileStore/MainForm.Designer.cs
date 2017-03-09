@@ -57,6 +57,8 @@
             this.tbOS2 = new System.Windows.Forms.TextBox();
             this.tbModel2 = new System.Windows.Forms.TextBox();
             this.checkedListBoxOptions = new System.Windows.Forms.CheckedListBox();
+            this.labelPicture = new System.Windows.Forms.Label();
+            this.tbPicture = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -235,6 +237,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.labelPicture);
+            this.tabPage2.Controls.Add(this.tbPicture);
             this.tabPage2.Controls.Add(this.checkedListBoxOptions);
             this.tabPage2.Controls.Add(this.labelPrice2);
             this.tabPage2.Controls.Add(this.labelProcessor2);
@@ -304,7 +308,7 @@
             this.labelPrice2.AutoSize = true;
             this.labelPrice2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelPrice2.ForeColor = System.Drawing.Color.Red;
-            this.labelPrice2.Location = new System.Drawing.Point(19, 117);
+            this.labelPrice2.Location = new System.Drawing.Point(19, 147);
             this.labelPrice2.Name = "labelPrice2";
             this.labelPrice2.Size = new System.Drawing.Size(49, 16);
             this.labelPrice2.TabIndex = 16;
@@ -346,7 +350,7 @@
             // tbPrice2
             // 
             this.tbPrice2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbPrice2.Location = new System.Drawing.Point(189, 111);
+            this.tbPrice2.Location = new System.Drawing.Point(189, 141);
             this.tbPrice2.Margin = new System.Windows.Forms.Padding(4);
             this.tbPrice2.Name = "tbPrice2";
             this.tbPrice2.Size = new System.Drawing.Size(182, 22);
@@ -387,10 +391,31 @@
             // 
             this.checkedListBoxOptions.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkedListBoxOptions.FormattingEnabled = true;
-            this.checkedListBoxOptions.Location = new System.Drawing.Point(22, 157);
+            this.checkedListBoxOptions.Location = new System.Drawing.Point(22, 197);
             this.checkedListBoxOptions.Name = "checkedListBoxOptions";
             this.checkedListBoxOptions.Size = new System.Drawing.Size(349, 124);
             this.checkedListBoxOptions.TabIndex = 17;
+            // 
+            // labelPicture
+            // 
+            this.labelPicture.AutoSize = true;
+            this.labelPicture.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPicture.ForeColor = System.Drawing.Color.Blue;
+            this.labelPicture.Location = new System.Drawing.Point(19, 117);
+            this.labelPicture.Name = "labelPicture";
+            this.labelPicture.Size = new System.Drawing.Size(82, 16);
+            this.labelPicture.TabIndex = 19;
+            this.labelPicture.Text = "Картинка:";
+            // 
+            // tbPicture
+            // 
+            this.tbPicture.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbPicture.Location = new System.Drawing.Point(189, 111);
+            this.tbPicture.Margin = new System.Windows.Forms.Padding(4);
+            this.tbPicture.Name = "tbPicture";
+            this.tbPicture.Size = new System.Drawing.Size(182, 22);
+            this.tbPicture.TabIndex = 18;
+            this.tbPicture.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // MainForm
             // 
@@ -452,6 +477,8 @@
         private System.Windows.Forms.TextBox tbProcessor2;
         private System.Windows.Forms.TextBox tbOS2;
         private System.Windows.Forms.TextBox tbModel2;
+        private System.Windows.Forms.Label labelPicture;
+        private System.Windows.Forms.TextBox tbPicture;
     }
 }
 

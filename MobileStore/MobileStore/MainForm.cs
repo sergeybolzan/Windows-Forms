@@ -49,6 +49,7 @@ namespace MobileStore
                 tbPrice2.Text = selPhone.Price.ToString();
                 listBoxOptions.DataSource = selPhone.Options;
                 checkedListBoxOptions.DataSource = selPhone.Options;
+                tbPicture.Text = selPhone.PathToImage;
             }
         }
 
