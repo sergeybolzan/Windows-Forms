@@ -16,6 +16,9 @@ namespace MobileStore
         private double processor;
         private double price;
         private string pathToImage;
+        /// <summary>
+        /// Список опций телефона. Привязывается к listBoxOptions
+        /// </summary>
         private BindingList<string> options;
         #endregion
 
@@ -45,6 +48,9 @@ namespace MobileStore
             get { return pathToImage; }
             set { pathToImage = value; }
         }
+        /// <summary>
+        /// Список опций телефона. Привязывается к listBoxOptions
+        /// </summary>
         public BindingList<string> Options
         {
             get { return options; }

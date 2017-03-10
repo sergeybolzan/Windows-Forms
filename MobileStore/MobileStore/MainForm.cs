@@ -14,14 +14,24 @@ namespace MobileStore
 {
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Список телефонов. Привязывается к listBoxPhones
+        /// </summary>
         BindingList<Phone> phones;
+        /// <summary>
+        /// Список опций. Привязывается к checkedListBoxOptions
+        /// </summary>
         BindingList<string> options;
         public MainForm()
         {
             InitializeComponent();
             this.Load += MainForm_Load;
         }
-
+        /// <summary>
+        /// При запуске приложения загружаем из файлов список опций и список телефонов
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void MainForm_Load(object sender, EventArgs e)
         {
             //phones = new BindingList<Phone>()
@@ -50,7 +60,12 @@ namespace MobileStore
             listBoxPhones.DataSource = phones;
 
         }
-
+        /// <summary>
+        /// При смене выделения телефона меняется информация во всех элементах. Также сверяется значение каждой опции checkedListBoxOptions со значением каждой опции выделенного телефона.
+        /// Если значения совпадает, то соответствующая опция в checkedListBoxOptions переходит в состояние Checked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listBoxPhones_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(listBoxPhones.SelectedItem != null)
@@ -77,7 +92,11 @@ namespace MobileStore
                 }
             }
         }
-
+        /// <summary>
+        /// Действие по нажатию на кнопку "Удалить телефон". Выскакивает messagebox для подтверждения действия. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDeletePhone_Click(object sender, EventArgs e)
         {
             if (listBoxPhones.SelectedItem != null)
@@ -91,7 +110,11 @@ namespace MobileStore
             }
             else MessageBox.Show("Нечего удалять", "Список пуст", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-
+        /// <summary>
+        /// Действие по нажатию на кнопку "Очистить список". Выскакивает messagebox для подтверждения действия. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClearList_Click(object sender, EventArgs e)
         {
             if (listBoxPhones.SelectedItem != null)
@@ -103,7 +126,12 @@ namespace MobileStore
             }
             else MessageBox.Show("Нечего очищать", "Список пуст", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-
+        /// <summary>
+        /// Действие по нажатию на кнопку "Прочитать из файла". Через десериализацию список телефонов загружается из файла и привязывается к listBoxPhones.
+        /// Также выскакивает messagebox для подтверждения действия.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReadFromFile_Click(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Загрузить список из файла?", "Загрузить список?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
@@ -116,7 +144,12 @@ namespace MobileStore
                 listBoxPhones.DataSource = phones;
             }
         }
-
+        /// <summary>
+        /// Действие по нажатию на кнопку "Сохранить в файл". Через сериализацию список телефонов сохраняется в файл.
+        /// Также выскакивает messagebox для подтверждения действия.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSaveToFile_Click(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Сохранить список в файл?", "Сохранить список?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
@@ -128,7 +161,11 @@ namespace MobileStore
                 }
             }
         }
-
+        /// <summary>
+        /// Действие по нажатию на кнопку "Сохранить изменения". Вся информация из элементов на вкладке "Редактирование информации" сохраняется в выбранный телефон.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSaveChanges_Click(object sender, EventArgs e)
         {
             if (listBoxPhones.SelectedItem != null)
@@ -149,7 +186,12 @@ namespace MobileStore
                 listBoxPhones.DataSource = phones;
             }
         }
-
+        /// <summary>
+        /// Действие по нажатию на кнопку "Добавить опцию". Вначале идет проверка на пустую строку и на наличие добавляемой опции.
+        /// Если проверки пройдены опция добавляется в список опций и обновленный список сразу же сохраняется в файл.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddOption_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(tbOptionName.Text))
@@ -167,7 +209,12 @@ namespace MobileStore
             }
             else MessageBox.Show("Для добавления опции введите ее название", "Пустая строка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
-
+        /// <summary>
+        /// Действие по нажатию на кнопку "Удалить опцию". Для подтверждения действия выскакивает messagebox.
+        /// Выбранная опция удалятся из списка и обновленный список сразу же сохраняется в файл.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDeleteOption_Click(object sender, EventArgs e)
         {
             if(checkedListBoxOptions.SelectedItem != null)
@@ -184,7 +231,11 @@ namespace MobileStore
                 }
             }
         }
-
+        /// <summary>
+        /// Очистка полей на вкладке "Редактирование информации" по нажатию на кнопку "Очистить поля".
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClearFields_Click(object sender, EventArgs e)
         {
             tbModel2.Clear();
@@ -193,7 +244,12 @@ namespace MobileStore
             tbPrice2.Clear();
             tbPicture.Clear();
         }
-
+        /// <summary>
+        /// Действие по нажатию кнокпи "Добавить новый телефон". 
+        /// В listBoxPhones добавляется новая запись, все поля и отмеченные опции на вкладке "Редактирование информации" сохраняются в добавленный телефон.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddNewPhone_Click(object sender, EventArgs e)
         {
             Phone newPhone = new Phone();
