@@ -17,11 +17,11 @@ namespace MobileStore
         /// <summary>
         /// Список телефонов. Привязывается к listBoxPhones
         /// </summary>
-        BindingList<Phone> phones;
+        private BindingList<Phone> phones;
         /// <summary>
         /// Список опций. Привязывается к checkedListBoxOptions
         /// </summary>
-        BindingList<string> options;
+        private BindingList<string> options;
         public MainForm()
         {
             InitializeComponent();
@@ -32,7 +32,7 @@ namespace MobileStore
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void MainForm_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
             //phones = new BindingList<Phone>()
             //{
