@@ -32,6 +32,7 @@ namespace BestOil
         }
         private void comboBoxFuel_SelectedIndexChanged(object sender, EventArgs e)
         {
+            textBoxSumOrFuel.Clear();
             Fuel selFuel = (Fuel)comboBoxFuel.SelectedItem;
             textBoxPriceOfFuel1.Text = selFuel.Price.ToString();
         }
@@ -59,7 +60,7 @@ namespace BestOil
         {
             if (radioButtonQuantity.Checked)
             {
-                if (!(Regex.Match(textBoxQuantityOfFuel.Text, @"\d+(\,\d{0,2})?").Value == textBoxQuantityOfFuel.Text) || String.IsNullOrEmpty(textBoxQuantityOfFuel.Text))
+                if (!(Regex.Match(textBoxQuantityOfFuel.Text, @"\d{1,5}(\,\d{0,2})?").Value == textBoxQuantityOfFuel.Text) || String.IsNullOrEmpty(textBoxQuantityOfFuel.Text))
                 {
                     //MessageBox.Show("неправильно");
                     int durationMilliseconds = 2000;
@@ -70,7 +71,7 @@ namespace BestOil
             }
             if (radioButtonSum.Checked)
             {
-                if (!(Regex.Match(textBoxPriceOfFuel2.Text, @"\d+(\,\d{0,2})?").Value == textBoxPriceOfFuel2.Text) || String.IsNullOrEmpty(textBoxPriceOfFuel2.Text))
+                if (!(Regex.Match(textBoxPriceOfFuel2.Text, @"\d{1,5}(\,\d{0,2})?").Value == textBoxPriceOfFuel2.Text) || String.IsNullOrEmpty(textBoxPriceOfFuel2.Text))
                 {
                     //MessageBox.Show("неправильно");
                     int durationMilliseconds = 2000;
@@ -80,6 +81,37 @@ namespace BestOil
                 else textBoxSumOrFuel.Text = Math.Round((Decimal.Parse(textBoxPriceOfFuel2.Text) / Decimal.Parse(textBoxPriceOfFuel1.Text)), 2, MidpointRounding.AwayFromZero).ToString();
             }
         }
+
+        private void textBoxQuantityOfFuel_TextChanged(object sender, EventArgs e)
+        {
+            textBoxSumOrFuel.Clear();
+        }
+        private void textBoxPriceOfFuel2_TextChanged(object sender, EventArgs e)
+        {
+            textBoxSumOrFuel.Clear();
+        }
+
+        private void checkBoxHotDog_Click(object sender, EventArgs e)
+        {
+            double Summa = 0;
+            if (checkBoxHotDog.Checked)
+                if (!(Regex.Match(textBoxQuantityOfHotDog.Text, @"\d{1,5}").Value == textBoxQuantityOfHotDog.Text) || String.IsNullOrEmpty(textBoxQuantityOfHotDog.Text))
+                {
+                    //MessageBox.Show("неправильно");
+                    int durationMilliseconds = 2000;
+                    toolTip2.Show("Введено неверное значение", textBoxQuantityOfHotDog, durationMilliseconds);
+                    return;
+                }
+                else Summa += Convert.ToDouble(textBoxPriceOfHotDog.Text) * Convert.ToDouble(textBoxQuantityOfHotDog.Text);
+            if (checkBoxHamburger.Checked)
+                Summa += Convert.ToDouble(textBoxPriceOfHamburger.Text) * Convert.ToDouble(textBoxQuantityOfHamburger.Text);
+            if (checkBoxCheeseburger.Checked)
+                Summa += Convert.ToDouble(textBoxPriceOfCheeseburger.Text) * Convert.ToDouble(textBoxQuantityOfCheeseburger.Text);
+            if (checkBoxCocaCola.Checked)
+                Summa += Convert.ToDouble(textBoxPriceOfCocaCola.Text) * Convert.ToDouble(textBoxQuantityOfCocaCola.Text);
+            textBoxSumOfCafe.Text = Summa.ToString();
+        }
+
 
     }
 

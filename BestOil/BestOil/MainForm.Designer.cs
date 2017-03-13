@@ -59,7 +59,7 @@
             this.textBoxPriceOfCheeseburger = new System.Windows.Forms.TextBox();
             this.textBoxPriceOfHamburger = new System.Windows.Forms.TextBox();
             this.textBoxPriceOfHotDog = new System.Windows.Forms.TextBox();
-            this.checkBox3CocaCola = new System.Windows.Forms.CheckBox();
+            this.checkBoxCocaCola = new System.Windows.Forms.CheckBox();
             this.checkBoxCheeseburger = new System.Windows.Forms.CheckBox();
             this.checkBoxHamburger = new System.Windows.Forms.CheckBox();
             this.checkBoxHotDog = new System.Windows.Forms.CheckBox();
@@ -70,6 +70,7 @@
             this.labelSum = new System.Windows.Forms.Label();
             this.labelSumOrFuel = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -165,6 +166,7 @@
             this.textBoxSumOrFuel.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxSumOrFuel.Location = new System.Drawing.Point(19, 28);
             this.textBoxSumOrFuel.Name = "textBoxSumOrFuel";
+            this.textBoxSumOrFuel.ReadOnly = true;
             this.textBoxSumOrFuel.Size = new System.Drawing.Size(212, 49);
             this.textBoxSumOrFuel.TabIndex = 0;
             this.textBoxSumOrFuel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -211,6 +213,7 @@
             this.textBoxPriceOfFuel2.Size = new System.Drawing.Size(133, 20);
             this.textBoxPriceOfFuel2.TabIndex = 8;
             this.textBoxPriceOfFuel2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxPriceOfFuel2.TextChanged += new System.EventHandler(this.textBoxPriceOfFuel2_TextChanged);
             // 
             // radioButtonSum
             // 
@@ -234,6 +237,7 @@
             this.textBoxQuantityOfFuel.TabIndex = 7;
             this.textBoxQuantityOfFuel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.toolTip1.SetToolTip(this.textBoxQuantityOfFuel, "qeqweqeqe");
+            this.textBoxQuantityOfFuel.TextChanged += new System.EventHandler(this.textBoxQuantityOfFuel_TextChanged);
             // 
             // radioButtonQuantity
             // 
@@ -264,7 +268,7 @@
             this.groupBox2.Controls.Add(this.textBoxPriceOfCheeseburger);
             this.groupBox2.Controls.Add(this.textBoxPriceOfHamburger);
             this.groupBox2.Controls.Add(this.textBoxPriceOfHotDog);
-            this.groupBox2.Controls.Add(this.checkBox3CocaCola);
+            this.groupBox2.Controls.Add(this.checkBoxCocaCola);
             this.groupBox2.Controls.Add(this.checkBoxCheeseburger);
             this.groupBox2.Controls.Add(this.checkBoxHamburger);
             this.groupBox2.Controls.Add(this.checkBoxHotDog);
@@ -383,8 +387,10 @@
             this.textBoxPriceOfCocaCola.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxPriceOfCocaCola.Location = new System.Drawing.Point(101, 146);
             this.textBoxPriceOfCocaCola.Name = "textBoxPriceOfCocaCola";
+            this.textBoxPriceOfCocaCola.ReadOnly = true;
             this.textBoxPriceOfCocaCola.Size = new System.Drawing.Size(68, 20);
             this.textBoxPriceOfCocaCola.TabIndex = 13;
+            this.textBoxPriceOfCocaCola.Text = "1,5";
             this.textBoxPriceOfCocaCola.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBoxPriceOfCheeseburger
@@ -392,8 +398,10 @@
             this.textBoxPriceOfCheeseburger.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxPriceOfCheeseburger.Location = new System.Drawing.Point(101, 108);
             this.textBoxPriceOfCheeseburger.Name = "textBoxPriceOfCheeseburger";
+            this.textBoxPriceOfCheeseburger.ReadOnly = true;
             this.textBoxPriceOfCheeseburger.Size = new System.Drawing.Size(68, 20);
             this.textBoxPriceOfCheeseburger.TabIndex = 12;
+            this.textBoxPriceOfCheeseburger.Text = "1,7";
             this.textBoxPriceOfCheeseburger.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBoxPriceOfHamburger
@@ -401,8 +409,10 @@
             this.textBoxPriceOfHamburger.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxPriceOfHamburger.Location = new System.Drawing.Point(101, 72);
             this.textBoxPriceOfHamburger.Name = "textBoxPriceOfHamburger";
+            this.textBoxPriceOfHamburger.ReadOnly = true;
             this.textBoxPriceOfHamburger.Size = new System.Drawing.Size(68, 20);
             this.textBoxPriceOfHamburger.TabIndex = 11;
+            this.textBoxPriceOfHamburger.Text = "1,5";
             this.textBoxPriceOfHamburger.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBoxPriceOfHotDog
@@ -410,21 +420,24 @@
             this.textBoxPriceOfHotDog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxPriceOfHotDog.Location = new System.Drawing.Point(101, 36);
             this.textBoxPriceOfHotDog.Name = "textBoxPriceOfHotDog";
+            this.textBoxPriceOfHotDog.ReadOnly = true;
             this.textBoxPriceOfHotDog.Size = new System.Drawing.Size(68, 20);
             this.textBoxPriceOfHotDog.TabIndex = 10;
+            this.textBoxPriceOfHotDog.Text = "2";
             this.textBoxPriceOfHotDog.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // checkBox3CocaCola
+            // checkBoxCocaCola
             // 
-            this.checkBox3CocaCola.AutoSize = true;
-            this.checkBox3CocaCola.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBox3CocaCola.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.checkBox3CocaCola.Location = new System.Drawing.Point(15, 148);
-            this.checkBox3CocaCola.Name = "checkBox3CocaCola";
-            this.checkBox3CocaCola.Size = new System.Drawing.Size(87, 17);
-            this.checkBox3CocaCola.TabIndex = 6;
-            this.checkBox3CocaCola.Text = "Кока-кола";
-            this.checkBox3CocaCola.UseVisualStyleBackColor = true;
+            this.checkBoxCocaCola.AutoSize = true;
+            this.checkBoxCocaCola.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBoxCocaCola.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.checkBoxCocaCola.Location = new System.Drawing.Point(15, 148);
+            this.checkBoxCocaCola.Name = "checkBoxCocaCola";
+            this.checkBoxCocaCola.Size = new System.Drawing.Size(87, 17);
+            this.checkBoxCocaCola.TabIndex = 6;
+            this.checkBoxCocaCola.Text = "Кока-кола";
+            this.checkBoxCocaCola.UseVisualStyleBackColor = true;
+            this.checkBoxCocaCola.Click += new System.EventHandler(this.checkBoxHotDog_Click);
             // 
             // checkBoxCheeseburger
             // 
@@ -437,6 +450,7 @@
             this.checkBoxCheeseburger.TabIndex = 5;
             this.checkBoxCheeseburger.Text = "Чизбургер";
             this.checkBoxCheeseburger.UseVisualStyleBackColor = true;
+            this.checkBoxCheeseburger.Click += new System.EventHandler(this.checkBoxHotDog_Click);
             // 
             // checkBoxHamburger
             // 
@@ -449,6 +463,7 @@
             this.checkBoxHamburger.TabIndex = 4;
             this.checkBoxHamburger.Text = "Гамбургер";
             this.checkBoxHamburger.UseVisualStyleBackColor = true;
+            this.checkBoxHamburger.Click += new System.EventHandler(this.checkBoxHotDog_Click);
             // 
             // checkBoxHotDog
             // 
@@ -461,6 +476,7 @@
             this.checkBoxHotDog.TabIndex = 3;
             this.checkBoxHotDog.Text = "Хот-дог";
             this.checkBoxHotDog.UseVisualStyleBackColor = true;
+            this.checkBoxHotDog.Click += new System.EventHandler(this.checkBoxHotDog_Click);
             // 
             // groupBox5
             // 
@@ -478,6 +494,7 @@
             this.textBoxSumOfCafe.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxSumOfCafe.Location = new System.Drawing.Point(20, 28);
             this.textBoxSumOfCafe.Name = "textBoxSumOfCafe";
+            this.textBoxSumOfCafe.ReadOnly = true;
             this.textBoxSumOfCafe.Size = new System.Drawing.Size(254, 49);
             this.textBoxSumOfCafe.TabIndex = 1;
             this.textBoxSumOfCafe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -487,6 +504,7 @@
             this.textBoxSum.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxSum.Location = new System.Drawing.Point(369, 353);
             this.textBoxSum.Name = "textBoxSum";
+            this.textBoxSum.ReadOnly = true;
             this.textBoxSum.Size = new System.Drawing.Size(254, 49);
             this.textBoxSum.TabIndex = 2;
             this.textBoxSum.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -572,7 +590,7 @@
         private System.Windows.Forms.RadioButton radioButtonSum;
         private System.Windows.Forms.TextBox textBoxQuantityOfFuel;
         private System.Windows.Forms.RadioButton radioButtonQuantity;
-        private System.Windows.Forms.CheckBox checkBox3CocaCola;
+        private System.Windows.Forms.CheckBox checkBoxCocaCola;
         private System.Windows.Forms.CheckBox checkBoxCheeseburger;
         private System.Windows.Forms.CheckBox checkBoxHamburger;
         private System.Windows.Forms.CheckBox checkBoxHotDog;
@@ -596,6 +614,7 @@
         private System.Windows.Forms.Label labelSum;
         private System.Windows.Forms.Label labelSumOrFuel;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolTip toolTip2;
 
 
 
