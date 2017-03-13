@@ -60,9 +60,8 @@ namespace BestOil
         {
             if (radioButtonQuantity.Checked)
             {
-                if (!(Regex.Match(textBoxQuantityOfFuel.Text, @"\d{1,5}(\,\d{0,2})?").Value == textBoxQuantityOfFuel.Text) || String.IsNullOrEmpty(textBoxQuantityOfFuel.Text))
+                if (Regex.Match(textBoxQuantityOfFuel.Text, @"\d{1,5}(\,\d{0,2})?").Value != textBoxQuantityOfFuel.Text || String.IsNullOrEmpty(textBoxQuantityOfFuel.Text))
                 {
-                    //MessageBox.Show("неправильно");
                     int durationMilliseconds = 2000;
                     toolTip1.Show("Введено неверное значение", textBoxQuantityOfFuel, durationMilliseconds);
                     return;
@@ -71,9 +70,8 @@ namespace BestOil
             }
             if (radioButtonSum.Checked)
             {
-                if (!(Regex.Match(textBoxPriceOfFuel2.Text, @"\d{1,5}(\,\d{0,2})?").Value == textBoxPriceOfFuel2.Text) || String.IsNullOrEmpty(textBoxPriceOfFuel2.Text))
+                if (Regex.Match(textBoxPriceOfFuel2.Text, @"\d{1,5}(\,\d{0,2})?").Value != textBoxPriceOfFuel2.Text || String.IsNullOrEmpty(textBoxPriceOfFuel2.Text))
                 {
-                    //MessageBox.Show("неправильно");
                     int durationMilliseconds = 2000;
                     toolTip1.Show("Введено неверное значение", textBoxPriceOfFuel2, durationMilliseconds);
                     return;
@@ -95,9 +93,8 @@ namespace BestOil
         {
             double Summa = 0;
             if (checkBoxHotDog.Checked)
-                if (!(Regex.Match(textBoxQuantityOfHotDog.Text, @"\d{1,5}").Value == textBoxQuantityOfHotDog.Text) || String.IsNullOrEmpty(textBoxQuantityOfHotDog.Text))
+                if (Regex.Match(textBoxQuantityOfHotDog.Text, @"\d{1,5}").Value != textBoxQuantityOfHotDog.Text || String.IsNullOrEmpty(textBoxQuantityOfHotDog.Text))
                 {
-                    //MessageBox.Show("неправильно");
                     int durationMilliseconds = 2000;
                     toolTip2.Show("Введено неверное значение", textBoxQuantityOfHotDog, durationMilliseconds);
                     return;

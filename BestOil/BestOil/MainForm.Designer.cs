@@ -553,6 +553,7 @@
             this.Controls.Add(this.textBoxSum);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
             this.Text = "Автозаправка";
             this.Load += new System.EventHandler(this.MainForm_Load);
