@@ -13,6 +13,7 @@ namespace BestOil
 {
     public partial class MainForm : Form
     {
+        private int totalSum;
         public MainForm()
         {
             InitializeComponent();
@@ -42,8 +43,9 @@ namespace BestOil
             textBoxQuantityOfFuel.Enabled = true;
             textBoxPriceOfFuel2.Enabled = false;
             groupBox4.Text = "К оплате:";
-            labelSumOrFuel.Text = "руб.";
-            textBoxSumOrFuel.Clear();
+            labelRubSumOrFuel.Text = "руб.";
+            textBoxSumOrFuel.Text = "0";
+            textBoxSum.Text = "0";
         }
 
         private void radioButtonSum_CheckedChanged(object sender, EventArgs e)
@@ -51,9 +53,9 @@ namespace BestOil
             textBoxQuantityOfFuel.Enabled = false;
             textBoxPriceOfFuel2.Enabled = true;
             groupBox4.Text = "К выдаче:";
-            labelSumOrFuel.Text = "л.";
-            textBoxSumOrFuel.Clear();
-
+            labelRubSumOrFuel.Text = "л.";
+            textBoxSumOrFuel.Text = "0";
+            textBoxSum.Text = "0";
         }
 
         private void buttonCalculate_Click(object sender, EventArgs e)
@@ -63,53 +65,79 @@ namespace BestOil
                 if (Regex.Match(textBoxQuantityOfFuel.Text, @"\d{1,5}(\,\d{0,2})?").Value != textBoxQuantityOfFuel.Text || String.IsNullOrEmpty(textBoxQuantityOfFuel.Text))
                 {
                     int durationMilliseconds = 2000;
-                    toolTip1.Show("Введено неверное значение", textBoxQuantityOfFuel, durationMilliseconds);
+                    toolTip1.Show("Введено недопустимое значение", textBoxQuantityOfFuel, durationMilliseconds);
                     return;
                 }
-                else textBoxSumOrFuel.Text = Math.Round((Decimal.Parse(textBoxPriceOfFuel1.Text) * Decimal.Parse(textBoxQuantityOfFuel.Text)), 2, MidpointRounding.AwayFromZero).ToString();
+                else
+                {
+                    textBoxSumOrFuel.Text = Math.Round((Decimal.Parse(textBoxPriceOfFuel1.Text) * Decimal.Parse(textBoxQuantityOfFuel.Text)), 2, MidpointRounding.AwayFromZero).ToString();
+                    textBoxSum.Text = (Decimal.Parse(textBoxSumOrFuel.Text) + Decimal.Parse(textBoxSumOfCafe.Text)).ToString();
+                }
             }
             if (radioButtonSum.Checked)
             {
                 if (Regex.Match(textBoxPriceOfFuel2.Text, @"\d{1,5}(\,\d{0,2})?").Value != textBoxPriceOfFuel2.Text || String.IsNullOrEmpty(textBoxPriceOfFuel2.Text))
                 {
                     int durationMilliseconds = 2000;
-                    toolTip1.Show("Введено неверное значение", textBoxPriceOfFuel2, durationMilliseconds);
+                    toolTip1.Show("Введено недопустимое значение", textBoxPriceOfFuel2, durationMilliseconds);
                     return;
                 }
-                else textBoxSumOrFuel.Text = Math.Round((Decimal.Parse(textBoxPriceOfFuel2.Text) / Decimal.Parse(textBoxPriceOfFuel1.Text)), 2, MidpointRounding.AwayFromZero).ToString();
+                else
+                {
+                    textBoxSumOrFuel.Text = Math.Round((Decimal.Parse(textBoxPriceOfFuel2.Text) / Decimal.Parse(textBoxPriceOfFuel1.Text)), 2, MidpointRounding.AwayFromZero).ToString();
+                    textBoxSum.Text = (Decimal.Parse(textBoxPriceOfFuel2.Text) + Decimal.Parse(textBoxSumOfCafe.Text)).ToString();
+                }
             }
+            textBoxTotalSum.Text = (Decimal.Parse(textBoxTotalSum.Text) + Decimal.Parse(textBoxSum.Text)).ToString();
         }
 
         private void textBoxQuantityOfFuel_TextChanged(object sender, EventArgs e)
         {
-            textBoxSumOrFuel.Clear();
+            textBoxSumOrFuel.Text = "0";
+            textBoxSum.Text = "0";
         }
         private void textBoxPriceOfFuel2_TextChanged(object sender, EventArgs e)
         {
-            textBoxSumOrFuel.Clear();
+            textBoxSumOrFuel.Text = "0";
+            textBoxSum.Text = "0";
         }
 
         private void checkBoxHotDog_Click(object sender, EventArgs e)
         {
+            int a;
+            bool IsCorrectInput = true;
             double Summa = 0;
             if (checkBoxHotDog.Checked)
-                if (Regex.Match(textBoxQuantityOfHotDog.Text, @"\d{1,5}").Value != textBoxQuantityOfHotDog.Text || String.IsNullOrEmpty(textBoxQuantityOfHotDog.Text))
-                {
-                    int durationMilliseconds = 2000;
-                    toolTip2.Show("Введено неверное значение", textBoxQuantityOfHotDog, durationMilliseconds);
-                    return;
-                }
-                else Summa += Convert.ToDouble(textBoxPriceOfHotDog.Text) * Convert.ToDouble(textBoxQuantityOfHotDog.Text);
+            {
+                if (Int32.TryParse(textBoxQuantityOfHotDog.Text, out a))
+                    Summa += Convert.ToDouble(textBoxPriceOfHotDog.Text) * Convert.ToDouble(textBoxQuantityOfHotDog.Text);
+                else IsCorrectInput = false;
+            }
             if (checkBoxHamburger.Checked)
-                Summa += Convert.ToDouble(textBoxPriceOfHamburger.Text) * Convert.ToDouble(textBoxQuantityOfHamburger.Text);
+            {
+                if (Int32.TryParse(textBoxQuantityOfHamburger.Text, out a))
+                    Summa += Convert.ToDouble(textBoxPriceOfHamburger.Text) * Convert.ToDouble(textBoxQuantityOfHamburger.Text);
+                else IsCorrectInput = false;
+            }
             if (checkBoxCheeseburger.Checked)
-                Summa += Convert.ToDouble(textBoxPriceOfCheeseburger.Text) * Convert.ToDouble(textBoxQuantityOfCheeseburger.Text);
+            {
+                if (Int32.TryParse(textBoxQuantityOfCheeseburger.Text, out a))
+                    Summa += Convert.ToDouble(textBoxPriceOfCheeseburger.Text) * Convert.ToDouble(textBoxQuantityOfCheeseburger.Text);
+                else IsCorrectInput = false;
+            }
             if (checkBoxCocaCola.Checked)
-                Summa += Convert.ToDouble(textBoxPriceOfCocaCola.Text) * Convert.ToDouble(textBoxQuantityOfCocaCola.Text);
-            textBoxSumOfCafe.Text = Summa.ToString();
+            {
+                if (Int32.TryParse(textBoxQuantityOfCocaCola.Text, out a))
+                    Summa += Convert.ToDouble(textBoxPriceOfCocaCola.Text) * Convert.ToDouble(textBoxQuantityOfCocaCola.Text);
+                else IsCorrectInput = false;
+            }
+            if (IsCorrectInput == true) textBoxSumOfCafe.Text = Summa.ToString();
+            else
+            {
+                textBoxSumOfCafe.Text = "0";
+                textBoxSum.Text = "0";
+            }
         }
-
-
     }
 
     class Fuel

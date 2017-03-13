@@ -36,6 +36,7 @@
             this.labelPrice1 = new System.Windows.Forms.Label();
             this.labelFuel = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.labelRubSumOrFuel = new System.Windows.Forms.Label();
             this.textBoxSumOrFuel = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.labelRUB2 = new System.Windows.Forms.Label();
@@ -68,9 +69,12 @@
             this.textBoxSum = new System.Windows.Forms.TextBox();
             this.buttonCalculate = new System.Windows.Forms.Button();
             this.labelSum = new System.Windows.Forms.Label();
-            this.labelSumOrFuel = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
+            this.labelRubSumOfCafe = new System.Windows.Forms.Label();
+            this.labelRubSum = new System.Windows.Forms.Label();
+            this.labelTotalSum = new System.Windows.Forms.Label();
+            this.labelRubTotalSum = new System.Windows.Forms.Label();
+            this.textBoxTotalSum = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -151,7 +155,7 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.labelSumOrFuel);
+            this.groupBox4.Controls.Add(this.labelRubSumOrFuel);
             this.groupBox4.Controls.Add(this.textBoxSumOrFuel);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox4.Location = new System.Drawing.Point(6, 201);
@@ -161,6 +165,16 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "К оплате";
             // 
+            // labelRubSumOrFuel
+            // 
+            this.labelRubSumOrFuel.AutoSize = true;
+            this.labelRubSumOrFuel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelRubSumOrFuel.Location = new System.Drawing.Point(237, 38);
+            this.labelRubSumOrFuel.Name = "labelRubSumOrFuel";
+            this.labelRubSumOrFuel.Size = new System.Drawing.Size(50, 24);
+            this.labelRubSumOrFuel.TabIndex = 1;
+            this.labelRubSumOrFuel.Text = "руб.";
+            // 
             // textBoxSumOrFuel
             // 
             this.textBoxSumOrFuel.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -169,6 +183,7 @@
             this.textBoxSumOrFuel.ReadOnly = true;
             this.textBoxSumOrFuel.Size = new System.Drawing.Size(212, 49);
             this.textBoxSumOrFuel.TabIndex = 0;
+            this.textBoxSumOrFuel.Text = "0";
             this.textBoxSumOrFuel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // groupBox3
@@ -212,6 +227,7 @@
             this.textBoxPriceOfFuel2.Name = "textBoxPriceOfFuel2";
             this.textBoxPriceOfFuel2.Size = new System.Drawing.Size(133, 20);
             this.textBoxPriceOfFuel2.TabIndex = 8;
+            this.textBoxPriceOfFuel2.Text = "0";
             this.textBoxPriceOfFuel2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.textBoxPriceOfFuel2.TextChanged += new System.EventHandler(this.textBoxPriceOfFuel2_TextChanged);
             // 
@@ -235,6 +251,7 @@
             this.textBoxQuantityOfFuel.Name = "textBoxQuantityOfFuel";
             this.textBoxQuantityOfFuel.Size = new System.Drawing.Size(133, 20);
             this.textBoxQuantityOfFuel.TabIndex = 7;
+            this.textBoxQuantityOfFuel.Text = "0";
             this.textBoxQuantityOfFuel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.toolTip1.SetToolTip(this.textBoxQuantityOfFuel, "qeqweqeqe");
             this.textBoxQuantityOfFuel.TextChanged += new System.EventHandler(this.textBoxQuantityOfFuel_TextChanged);
@@ -309,7 +326,9 @@
             this.textBoxQuantityOfCocaCola.Name = "textBoxQuantityOfCocaCola";
             this.textBoxQuantityOfCocaCola.Size = new System.Drawing.Size(68, 20);
             this.textBoxQuantityOfCocaCola.TabIndex = 20;
+            this.textBoxQuantityOfCocaCola.Text = "1";
             this.textBoxQuantityOfCocaCola.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxQuantityOfCocaCola.TextChanged += new System.EventHandler(this.checkBoxHotDog_Click);
             // 
             // textBoxQuantityOfCheeseburger
             // 
@@ -318,7 +337,9 @@
             this.textBoxQuantityOfCheeseburger.Name = "textBoxQuantityOfCheeseburger";
             this.textBoxQuantityOfCheeseburger.Size = new System.Drawing.Size(68, 20);
             this.textBoxQuantityOfCheeseburger.TabIndex = 19;
+            this.textBoxQuantityOfCheeseburger.Text = "1";
             this.textBoxQuantityOfCheeseburger.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxQuantityOfCheeseburger.TextChanged += new System.EventHandler(this.checkBoxHotDog_Click);
             // 
             // textBoxQuantityOfHamburger
             // 
@@ -327,7 +348,9 @@
             this.textBoxQuantityOfHamburger.Name = "textBoxQuantityOfHamburger";
             this.textBoxQuantityOfHamburger.Size = new System.Drawing.Size(68, 20);
             this.textBoxQuantityOfHamburger.TabIndex = 18;
+            this.textBoxQuantityOfHamburger.Text = "1";
             this.textBoxQuantityOfHamburger.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxQuantityOfHamburger.TextChanged += new System.EventHandler(this.checkBoxHotDog_Click);
             // 
             // textBoxQuantityOfHotDog
             // 
@@ -336,7 +359,9 @@
             this.textBoxQuantityOfHotDog.Name = "textBoxQuantityOfHotDog";
             this.textBoxQuantityOfHotDog.Size = new System.Drawing.Size(68, 20);
             this.textBoxQuantityOfHotDog.TabIndex = 17;
+            this.textBoxQuantityOfHotDog.Text = "1";
             this.textBoxQuantityOfHotDog.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxQuantityOfHotDog.TextChanged += new System.EventHandler(this.checkBoxHotDog_Click);
             // 
             // labelRUB6
             // 
@@ -480,6 +505,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.labelRubSumOfCafe);
             this.groupBox5.Controls.Add(this.textBoxSumOfCafe);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox5.Location = new System.Drawing.Point(6, 201);
@@ -492,11 +518,12 @@
             // textBoxSumOfCafe
             // 
             this.textBoxSumOfCafe.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxSumOfCafe.Location = new System.Drawing.Point(20, 28);
+            this.textBoxSumOfCafe.Location = new System.Drawing.Point(18, 28);
             this.textBoxSumOfCafe.Name = "textBoxSumOfCafe";
             this.textBoxSumOfCafe.ReadOnly = true;
-            this.textBoxSumOfCafe.Size = new System.Drawing.Size(254, 49);
+            this.textBoxSumOfCafe.Size = new System.Drawing.Size(212, 49);
             this.textBoxSumOfCafe.TabIndex = 1;
+            this.textBoxSumOfCafe.Text = "0";
             this.textBoxSumOfCafe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBoxSum
@@ -505,8 +532,9 @@
             this.textBoxSum.Location = new System.Drawing.Point(369, 353);
             this.textBoxSum.Name = "textBoxSum";
             this.textBoxSum.ReadOnly = true;
-            this.textBoxSum.Size = new System.Drawing.Size(254, 49);
+            this.textBoxSum.Size = new System.Drawing.Size(190, 49);
             this.textBoxSum.TabIndex = 2;
+            this.textBoxSum.Text = "0";
             this.textBoxSum.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // buttonCalculate
@@ -533,21 +561,67 @@
             this.labelSum.TabIndex = 4;
             this.labelSum.Text = "ИТОГО:";
             // 
-            // labelSumOrFuel
+            // labelRubSumOfCafe
             // 
-            this.labelSumOrFuel.AutoSize = true;
-            this.labelSumOrFuel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelSumOrFuel.Location = new System.Drawing.Point(237, 38);
-            this.labelSumOrFuel.Name = "labelSumOrFuel";
-            this.labelSumOrFuel.Size = new System.Drawing.Size(50, 24);
-            this.labelSumOrFuel.TabIndex = 1;
-            this.labelSumOrFuel.Text = "руб.";
+            this.labelRubSumOfCafe.AutoSize = true;
+            this.labelRubSumOfCafe.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelRubSumOfCafe.Location = new System.Drawing.Point(236, 38);
+            this.labelRubSumOfCafe.Name = "labelRubSumOfCafe";
+            this.labelRubSumOfCafe.Size = new System.Drawing.Size(50, 24);
+            this.labelRubSumOfCafe.TabIndex = 2;
+            this.labelRubSumOfCafe.Text = "руб.";
+            // 
+            // labelRubSum
+            // 
+            this.labelRubSum.AutoSize = true;
+            this.labelRubSum.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelRubSum.Location = new System.Drawing.Point(565, 364);
+            this.labelRubSum.Name = "labelRubSum";
+            this.labelRubSum.Size = new System.Drawing.Size(50, 24);
+            this.labelRubSum.TabIndex = 3;
+            this.labelRubSum.Text = "руб.";
+            // 
+            // labelTotalSum
+            // 
+            this.labelTotalSum.AutoSize = true;
+            this.labelTotalSum.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelTotalSum.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.labelTotalSum.Location = new System.Drawing.Point(26, 435);
+            this.labelTotalSum.Name = "labelTotalSum";
+            this.labelTotalSum.Size = new System.Drawing.Size(245, 25);
+            this.labelTotalSum.TabIndex = 5;
+            this.labelTotalSum.Text = "Общая сумма выручки:";
+            // 
+            // labelRubTotalSum
+            // 
+            this.labelRubTotalSum.AutoSize = true;
+            this.labelRubTotalSum.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelRubTotalSum.Location = new System.Drawing.Point(463, 436);
+            this.labelRubTotalSum.Name = "labelRubTotalSum";
+            this.labelRubTotalSum.Size = new System.Drawing.Size(46, 24);
+            this.labelRubTotalSum.TabIndex = 7;
+            this.labelRubTotalSum.Text = "руб.";
+            // 
+            // textBoxTotalSum
+            // 
+            this.textBoxTotalSum.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxTotalSum.Location = new System.Drawing.Point(267, 433);
+            this.textBoxTotalSum.Name = "textBoxTotalSum";
+            this.textBoxTotalSum.ReadOnly = true;
+            this.textBoxTotalSum.Size = new System.Drawing.Size(190, 29);
+            this.textBoxTotalSum.TabIndex = 6;
+            this.textBoxTotalSum.Text = "0";
+            this.textBoxTotalSum.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(641, 425);
+            this.ClientSize = new System.Drawing.Size(641, 485);
+            this.Controls.Add(this.labelRubTotalSum);
+            this.Controls.Add(this.textBoxTotalSum);
+            this.Controls.Add(this.labelTotalSum);
+            this.Controls.Add(this.labelRubSum);
             this.Controls.Add(this.labelSum);
             this.Controls.Add(this.buttonCalculate);
             this.Controls.Add(this.textBoxSum);
@@ -613,9 +687,13 @@
         private System.Windows.Forms.TextBox textBoxPriceOfHotDog;
         private System.Windows.Forms.Button buttonCalculate;
         private System.Windows.Forms.Label labelSum;
-        private System.Windows.Forms.Label labelSumOrFuel;
+        private System.Windows.Forms.Label labelRubSumOrFuel;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.ToolTip toolTip2;
+        private System.Windows.Forms.Label labelRubSumOfCafe;
+        private System.Windows.Forms.Label labelRubSum;
+        private System.Windows.Forms.Label labelTotalSum;
+        private System.Windows.Forms.Label labelRubTotalSum;
+        private System.Windows.Forms.TextBox textBoxTotalSum;
 
 
 
