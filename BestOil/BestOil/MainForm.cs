@@ -8,12 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace BestOil
 {
     public partial class MainForm : Form
     {
-        private int totalSum;
         public MainForm()
         {
             InitializeComponent();
@@ -89,6 +89,7 @@ namespace BestOil
                 }
             }
             textBoxTotalSum.Text = (Decimal.Parse(textBoxTotalSum.Text) + Decimal.Parse(textBoxSum.Text)).ToString();
+            SaveToDocx();
         }
 
         private void textBoxQuantityOfFuel_TextChanged(object sender, EventArgs e)
@@ -136,6 +137,35 @@ namespace BestOil
             {
                 textBoxSumOfCafe.Text = "0";
                 textBoxSum.Text = "0";
+            }
+        }
+
+        private void SaveToDocx()
+        {
+            Word.Application wordapp = new Word.Application();
+            Word.Document doc = new Word.Document();
+            try
+            {
+                doc = wordapp.Documents.Open(System.Environment.CurrentDirectory + @"\Checks.docx");
+                //doc = wordapp.Documents.Add();
+
+                Word.Paragraph paragraph = doc.Content.Paragraphs.Add();
+                paragraph.Range.Text = System.DateTime.Now.ToString();
+                paragraph.Range.InsertParagraphAfter();
+                if (radioButtonQuantity.Checked && textBoxQuantityOfFuel.Text != "0") paragraph.Range.Text = "- " + comboBoxFuel.Text + " " + textBoxQuantityOfFuel.Text + " л.\n";
+                if (radioButtonSum.Checked && textBoxPriceOfFuel2.Text != "0") paragraph.Range.Text = "- " + comboBoxFuel.Text + " " + textBoxSumOrFuel.Text + " л.\n";
+                paragraph.Range.Text = "Итого: " + textBoxSum.Text + " руб.\n\n";
+
+                //doc.SaveAs2(System.Environment.CurrentDirectory + @"\Checks");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                    ((Word._Document)doc).Close(); // без приведения типов выскакивает предупреждение
+                    ((Word._Application)wordapp).Quit(); // без приведения типов выскакивает предупреждение
             }
         }
     }
