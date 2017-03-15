@@ -152,8 +152,15 @@ namespace BestOil
                 Word.Paragraph paragraph = doc.Content.Paragraphs.Add();
                 paragraph.Range.Text = System.DateTime.Now.ToString();
                 paragraph.Range.InsertParagraphAfter();
-                if (radioButtonQuantity.Checked && textBoxQuantityOfFuel.Text != "0") paragraph.Range.Text = "- " + comboBoxFuel.Text + " " + textBoxQuantityOfFuel.Text + " л.\n";
-                if (radioButtonSum.Checked && textBoxPriceOfFuel2.Text != "0") paragraph.Range.Text = "- " + comboBoxFuel.Text + " " + textBoxSumOrFuel.Text + " л.\n";
+                if (radioButtonQuantity.Checked && textBoxQuantityOfFuel.Text != "0") paragraph.Range.Text = "- " + comboBoxFuel.Text + " " + textBoxQuantityOfFuel.Text + " л. - " + textBoxSumOrFuel.Text + " руб.\n";
+                if (radioButtonSum.Checked && textBoxPriceOfFuel2.Text != "0") paragraph.Range.Text = "- " + comboBoxFuel.Text + " " + textBoxSumOrFuel.Text + " л. - " + textBoxPriceOfFuel2.Text + " руб.\n";
+                if (textBoxSumOfCafe.Text != "0")
+                {
+                    if (checkBoxHotDog.Checked) paragraph.Range.Text = "- " + checkBoxHotDog.Text + " - " + textBoxQuantityOfHotDog.Text + " шт. - " + Convert.ToDouble(textBoxPriceOfHotDog.Text) * Convert.ToDouble(textBoxQuantityOfHotDog.Text) + " руб.\n";
+                    if (checkBoxHamburger.Checked) paragraph.Range.Text = "- " + checkBoxHamburger.Text + " - " + textBoxQuantityOfHamburger.Text + " шт. - " + Convert.ToDouble(textBoxPriceOfHamburger.Text) * Convert.ToDouble(textBoxQuantityOfHamburger.Text) +" руб.\n";
+                    if (checkBoxCheeseburger.Checked) paragraph.Range.Text = "- " + checkBoxCheeseburger.Text + " - " + textBoxQuantityOfCheeseburger.Text + " шт. - " + Convert.ToDouble(textBoxPriceOfCheeseburger.Text) * Convert.ToDouble(textBoxQuantityOfCheeseburger.Text) +" руб.\n";
+                    if (checkBoxCocaCola.Checked) paragraph.Range.Text = "- " + checkBoxCocaCola.Text + " - " + textBoxQuantityOfCocaCola.Text + " шт. - " + Convert.ToDouble(textBoxPriceOfCocaCola.Text) * Convert.ToDouble(textBoxQuantityOfCocaCola.Text) + " руб.\n";
+                }
                 paragraph.Range.Text = "Итого: " + textBoxSum.Text + " руб.\n\n";
 
                 //doc.SaveAs2(System.Environment.CurrentDirectory + @"\Checks");
