@@ -18,8 +18,6 @@ namespace BestOil
         {
             InitializeComponent();
         }
-
-
         private void MainForm_Load(object sender, EventArgs e)
         {
             List<Fuel> fuels = new List<Fuel>() { 
@@ -31,13 +29,22 @@ namespace BestOil
             comboBoxFuel.DataSource = fuels;
             comboBoxFuel.DisplayMember = "Name";
         }
+        /// <summary>
+        /// Действие при смене топлива.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBoxFuel_SelectedIndexChanged(object sender, EventArgs e)
         {
             textBoxSumOrFuel.Clear();
             Fuel selFuel = (Fuel)comboBoxFuel.SelectedItem;
             textBoxPriceOfFuel1.Text = selFuel.Price.ToString();
         }
-
+        /// <summary>
+        /// Дествие по нажатию на RadioButton "Количество". Делаем нективным ввод суммы.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void radioButtonQuantity_CheckedChanged(object sender, EventArgs e)
         {
             textBoxQuantityOfFuel.Enabled = true;
@@ -47,7 +54,11 @@ namespace BestOil
             textBoxSumOrFuel.Text = "0";
             textBoxSum.Text = "0";
         }
-
+        /// <summary>
+        /// Дествие по нажатию на RadioButton "Сумма". Делаем нективным ввод количества.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void radioButtonSum_CheckedChanged(object sender, EventArgs e)
         {
             textBoxQuantityOfFuel.Enabled = false;
@@ -57,7 +68,14 @@ namespace BestOil
             textBoxSumOrFuel.Text = "0";
             textBoxSum.Text = "0";
         }
-
+        /// <summary>
+        /// Действие по нажатию на кнопку "Рассчитать". В зависимоти от выбранной радиокнопки, проверяем соответствующий
+        /// текстбокс на допустимый текст (число с максимум двумя знаками после запятой). Если текст недопустим, то выходим
+        /// из обработчика. Если текст допустим, то подсчитываем значение, округляем до двух знаков после запятой и выводим в текстбоксы "К оплате" и "Итого".
+        /// А далее подсчитываем выручку за сеанс и сохраняем чек в документ Word.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCalculate_Click(object sender, EventArgs e)
         {
             if (radioButtonQuantity.Checked)
@@ -91,18 +109,32 @@ namespace BestOil
             textBoxTotalSum.Text = (Decimal.Parse(textBoxTotalSum.Text) + Decimal.Parse(textBoxSum.Text)).ToString();
             SaveToDocx();
         }
-
+        /// <summary>
+        /// При изменении текста в текстбоксе "Количество литров" обнуляем высчитываемые результаты.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textBoxQuantityOfFuel_TextChanged(object sender, EventArgs e)
         {
             textBoxSumOrFuel.Text = "0";
             textBoxSum.Text = "0";
         }
+        /// <summary>
+        /// При изменении текста в текстбоксе "Сумма" обнуляем высчитываемые результаты.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textBoxPriceOfFuel2_TextChanged(object sender, EventArgs e)
         {
             textBoxSumOrFuel.Text = "0";
             textBoxSum.Text = "0";
         }
-
+        /// <summary>
+        /// Действие при установке "галочки" в чекбоксах и изменении текста в текстбоксах "Количество" в групбоксе "Мини-кафе".
+        /// Подсчитывается сумма и выводится в текстбокс "К оплате". Если введен нечисловой символ, то выводимые суммы обнуляются.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void checkBoxHotDog_Click(object sender, EventArgs e)
         {
             int a;
@@ -139,7 +171,10 @@ namespace BestOil
                 textBoxSum.Text = "0";
             }
         }
-
+        /// <summary>
+        /// Открываем документ Word "Checks.docx", лежащий рядом с "exe". Выводим в него дату, купленное топливо, продукты,
+        /// итоговую сумму и сохраняем документ.
+        /// </summary>
         private void SaveToDocx()
         {
             Word.Application wordapp = new Word.Application();
