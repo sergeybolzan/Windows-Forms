@@ -35,8 +35,8 @@
             this.labelPassword = new System.Windows.Forms.Label();
             this.tbLogin = new System.Windows.Forms.TextBox();
             this.labelLogin = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabelForgotPassword = new System.Windows.Forms.LinkLabel();
+            this.linkLabelRegistration = new System.Windows.Forms.LinkLabel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox2.SuspendLayout();
@@ -66,6 +66,7 @@
             this.buttonEnter.TabIndex = 0;
             this.buttonEnter.Text = "Войти";
             this.buttonEnter.UseVisualStyleBackColor = true;
+            this.buttonEnter.Click += new System.EventHandler(this.buttonEnter_Click);
             // 
             // tbPassword
             // 
@@ -104,25 +105,29 @@
             this.labelLogin.TabIndex = 0;
             this.labelLogin.Text = "Имя пользователя:";
             // 
-            // linkLabel1
+            // linkLabelForgotPassword
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(12, 241);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(55, 13);
-            this.linkLabel1.TabIndex = 1;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "linkLabel1";
+            this.linkLabelForgotPassword.AutoSize = true;
+            this.linkLabelForgotPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.linkLabelForgotPassword.Location = new System.Drawing.Point(12, 241);
+            this.linkLabelForgotPassword.Name = "linkLabelForgotPassword";
+            this.linkLabelForgotPassword.Size = new System.Drawing.Size(105, 13);
+            this.linkLabelForgotPassword.TabIndex = 1;
+            this.linkLabelForgotPassword.TabStop = true;
+            this.linkLabelForgotPassword.Text = "Забыли пароль?";
+            this.linkLabelForgotPassword.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelForgotPassword_LinkClicked);
             // 
-            // linkLabel2
+            // linkLabelRegistration
             // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(404, 241);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(55, 13);
-            this.linkLabel2.TabIndex = 2;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "linkLabel2";
+            this.linkLabelRegistration.AutoSize = true;
+            this.linkLabelRegistration.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.linkLabelRegistration.Location = new System.Drawing.Point(376, 241);
+            this.linkLabelRegistration.Name = "linkLabelRegistration";
+            this.linkLabelRegistration.Size = new System.Drawing.Size(83, 13);
+            this.linkLabelRegistration.TabIndex = 2;
+            this.linkLabelRegistration.TabStop = true;
+            this.linkLabelRegistration.Text = "Регистрация";
+            this.linkLabelRegistration.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelRegistration_LinkClicked);
             // 
             // progressBar1
             // 
@@ -149,8 +154,8 @@
             this.ClientSize = new System.Drawing.Size(471, 265);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.linkLabel2);
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.linkLabelRegistration);
+            this.Controls.Add(this.linkLabelForgotPassword);
             this.Controls.Add(this.groupBox2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -175,8 +180,8 @@
         private System.Windows.Forms.Label labelPassword;
         private System.Windows.Forms.TextBox tbLogin;
         private System.Windows.Forms.Label labelLogin;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.LinkLabel linkLabelForgotPassword;
+        private System.Windows.Forms.LinkLabel linkLabelRegistration;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
