@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.buttonEnter = new System.Windows.Forms.Button();
             this.tbPassword = new System.Windows.Forms.TextBox();
@@ -37,8 +36,9 @@
             this.labelLogin = new System.Windows.Forms.Label();
             this.linkLabelForgotPassword = new System.Windows.Forms.LinkLabel();
             this.linkLabelRegistration = new System.Windows.Forms.LinkLabel();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.labelTextOfProgressBar = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -109,7 +109,7 @@
             // 
             this.linkLabelForgotPassword.AutoSize = true;
             this.linkLabelForgotPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.linkLabelForgotPassword.Location = new System.Drawing.Point(12, 241);
+            this.linkLabelForgotPassword.Location = new System.Drawing.Point(12, 261);
             this.linkLabelForgotPassword.Name = "linkLabelForgotPassword";
             this.linkLabelForgotPassword.Size = new System.Drawing.Size(105, 13);
             this.linkLabelForgotPassword.TabIndex = 1;
@@ -121,7 +121,7 @@
             // 
             this.linkLabelRegistration.AutoSize = true;
             this.linkLabelRegistration.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.linkLabelRegistration.Location = new System.Drawing.Point(376, 241);
+            this.linkLabelRegistration.Location = new System.Drawing.Point(376, 261);
             this.linkLabelRegistration.Name = "linkLabelRegistration";
             this.linkLabelRegistration.Size = new System.Drawing.Size(83, 13);
             this.linkLabelRegistration.TabIndex = 2;
@@ -129,17 +129,9 @@
             this.linkLabelRegistration.Text = "Регистрация";
             this.linkLabelRegistration.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelRegistration_LinkClicked);
             // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 206);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(447, 23);
-            this.progressBar1.TabIndex = 4;
-            this.progressBar1.Visible = false;
-            // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Image = global::Autorization.Properties.Resources._lock;
             this.pictureBox1.Location = new System.Drawing.Point(16, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(220, 188);
@@ -147,11 +139,33 @@
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
+            // labelTextOfProgressBar
+            // 
+            this.labelTextOfProgressBar.BackColor = System.Drawing.SystemColors.Control;
+            this.labelTextOfProgressBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelTextOfProgressBar.Location = new System.Drawing.Point(16, 207);
+            this.labelTextOfProgressBar.Name = "labelTextOfProgressBar";
+            this.labelTextOfProgressBar.Size = new System.Drawing.Size(443, 16);
+            this.labelTextOfProgressBar.TabIndex = 6;
+            this.labelTextOfProgressBar.Text = "Идет проверка:";
+            this.labelTextOfProgressBar.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelTextOfProgressBar.Visible = false;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(12, 226);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(447, 23);
+            this.progressBar1.Step = 1;
+            this.progressBar1.TabIndex = 4;
+            this.progressBar1.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(471, 265);
+            this.ClientSize = new System.Drawing.Size(471, 281);
+            this.Controls.Add(this.labelTextOfProgressBar);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.linkLabelRegistration);
@@ -184,6 +198,7 @@
         private System.Windows.Forms.LinkLabel linkLabelRegistration;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label labelTextOfProgressBar;
     }
 }
 
