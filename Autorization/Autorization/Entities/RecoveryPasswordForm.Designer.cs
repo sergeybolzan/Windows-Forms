@@ -59,7 +59,7 @@
             this.tbRepeatNewPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbRepeatNewPassword.Location = new System.Drawing.Point(6, 148);
             this.tbRepeatNewPassword.Name = "tbRepeatNewPassword";
-            this.tbRepeatNewPassword.PasswordChar = '`';
+            this.tbRepeatNewPassword.PasswordChar = '*';
             this.tbRepeatNewPassword.Size = new System.Drawing.Size(248, 26);
             this.tbRepeatNewPassword.TabIndex = 5;
             // 
@@ -78,7 +78,7 @@
             this.tbNewPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbNewPassword.Location = new System.Drawing.Point(6, 90);
             this.tbNewPassword.Name = "tbNewPassword";
-            this.tbNewPassword.PasswordChar = '`';
+            this.tbNewPassword.PasswordChar = '*';
             this.tbNewPassword.Size = new System.Drawing.Size(248, 26);
             this.tbNewPassword.TabIndex = 3;
             // 
@@ -119,6 +119,7 @@
             this.btnOK.TabIndex = 1;
             this.btnOK.Text = "ОК";
             this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // btnCancel
             // 
@@ -129,6 +130,7 @@
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Отмена";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // RecoveryPasswordForm
             // 

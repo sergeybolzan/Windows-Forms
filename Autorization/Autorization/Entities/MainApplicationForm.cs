@@ -16,5 +16,12 @@ namespace Autorization.Entities
         {
             InitializeComponent();
         }
+
+        public DialogResult ShowDialog(string s)
+        {
+            textBox1.Text = s;
+            return ShowDialog();
+        }
+
     }
 }

@@ -29,7 +29,7 @@ namespace Autorization
             tbPassword.LostFocus += tbPassword_LostFocus;
         }
 
-        void tbLogin_GotFocus(object sender, EventArgs e)
+        private void tbLogin_GotFocus(object sender, EventArgs e)
         {
             if (tbLogin.Text == "Имя пользователя")
             {
@@ -38,7 +38,7 @@ namespace Autorization
             }
         }
 
-        void tbLogin_LostFocus(object sender, EventArgs e)
+        private void tbLogin_LostFocus(object sender, EventArgs e)
         {
             if (tbLogin.Text == "")
             {
@@ -47,7 +47,7 @@ namespace Autorization
             }
         }
 
-        void tbPassword_GotFocus(object sender, EventArgs e)
+        private void tbPassword_GotFocus(object sender, EventArgs e)
         {
             if (tbPassword.Text == "Пароль")
             {
@@ -57,7 +57,7 @@ namespace Autorization
             }
         }
 
-        void tbPassword_LostFocus(object sender, EventArgs e)
+        private void tbPassword_LostFocus(object sender, EventArgs e)
         {
             if (tbPassword.Text == "")
             {
@@ -65,24 +65,6 @@ namespace Autorization
                 tbPassword.Text = "Пароль";
                 tbPassword.PasswordChar = '\0';
             }
-        }
-
-        private void linkLabelForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            RecoveryPasswordForm rpForm = new RecoveryPasswordForm();
-            this.Visible = false;
-            rpForm.ShowDialog();
-            this.Visible = true;
-
-        }
-
-        private void linkLabelRegistration_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            RegistrationNewUserForm rnuForm = new RegistrationNewUserForm();
-            this.Visible = false;
-            rnuForm.ShowDialog();
-            this.Visible = true;
-
         }
 
         private void buttonEnter_Click(object sender, EventArgs e)
@@ -114,7 +96,7 @@ namespace Autorization
                     }
                     this.Visible = false;
                     MainApplicationForm maForm = new MainApplicationForm();
-                    maForm.ShowDialog();
+                    maForm.ShowDialog(GetDataOnLogin(tbLogin.Text));
 
                     progressBar1.Visible = false;
                     labelTextOfProgressBar.Visible = false;
@@ -126,6 +108,26 @@ namespace Autorization
             labelTextOfProgressBar.ForeColor = Color.Red;
             progressBar1.Value = 100;
             ModifyProgressBarColor.SetState(progressBar1, 2);
+        }
+
+        private void linkLabelForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            RecoveryPasswordForm rpForm = new RecoveryPasswordForm();
+            this.Visible = false;
+            rpForm.ShowDialog();
+            progressBar1.Visible = false;
+            labelTextOfProgressBar.Visible = false;
+            this.Visible = true;
+        }
+
+        private void linkLabelRegistration_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            RegistrationNewUserForm rnuForm = new RegistrationNewUserForm();
+            this.Visible = false;
+            rnuForm.ShowDialog();
+            progressBar1.Visible = false;
+            labelTextOfProgressBar.Visible = false;
+            this.Visible = true;
         }
 
         private Dictionary<string, string> GetListLoginPassword()
@@ -161,7 +163,42 @@ namespace Autorization
             }
             return myDict;
         }
+
+        private string GetDataOnLogin(string Login)
+        {
+            string Data = null;
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+            builder.DataSource = @"(LocalDB)\v11.0";
+            builder.AttachDBFilename = Environment.CurrentDirectory + @"\registration.mdf";
+            builder.IntegratedSecurity = true;
+            builder.ConnectTimeout = 5;
+
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = builder.ConnectionString;
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(String.Format("SELECT LastName, FirstName FROM Users JOIN UsersInfo ON Id=UserId WHERE Name='{0}'", Login), connection);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Data = reader[0].ToString().Trim() + " " + reader[1].ToString().Trim();
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return Data;
+        }
+
     }
+
 
     public static class ModifyProgressBarColor
     {
