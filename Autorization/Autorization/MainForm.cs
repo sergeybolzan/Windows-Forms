@@ -23,6 +23,48 @@ namespace Autorization
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            tbLogin.GotFocus += tbLogin_GotFocus;
+            tbLogin.LostFocus += tbLogin_LostFocus;
+            tbPassword.GotFocus += tbPassword_GotFocus;
+            tbPassword.LostFocus += tbPassword_LostFocus;
+        }
+
+        void tbLogin_GotFocus(object sender, EventArgs e)
+        {
+            if (tbLogin.Text == "Имя пользователя")
+            {
+                tbLogin.ForeColor = Color.Black;
+                tbLogin.Text = "";
+            }
+        }
+
+        void tbLogin_LostFocus(object sender, EventArgs e)
+        {
+            if (tbLogin.Text == "")
+            {
+                tbLogin.ForeColor = Color.DarkGray;
+                tbLogin.Text = "Имя пользователя";
+            }
+        }
+
+        void tbPassword_GotFocus(object sender, EventArgs e)
+        {
+            if (tbPassword.Text == "Пароль")
+            {
+                tbPassword.ForeColor = Color.Black;
+                tbPassword.Text = "";
+                tbPassword.PasswordChar = '*';
+            }
+        }
+
+        void tbPassword_LostFocus(object sender, EventArgs e)
+        {
+            if (tbPassword.Text == "")
+            {
+                tbPassword.ForeColor = Color.DarkGray;
+                tbPassword.Text = "Пароль";
+                tbPassword.PasswordChar = '\0';
+            }
         }
 
         private void linkLabelForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -70,9 +112,10 @@ namespace Autorization
                         this.Update();
                         Thread.Sleep(10);
                     }
-                    MainApplicationForm maForm = new MainApplicationForm();
                     this.Visible = false;
+                    MainApplicationForm maForm = new MainApplicationForm();
                     maForm.ShowDialog();
+
                     progressBar1.Visible = false;
                     labelTextOfProgressBar.Visible = false;
                     this.Visible = true;

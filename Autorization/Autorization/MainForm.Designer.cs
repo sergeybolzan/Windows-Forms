@@ -71,11 +71,12 @@
             // tbPassword
             // 
             this.tbPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbPassword.ForeColor = System.Drawing.Color.DarkGray;
             this.tbPassword.Location = new System.Drawing.Point(6, 100);
             this.tbPassword.Name = "tbPassword";
-            this.tbPassword.PasswordChar = '*';
             this.tbPassword.Size = new System.Drawing.Size(205, 26);
             this.tbPassword.TabIndex = 4;
+            this.tbPassword.Text = "Пароль";
             // 
             // labelPassword
             // 
@@ -90,10 +91,12 @@
             // tbLogin
             // 
             this.tbLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbLogin.ForeColor = System.Drawing.Color.DarkGray;
             this.tbLogin.Location = new System.Drawing.Point(6, 45);
             this.tbLogin.Name = "tbLogin";
             this.tbLogin.Size = new System.Drawing.Size(205, 26);
             this.tbLogin.TabIndex = 2;
+            this.tbLogin.Text = "Имя пользователя";
             // 
             // labelLogin
             // 

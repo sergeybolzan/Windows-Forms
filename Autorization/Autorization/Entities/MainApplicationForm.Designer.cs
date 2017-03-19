@@ -61,16 +61,16 @@
             this.textBox1.Location = new System.Drawing.Point(12, 72);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(180, 167);
+            this.textBox1.Size = new System.Drawing.Size(205, 262);
             this.textBox1.TabIndex = 2;
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.White;
             this.pictureBox1.Image = global::Autorization.Properties.Resources.man;
-            this.pictureBox1.Location = new System.Drawing.Point(199, 9);
+            this.pictureBox1.Location = new System.Drawing.Point(223, 9);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(269, 230);
+            this.pictureBox1.Size = new System.Drawing.Size(457, 325);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
@@ -80,7 +80,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(480, 251);
+            this.ClientSize = new System.Drawing.Size(692, 346);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
