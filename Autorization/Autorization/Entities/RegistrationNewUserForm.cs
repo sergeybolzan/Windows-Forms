@@ -22,7 +22,7 @@ namespace Autorization.Entities
         {
             if (tbLogin.Text == "" || tbPassword.Text == "" || tbRepeatPassword.Text == "" || tbEmail.Text == "")
             {
-                MessageBox.Show("Заполните поля, отмеченные звездочкой!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Заполните поля, отмеченные звездочкой", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (tbPassword.Text.Length < 6 || tbRepeatPassword.Text.Length < 6)
@@ -35,7 +35,13 @@ namespace Autorization.Entities
                 MessageBox.Show("Введенные пароли не совпадают", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (FindName(tbLogin.Text)) MessageBox.Show("halo");
+            if (FindName(tbLogin.Text))
+            {
+                MessageBox.Show("Введенный логин уже занят", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            AddUserToDB();
+            this.Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -45,6 +51,13 @@ namespace Autorization.Entities
 
         private bool FindName(string name)
         {
+            //CREATE PROCEDURE [dbo].[FindName]
+            //@Name NCHAR(20),
+            //@Result BIT OUTPUT
+            //AS
+            //SELECT @Result = CAST(COUNT(1) AS BIT)
+            //FROM Users 
+            //WHERE Name = @Name
             bool result = false;
 
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
@@ -87,6 +100,49 @@ namespace Autorization.Entities
                 connection.Close();
             }
             return result;
+        }
+
+        private void AddUserToDB()
+        {
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+            builder.DataSource = @"(LocalDB)\v11.0";
+            builder.AttachDBFilename = Environment.CurrentDirectory + @"\registration.mdf";
+            builder.IntegratedSecurity = true;
+            builder.ConnectTimeout = 5;
+
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = builder.ConnectionString;
+            try
+            {
+                connection.Open();
+                SqlTransaction trans = connection.BeginTransaction();
+                SqlCommand command = connection.CreateCommand();
+
+                command.CommandText = String.Format(@"INSERT INTO Users (Name, Password, Email) VALUES ('{0}', '{1}', '{2}')", tbLogin.Text, tbPassword.Text, tbEmail.Text);
+                command.Transaction = trans;
+                command.ExecuteNonQuery();
+
+                command.CommandText = String.Format(@"INSERT INTO UsersInfo (LastName, FirstName, Address, Phone) VALUES ('{0}', '{1}', '{2}', '{3}')", tbLastName.Text, tbFirstName.Text, tbAddress.Text, tbPhone.Text);
+                command.Transaction = trans;
+                command.ExecuteNonQuery();
+
+                if (MessageBox.Show("Добавить нового пользователя?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    trans.Commit();
+                }
+                else
+                {
+                    trans.Rollback();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
     }
 }

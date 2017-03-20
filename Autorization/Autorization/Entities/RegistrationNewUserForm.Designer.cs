@@ -49,7 +49,7 @@
             this.labelFirstName = new System.Windows.Forms.Label();
             this.labelSecondName = new System.Windows.Forms.Label();
             this.tbFirstName = new System.Windows.Forms.TextBox();
-            this.tbSecondName = new System.Windows.Forms.TextBox();
+            this.tbLastName = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -206,7 +206,7 @@
             this.groupBox2.Controls.Add(this.labelFirstName);
             this.groupBox2.Controls.Add(this.labelSecondName);
             this.groupBox2.Controls.Add(this.tbFirstName);
-            this.groupBox2.Controls.Add(this.tbSecondName);
+            this.groupBox2.Controls.Add(this.tbLastName);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox2.Location = new System.Drawing.Point(356, 12);
             this.groupBox2.Name = "groupBox2";
@@ -279,13 +279,13 @@
             this.tbFirstName.Size = new System.Drawing.Size(256, 22);
             this.tbFirstName.TabIndex = 9;
             // 
-            // tbSecondName
+            // tbLastName
             // 
-            this.tbSecondName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbSecondName.Location = new System.Drawing.Point(6, 44);
-            this.tbSecondName.Name = "tbSecondName";
-            this.tbSecondName.Size = new System.Drawing.Size(256, 22);
-            this.tbSecondName.TabIndex = 7;
+            this.tbLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbLastName.Location = new System.Drawing.Point(6, 44);
+            this.tbLastName.Name = "tbLastName";
+            this.tbLastName.Size = new System.Drawing.Size(256, 22);
+            this.tbLastName.TabIndex = 7;
             // 
             // btnCancel
             // 
@@ -362,7 +362,7 @@
         private System.Windows.Forms.Label labelEmail;
         private System.Windows.Forms.Label labelSecondName;
         private System.Windows.Forms.TextBox tbFirstName;
-        private System.Windows.Forms.TextBox tbSecondName;
+        private System.Windows.Forms.TextBox tbLastName;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Label label3;
