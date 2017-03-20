@@ -16,7 +16,11 @@ namespace Autorization.Entities
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Перегруженный метод для отображения в текстбоксе фамилии и имени
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public DialogResult ShowDialog(string s)
         {
             textBox1.Text = s;

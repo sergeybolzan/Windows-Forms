@@ -17,7 +17,12 @@ namespace Autorization.Entities
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// По нажатию на "ОК" идут проверки на пустые строки, длину паролей, совпадение паролей.
+        /// Если проверки пройдены, то данные добавляются в базу.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOK_Click(object sender, EventArgs e)
         {
             if (tbLogin.Text == "" || tbPassword.Text == "" || tbRepeatPassword.Text == "" || tbEmail.Text == "")
@@ -48,7 +53,12 @@ namespace Autorization.Entities
         {
             this.Close();
         }
-
+        /// <summary>
+        /// Метод для вызова хранимой процедуры, входной параметр которой - "Логин", выходной - "1" если логин уже имеется в базе,
+        /// "0" если данного логина нету в базе.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         private bool FindName(string name)
         {
             //CREATE PROCEDURE [dbo].[FindName]
@@ -101,7 +111,9 @@ namespace Autorization.Entities
             }
             return result;
         }
-
+        /// <summary>
+        /// Метод, в котором выполняется транзакция, состоящая из добавления данных в таблицу Users и добавления данных в таблицу UsersInfo.
+        /// </summary>
         private void AddUserToDB()
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();

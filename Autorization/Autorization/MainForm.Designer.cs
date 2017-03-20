@@ -63,7 +63,7 @@
             this.buttonEnter.Location = new System.Drawing.Point(107, 147);
             this.buttonEnter.Name = "buttonEnter";
             this.buttonEnter.Size = new System.Drawing.Size(103, 35);
-            this.buttonEnter.TabIndex = 0;
+            this.buttonEnter.TabIndex = 2;
             this.buttonEnter.Text = "Войти";
             this.buttonEnter.UseVisualStyleBackColor = true;
             this.buttonEnter.Click += new System.EventHandler(this.buttonEnter_Click);
@@ -75,7 +75,7 @@
             this.tbPassword.Location = new System.Drawing.Point(6, 100);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(205, 26);
-            this.tbPassword.TabIndex = 4;
+            this.tbPassword.TabIndex = 1;
             this.tbPassword.Text = "Пароль";
             // 
             // labelPassword
@@ -95,7 +95,7 @@
             this.tbLogin.Location = new System.Drawing.Point(6, 45);
             this.tbLogin.Name = "tbLogin";
             this.tbLogin.Size = new System.Drawing.Size(205, 26);
-            this.tbLogin.TabIndex = 2;
+            this.tbLogin.TabIndex = 0;
             this.tbLogin.Text = "Имя пользователя";
             // 
             // labelLogin
@@ -105,7 +105,7 @@
             this.labelLogin.Location = new System.Drawing.Point(6, 29);
             this.labelLogin.Name = "labelLogin";
             this.labelLogin.Size = new System.Drawing.Size(123, 13);
-            this.labelLogin.TabIndex = 0;
+            this.labelLogin.TabIndex = 3;
             this.labelLogin.Text = "Имя пользователя:";
             // 
             // linkLabelForgotPassword
@@ -115,7 +115,7 @@
             this.linkLabelForgotPassword.Location = new System.Drawing.Point(12, 261);
             this.linkLabelForgotPassword.Name = "linkLabelForgotPassword";
             this.linkLabelForgotPassword.Size = new System.Drawing.Size(105, 13);
-            this.linkLabelForgotPassword.TabIndex = 1;
+            this.linkLabelForgotPassword.TabIndex = 2;
             this.linkLabelForgotPassword.TabStop = true;
             this.linkLabelForgotPassword.Text = "Забыли пароль?";
             this.linkLabelForgotPassword.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelForgotPassword_LinkClicked);
@@ -127,7 +127,7 @@
             this.linkLabelRegistration.Location = new System.Drawing.Point(376, 261);
             this.linkLabelRegistration.Name = "linkLabelRegistration";
             this.linkLabelRegistration.Size = new System.Drawing.Size(83, 13);
-            this.linkLabelRegistration.TabIndex = 2;
+            this.linkLabelRegistration.TabIndex = 3;
             this.linkLabelRegistration.TabStop = true;
             this.linkLabelRegistration.Text = "Регистрация";
             this.linkLabelRegistration.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelRegistration_LinkClicked);
@@ -165,6 +165,7 @@
             // 
             // MainForm
             // 
+            this.AcceptButton = this.buttonEnter;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(471, 281);

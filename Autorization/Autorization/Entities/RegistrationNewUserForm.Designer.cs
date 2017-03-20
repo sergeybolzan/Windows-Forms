@@ -107,7 +107,7 @@
             this.tbEmail.Location = new System.Drawing.Point(6, 232);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(256, 22);
-            this.tbEmail.TabIndex = 11;
+            this.tbEmail.TabIndex = 3;
             // 
             // label2
             // 
@@ -148,7 +148,7 @@
             this.tbRepeatPassword.Name = "tbRepeatPassword";
             this.tbRepeatPassword.PasswordChar = '*';
             this.tbRepeatPassword.Size = new System.Drawing.Size(256, 22);
-            this.tbRepeatPassword.TabIndex = 5;
+            this.tbRepeatPassword.TabIndex = 2;
             // 
             // labelRepeatPassword
             // 
@@ -167,7 +167,7 @@
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.PasswordChar = '*';
             this.tbPassword.Size = new System.Drawing.Size(256, 22);
-            this.tbPassword.TabIndex = 3;
+            this.tbPassword.TabIndex = 1;
             // 
             // labelPassword
             // 
@@ -185,7 +185,7 @@
             this.tbLogin.Location = new System.Drawing.Point(6, 44);
             this.tbLogin.Name = "tbLogin";
             this.tbLogin.Size = new System.Drawing.Size(256, 22);
-            this.tbLogin.TabIndex = 1;
+            this.tbLogin.TabIndex = 0;
             // 
             // labelLogin
             // 
@@ -231,7 +231,7 @@
             this.tbPhone.Location = new System.Drawing.Point(6, 232);
             this.tbPhone.Name = "tbPhone";
             this.tbPhone.Size = new System.Drawing.Size(256, 22);
-            this.tbPhone.TabIndex = 13;
+            this.tbPhone.TabIndex = 3;
             // 
             // labelAddress
             // 
@@ -249,7 +249,7 @@
             this.tbAddress.Location = new System.Drawing.Point(6, 170);
             this.tbAddress.Name = "tbAddress";
             this.tbAddress.Size = new System.Drawing.Size(256, 22);
-            this.tbAddress.TabIndex = 11;
+            this.tbAddress.TabIndex = 2;
             // 
             // labelFirstName
             // 
@@ -277,7 +277,7 @@
             this.tbFirstName.Location = new System.Drawing.Point(6, 107);
             this.tbFirstName.Name = "tbFirstName";
             this.tbFirstName.Size = new System.Drawing.Size(256, 22);
-            this.tbFirstName.TabIndex = 9;
+            this.tbFirstName.TabIndex = 1;
             // 
             // tbLastName
             // 
@@ -285,7 +285,7 @@
             this.tbLastName.Location = new System.Drawing.Point(6, 44);
             this.tbLastName.Name = "tbLastName";
             this.tbLastName.Size = new System.Drawing.Size(256, 22);
-            this.tbLastName.TabIndex = 7;
+            this.tbLastName.TabIndex = 0;
             // 
             // btnCancel
             // 
@@ -294,7 +294,7 @@
             this.btnCancel.Location = new System.Drawing.Point(614, 299);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 2;
+            this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "Отмена";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -306,7 +306,7 @@
             this.btnOK.Location = new System.Drawing.Point(533, 299);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 3;
+            this.btnOK.TabIndex = 2;
             this.btnOK.Text = "ОК";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -324,8 +324,10 @@
             // 
             // RegistrationNewUserForm
             // 
+            this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(701, 334);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnOK);

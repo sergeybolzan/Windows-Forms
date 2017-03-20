@@ -17,7 +17,12 @@ namespace Autorization
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// По нажатию на "ОК" идут проверки на наличие введенного емейла в базе, длину паролей и совпадение паролей.
+        /// Если проверки пройдены, то в базе сменяется пароль.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOK_Click(object sender, EventArgs e)
         {
             List<string> myDict = GetListEmail();
@@ -49,7 +54,10 @@ namespace Autorization
         {
             this.Close();
         }
-
+        /// <summary>
+        /// Получение списка емейлов из базы
+        /// </summary>
+        /// <returns></returns>
         private List<string> GetListEmail()
         {
             List<string> myDict = new List<string>();
@@ -83,7 +91,9 @@ namespace Autorization
             }
             return myDict;
         }
-
+        /// <summary>
+        /// Метод для смены пароля, соответствующего введенному емейлу
+        /// </summary>
         private void ChangeUserPassword()
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();

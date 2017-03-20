@@ -61,7 +61,7 @@
             this.tbRepeatNewPassword.Name = "tbRepeatNewPassword";
             this.tbRepeatNewPassword.PasswordChar = '*';
             this.tbRepeatNewPassword.Size = new System.Drawing.Size(248, 26);
-            this.tbRepeatNewPassword.TabIndex = 5;
+            this.tbRepeatNewPassword.TabIndex = 2;
             // 
             // labelRepeatNewPassword
             // 
@@ -80,7 +80,7 @@
             this.tbNewPassword.Name = "tbNewPassword";
             this.tbNewPassword.PasswordChar = '*';
             this.tbNewPassword.Size = new System.Drawing.Size(248, 26);
-            this.tbNewPassword.TabIndex = 3;
+            this.tbNewPassword.TabIndex = 1;
             // 
             // labelNewPassword
             // 
@@ -98,7 +98,7 @@
             this.tbEnterEmail.Location = new System.Drawing.Point(6, 32);
             this.tbEnterEmail.Name = "tbEnterEmail";
             this.tbEnterEmail.Size = new System.Drawing.Size(248, 26);
-            this.tbEnterEmail.TabIndex = 1;
+            this.tbEnterEmail.TabIndex = 0;
             // 
             // labelEnterEmail
             // 
@@ -134,8 +134,10 @@
             // 
             // RecoveryPasswordForm
             // 
+            this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);

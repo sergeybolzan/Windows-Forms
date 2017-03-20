@@ -28,7 +28,11 @@ namespace Autorization
             tbPassword.GotFocus += tbPassword_GotFocus;
             tbPassword.LostFocus += tbPassword_LostFocus;
         }
-
+        /// <summary>
+        /// При фокусе на элементе tbLogin дефолтное значение стирается
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbLogin_GotFocus(object sender, EventArgs e)
         {
             if (tbLogin.Text == "Имя пользователя")
@@ -37,7 +41,11 @@ namespace Autorization
                 tbLogin.Text = "";
             }
         }
-
+        /// <summary>
+        /// При потере фокуса элементом tbLogin, если ничего не введено, в нем отображается дефолтное значение
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbLogin_LostFocus(object sender, EventArgs e)
         {
             if (tbLogin.Text == "")
@@ -46,7 +54,11 @@ namespace Autorization
                 tbLogin.Text = "Имя пользователя";
             }
         }
-
+        /// <summary>
+        /// При фокусе на элементе tbPassword дефолтное значение стирается
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbPassword_GotFocus(object sender, EventArgs e)
         {
             if (tbPassword.Text == "Пароль")
@@ -56,7 +68,11 @@ namespace Autorization
                 tbPassword.PasswordChar = '*';
             }
         }
-
+        /// <summary>
+        /// При потере фокуса элементом tbPassword, если ничего не введено, в нем отображается дефолтное значение
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbPassword_LostFocus(object sender, EventArgs e)
         {
             if (tbPassword.Text == "")
@@ -66,7 +82,13 @@ namespace Autorization
                 tbPassword.PasswordChar = '\0';
             }
         }
-
+        /// <summary>
+        /// Действие по нажатию на кнопку "Войти". Появляется текст "идет проверка" и прогрессбар, который заполняется на половину.
+        /// Если введенные данные имеются в базе, прогрессбар полностью заполняется и происходит вход в главное окно (вызывается перегруженный метод ShowDialog, в который передается фамилия и имя).
+        /// Если введенных данных нету в базе, прогрессбар меняет цвет и полностью заполняется, текст меняется и меняет цвет. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonEnter_Click(object sender, EventArgs e)
         {
             labelTextOfProgressBar.Text = "Идет проверка:";
@@ -109,7 +131,12 @@ namespace Autorization
             progressBar1.Value = 100;
             ModifyProgressBarColor.SetState(progressBar1, 2);
         }
-
+        /// <summary>
+        /// По нажатию на линк "Забыли пароль?", родительское окно становится невидимым и открывается окно для восстановления пароля.
+        /// После закрытия окна для восстановления пароля родительское окно становится видимым
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void linkLabelForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             RecoveryPasswordForm rpForm = new RecoveryPasswordForm();
@@ -119,7 +146,12 @@ namespace Autorization
             labelTextOfProgressBar.Visible = false;
             this.Visible = true;
         }
-
+        /// <summary>
+        /// По нажатию на линк "Регистрация", родительское окно становится невидимым и открывается окно для регистрации.
+        /// После закрытия окна для регистрации родительское окно становится видимым
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void linkLabelRegistration_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             RegistrationNewUserForm rnuForm = new RegistrationNewUserForm();
@@ -129,7 +161,10 @@ namespace Autorization
             labelTextOfProgressBar.Visible = false;
             this.Visible = true;
         }
-
+        /// <summary>
+        /// Метод для копирования значений "Логин - пароль" из базы данных в словарь
+        /// </summary>
+        /// <returns></returns>
         private Dictionary<string, string> GetListLoginPassword()
         {
             Dictionary<string, string> myDict = new Dictionary<string, string>();
@@ -163,7 +198,11 @@ namespace Autorization
             }
             return myDict;
         }
-
+        /// <summary>
+        /// Метод для получения из базы данных фамилии и имени по логину.
+        /// </summary>
+        /// <param name="Login"></param>
+        /// <returns></returns>
         private string GetDataOnLogin(string Login)
         {
             string Data = null;
@@ -198,12 +237,18 @@ namespace Autorization
         }
 
     }
-
-
+    /// <summary>
+    /// Класс для изменения цвета прогрессбара
+    /// </summary>
     public static class ModifyProgressBarColor
     {
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false)]
         static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr w, IntPtr l);
+        /// <summary>
+        /// Метод для изменения цвета прогрессбара
+        /// </summary>
+        /// <param name="pBar"></param>
+        /// <param name="state">1 - зеленый цвет, 2 - красный, 3 - желтый</param>
         public static void SetState(this ProgressBar pBar, int state)
         {
             SendMessage(pBar.Handle, 1040, (IntPtr)state, IntPtr.Zero);
