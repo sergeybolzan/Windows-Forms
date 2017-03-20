@@ -29,8 +29,11 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.tbEmail = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.labelEmail = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tbRepeatPassword = new System.Windows.Forms.TextBox();
             this.labelRepeatPassword = new System.Windows.Forms.Label();
@@ -39,20 +42,17 @@
             this.tbLogin = new System.Windows.Forms.TextBox();
             this.labelLogin = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tbEmail = new System.Windows.Forms.TextBox();
+            this.labelPhone = new System.Windows.Forms.Label();
+            this.tbPhone = new System.Windows.Forms.TextBox();
+            this.labelAddress = new System.Windows.Forms.Label();
+            this.tbAddress = new System.Windows.Forms.TextBox();
             this.labelFirstName = new System.Windows.Forms.Label();
-            this.labelEmail = new System.Windows.Forms.Label();
             this.labelSecondName = new System.Windows.Forms.Label();
             this.tbFirstName = new System.Windows.Forms.TextBox();
             this.tbSecondName = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.labelAddress = new System.Windows.Forms.Label();
-            this.tbAddress = new System.Windows.Forms.TextBox();
-            this.labelPhone = new System.Windows.Forms.Label();
-            this.tbPhone = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -79,6 +79,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Информация авторизации";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.ForeColor = System.Drawing.Color.Red;
+            this.label4.Location = new System.Drawing.Point(268, 232);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(21, 25);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "*";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -90,6 +101,14 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "*";
             // 
+            // tbEmail
+            // 
+            this.tbEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbEmail.Location = new System.Drawing.Point(6, 232);
+            this.tbEmail.Name = "tbEmail";
+            this.tbEmail.Size = new System.Drawing.Size(256, 22);
+            this.tbEmail.TabIndex = 11;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -100,6 +119,16 @@
             this.label2.Size = new System.Drawing.Size(21, 25);
             this.label2.TabIndex = 7;
             this.label2.Text = "*";
+            // 
+            // labelEmail
+            // 
+            this.labelEmail.AutoSize = true;
+            this.labelEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelEmail.Location = new System.Drawing.Point(6, 213);
+            this.labelEmail.Name = "labelEmail";
+            this.labelEmail.Size = new System.Drawing.Size(55, 16);
+            this.labelEmail.TabIndex = 10;
+            this.labelEmail.Text = "e-mail:";
             // 
             // label1
             // 
@@ -117,6 +146,7 @@
             this.tbRepeatPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbRepeatPassword.Location = new System.Drawing.Point(6, 170);
             this.tbRepeatPassword.Name = "tbRepeatPassword";
+            this.tbRepeatPassword.PasswordChar = '*';
             this.tbRepeatPassword.Size = new System.Drawing.Size(256, 22);
             this.tbRepeatPassword.TabIndex = 5;
             // 
@@ -135,6 +165,7 @@
             this.tbPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbPassword.Location = new System.Drawing.Point(6, 107);
             this.tbPassword.Name = "tbPassword";
+            this.tbPassword.PasswordChar = '*';
             this.tbPassword.Size = new System.Drawing.Size(256, 22);
             this.tbPassword.TabIndex = 3;
             // 
@@ -184,24 +215,41 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Личные данные";
             // 
-            // label4
+            // labelPhone
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(268, 232);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(21, 25);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "*";
+            this.labelPhone.AutoSize = true;
+            this.labelPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPhone.Location = new System.Drawing.Point(6, 213);
+            this.labelPhone.Name = "labelPhone";
+            this.labelPhone.Size = new System.Drawing.Size(79, 16);
+            this.labelPhone.TabIndex = 12;
+            this.labelPhone.Text = "Телефон:";
             // 
-            // tbEmail
+            // tbPhone
             // 
-            this.tbEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbEmail.Location = new System.Drawing.Point(6, 232);
-            this.tbEmail.Name = "tbEmail";
-            this.tbEmail.Size = new System.Drawing.Size(256, 22);
-            this.tbEmail.TabIndex = 11;
+            this.tbPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbPhone.Location = new System.Drawing.Point(6, 232);
+            this.tbPhone.Name = "tbPhone";
+            this.tbPhone.Size = new System.Drawing.Size(256, 22);
+            this.tbPhone.TabIndex = 13;
+            // 
+            // labelAddress
+            // 
+            this.labelAddress.AutoSize = true;
+            this.labelAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelAddress.Location = new System.Drawing.Point(6, 151);
+            this.labelAddress.Name = "labelAddress";
+            this.labelAddress.Size = new System.Drawing.Size(57, 16);
+            this.labelAddress.TabIndex = 10;
+            this.labelAddress.Text = "Адрес:";
+            // 
+            // tbAddress
+            // 
+            this.tbAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbAddress.Location = new System.Drawing.Point(6, 170);
+            this.tbAddress.Name = "tbAddress";
+            this.tbAddress.Size = new System.Drawing.Size(256, 22);
+            this.tbAddress.TabIndex = 11;
             // 
             // labelFirstName
             // 
@@ -212,16 +260,6 @@
             this.labelFirstName.Size = new System.Drawing.Size(41, 16);
             this.labelFirstName.TabIndex = 8;
             this.labelFirstName.Text = "Имя:";
-            // 
-            // labelEmail
-            // 
-            this.labelEmail.AutoSize = true;
-            this.labelEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelEmail.Location = new System.Drawing.Point(6, 213);
-            this.labelEmail.Name = "labelEmail";
-            this.labelEmail.Size = new System.Drawing.Size(55, 16);
-            this.labelEmail.TabIndex = 10;
-            this.labelEmail.Text = "e-mail:";
             // 
             // labelSecondName
             // 
@@ -259,6 +297,7 @@
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Отмена";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
@@ -270,6 +309,7 @@
             this.btnOK.TabIndex = 3;
             this.btnOK.Text = "ОК";
             this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // label5
             // 
@@ -281,42 +321,6 @@
             this.label5.Size = new System.Drawing.Size(244, 13);
             this.label5.TabIndex = 12;
             this.label5.Text = "* - поля для обязательного заполнения";
-            // 
-            // labelAddress
-            // 
-            this.labelAddress.AutoSize = true;
-            this.labelAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelAddress.Location = new System.Drawing.Point(6, 151);
-            this.labelAddress.Name = "labelAddress";
-            this.labelAddress.Size = new System.Drawing.Size(57, 16);
-            this.labelAddress.TabIndex = 10;
-            this.labelAddress.Text = "Адрес:";
-            // 
-            // tbAddress
-            // 
-            this.tbAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbAddress.Location = new System.Drawing.Point(6, 170);
-            this.tbAddress.Name = "tbAddress";
-            this.tbAddress.Size = new System.Drawing.Size(256, 22);
-            this.tbAddress.TabIndex = 11;
-            // 
-            // labelPhone
-            // 
-            this.labelPhone.AutoSize = true;
-            this.labelPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelPhone.Location = new System.Drawing.Point(6, 213);
-            this.labelPhone.Name = "labelPhone";
-            this.labelPhone.Size = new System.Drawing.Size(79, 16);
-            this.labelPhone.TabIndex = 12;
-            this.labelPhone.Text = "Телефон:";
-            // 
-            // tbPhone
-            // 
-            this.tbPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbPhone.Location = new System.Drawing.Point(6, 232);
-            this.tbPhone.Name = "tbPhone";
-            this.tbPhone.Size = new System.Drawing.Size(256, 22);
-            this.tbPhone.TabIndex = 13;
             // 
             // RegistrationNewUserForm
             // 
