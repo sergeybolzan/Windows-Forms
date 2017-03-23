@@ -1,4 +1,4 @@
-﻿namespace TestMenu
+﻿namespace LinqCDProducer
 {
     partial class MainForm
     {
@@ -185,8 +185,8 @@
             // ToolStripMenuItem10
             // 
             this.ToolStripMenuItem10.Name = "ToolStripMenuItem10";
-            this.ToolStripMenuItem10.Size = new System.Drawing.Size(912, 22);
-            this.ToolStripMenuItem10.Text = "10. Полная информация об альбомах, отсортированную по следующим критериям: год вы" +
+            this.ToolStripMenuItem10.Size = new System.Drawing.Size(908, 22);
+            this.ToolStripMenuItem10.Text = "10. Полная информация об альбомах, отсортированная по следующим критериям: год вы" +
     "хода альбома, стоимость  альбома, наименование альбома";
             this.ToolStripMenuItem10.Click += new System.EventHandler(this.ToolStripMenuItem10_Click);
             // 

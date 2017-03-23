@@ -6,16 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace TestMenu
+namespace LinqCDProducer
 {
     internal static class XmlHelper
     {
         public static T XmlDeserialize<T>(string fileName) where T: new()
         {
-            if (!File.Exists(fileName))
-                throw new FileNotFoundException();
-
-
+            if (!File.Exists(fileName)) throw new FileNotFoundException();
             using (FileStream fs = new FileStream(fileName, FileMode.Open))
             {
                 XmlSerializer xml = new XmlSerializer(typeof(T));
