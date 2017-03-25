@@ -95,5 +95,6 @@ namespace EmailStatistics
             e.Result = 500;  // надо возвратить коллекцию адресов
         }
 
+
     }
 }
