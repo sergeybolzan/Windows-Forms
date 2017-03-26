@@ -20,9 +20,6 @@ namespace EmailStatistics
         {
             InitializeComponent();
             worker = new BackgroundWorker();
-
-            //Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("En"); //Ru-ru
-            //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("En"); //Ru-ru
         }
 
         private void cmiAddUser_Click(object sender, EventArgs e)

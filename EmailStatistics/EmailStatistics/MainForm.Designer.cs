@@ -49,29 +49,43 @@
             treeNode6,
             treeNode9});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.contextMenuAddUser = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmiAddUser = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.mainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tvMain = new System.Windows.Forms.TreeView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.contextMenuAddUser = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.cmiAddUser = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.button2 = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.contextMenuAddUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.contextMenuAddUser.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // contextMenuAddUser
+            // 
+            this.contextMenuAddUser.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmiAddUser});
+            this.contextMenuAddUser.Name = "contextMenuAddUser";
+            this.contextMenuAddUser.Size = new System.Drawing.Size(127, 26);
+            // 
+            // cmiAddUser
+            // 
+            this.cmiAddUser.Name = "cmiAddUser";
+            this.cmiAddUser.Size = new System.Drawing.Size(126, 22);
+            this.cmiAddUser.Text = "Добавить";
+            this.cmiAddUser.Click += new System.EventHandler(this.cmiAddUser_Click);
             // 
             // mainMenuStrip
             // 
@@ -108,7 +122,6 @@
             // 
             // tvMain
             // 
-            this.tvMain.CheckBoxes = true;
             this.tvMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tvMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tvMain.ImageIndex = 0;
@@ -157,6 +170,15 @@
             this.tvMain.TabIndex = 0;
             this.tvMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tvMain_MouseDown);
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "1.png");
+            this.imageList1.Images.SetKeyName(1, "2.png");
+            this.imageList1.Images.SetKeyName(2, "3.png");
+            this.imageList1.Images.SetKeyName(3, "4.png");
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -193,47 +215,22 @@
             this.tabPage2.Text = "Результаты рассылки";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
+            // button2
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(492, 455);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Настройки";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.button2.Location = new System.Drawing.Point(350, 36);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // imageList1
+            // progressBar1
             // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "1.png");
-            this.imageList1.Images.SetKeyName(1, "2.png");
-            this.imageList1.Images.SetKeyName(2, "3.png");
-            this.imageList1.Images.SetKeyName(3, "4.png");
-            // 
-            // contextMenuAddUser
-            // 
-            this.contextMenuAddUser.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cmiAddUser});
-            this.contextMenuAddUser.Name = "contextMenuAddUser";
-            this.contextMenuAddUser.Size = new System.Drawing.Size(127, 26);
-            // 
-            // cmiAddUser
-            // 
-            this.cmiAddUser.Name = "cmiAddUser";
-            this.cmiAddUser.Size = new System.Drawing.Size(126, 22);
-            this.cmiAddUser.Text = "Добавить";
-            this.cmiAddUser.Click += new System.EventHandler(this.cmiAddUser_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 37);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.progressBar1.Location = new System.Drawing.Point(16, 77);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(396, 23);
+            this.progressBar1.TabIndex = 2;
             // 
             // button1
             // 
@@ -245,22 +242,24 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // progressBar1
+            // label1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(16, 77);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(396, 23);
-            this.progressBar1.TabIndex = 2;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 37);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "label1";
             // 
-            // button2
+            // tabPage3
             // 
-            this.button2.Location = new System.Drawing.Point(350, 36);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(492, 455);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Настройки";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -273,6 +272,7 @@
             this.MainMenuStrip = this.mainMenuStrip;
             this.Name = "MainForm";
             this.Text = "Form1";
+            this.contextMenuAddUser.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -280,7 +280,6 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.contextMenuAddUser.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
