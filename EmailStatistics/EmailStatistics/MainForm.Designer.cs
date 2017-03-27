@@ -1,4 +1,5 @@
-﻿namespace EmailStatistics
+﻿using EmailStatistics.Entities;
+namespace EmailStatistics
 {
     partial class MainForm
     {
@@ -29,32 +30,32 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Близкие родственники");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Дальние родственники");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Родственники", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Отдела");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Фирмы");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Сотрудники", new System.Windows.Forms.TreeNode[] {
-            treeNode4,
-            treeNode5});
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Лучшие друзья");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Друзья по команде");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Друзья", new System.Windows.Forms.TreeNode[] {
-            treeNode7,
-            treeNode8});
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Получатели", new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode6,
-            treeNode9});
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Близкие родственники");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Дальние родственники");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Родственники", new System.Windows.Forms.TreeNode[] {
+            treeNode11,
+            treeNode12});
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Отдела");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Фирмы");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Сотрудники", new System.Windows.Forms.TreeNode[] {
+            treeNode14,
+            treeNode15});
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Лучшие друзья");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Друзья по команде");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Друзья", new System.Windows.Forms.TreeNode[] {
+            treeNode17,
+            treeNode18});
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Получатели", new System.Windows.Forms.TreeNode[] {
+            treeNode13,
+            treeNode16,
+            treeNode19});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.contextMenuAddUser = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmiAddUser = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.mainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.tvMain = new System.Windows.Forms.TreeView();
+            this.tvMain = new SerializableTreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -128,43 +129,43 @@
             this.tvMain.ImageList = this.imageList1;
             this.tvMain.Location = new System.Drawing.Point(0, 0);
             this.tvMain.Name = "tvMain";
-            treeNode1.ContextMenuStrip = this.contextMenuAddUser;
-            treeNode1.ImageKey = "2.png";
-            treeNode1.Name = "Node4";
-            treeNode1.Text = "Близкие родственники";
-            treeNode2.ContextMenuStrip = this.contextMenuAddUser;
-            treeNode2.ImageKey = "2.png";
-            treeNode2.Name = "Node5";
-            treeNode2.Text = "Дальние родственники";
-            treeNode3.ImageKey = "2.png";
-            treeNode3.Name = "Node1";
-            treeNode3.Text = "Родственники";
-            treeNode4.ContextMenuStrip = this.contextMenuAddUser;
-            treeNode4.ImageKey = "1.png";
-            treeNode4.Name = "Node6";
-            treeNode4.Text = "Отдела";
-            treeNode5.ContextMenuStrip = this.contextMenuAddUser;
-            treeNode5.Name = "Node7";
-            treeNode5.Text = "Фирмы";
-            treeNode6.ImageKey = "1.png";
-            treeNode6.Name = "Node2";
-            treeNode6.Text = "Сотрудники";
-            treeNode7.ContextMenuStrip = this.contextMenuAddUser;
-            treeNode7.ImageKey = "3.png";
-            treeNode7.Name = "Node8";
-            treeNode7.Text = "Лучшие друзья";
-            treeNode8.ContextMenuStrip = this.contextMenuAddUser;
-            treeNode8.ImageKey = "3.png";
-            treeNode8.Name = "Node9";
-            treeNode8.Text = "Друзья по команде";
-            treeNode9.ImageKey = "3.png";
-            treeNode9.Name = "Node3";
-            treeNode9.Text = "Друзья";
-            treeNode10.ImageKey = "4.png";
-            treeNode10.Name = "Node0";
-            treeNode10.Text = "Получатели";
+            treeNode11.ContextMenuStrip = this.contextMenuAddUser;
+            treeNode11.ImageKey = "2.png";
+            treeNode11.Name = "Node4";
+            treeNode11.Text = "Близкие родственники";
+            treeNode12.ContextMenuStrip = this.contextMenuAddUser;
+            treeNode12.ImageKey = "2.png";
+            treeNode12.Name = "Node5";
+            treeNode12.Text = "Дальние родственники";
+            treeNode13.ImageKey = "2.png";
+            treeNode13.Name = "Node1";
+            treeNode13.Text = "Родственники";
+            treeNode14.ContextMenuStrip = this.contextMenuAddUser;
+            treeNode14.ImageKey = "1.png";
+            treeNode14.Name = "Node6";
+            treeNode14.Text = "Отдела";
+            treeNode15.ContextMenuStrip = this.contextMenuAddUser;
+            treeNode15.Name = "Node7";
+            treeNode15.Text = "Фирмы";
+            treeNode16.ImageKey = "1.png";
+            treeNode16.Name = "Node2";
+            treeNode16.Text = "Сотрудники";
+            treeNode17.ContextMenuStrip = this.contextMenuAddUser;
+            treeNode17.ImageKey = "3.png";
+            treeNode17.Name = "Node8";
+            treeNode17.Text = "Лучшие друзья";
+            treeNode18.ContextMenuStrip = this.contextMenuAddUser;
+            treeNode18.ImageKey = "3.png";
+            treeNode18.Name = "Node9";
+            treeNode18.Text = "Друзья по команде";
+            treeNode19.ImageKey = "3.png";
+            treeNode19.Name = "Node3";
+            treeNode19.Text = "Друзья";
+            treeNode20.ImageKey = "4.png";
+            treeNode20.Name = "Node0";
+            treeNode20.Text = "Получатели";
             this.tvMain.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode10});
+            treeNode20});
             this.tvMain.SelectedImageIndex = 3;
             this.tvMain.Size = new System.Drawing.Size(312, 481);
             this.tvMain.TabIndex = 0;
@@ -272,6 +273,8 @@
             this.MainMenuStrip = this.mainMenuStrip;
             this.Name = "MainForm";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.contextMenuAddUser.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -290,7 +293,7 @@
         private System.Windows.Forms.MenuStrip mainMenuStrip;
         private System.Windows.Forms.StatusStrip mainStatusStrip;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.TreeView tvMain;
+        private SerializableTreeView tvMain;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;

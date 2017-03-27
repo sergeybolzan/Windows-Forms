@@ -44,6 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\SerializableTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Entities\UserInfo.cs" />
     <Compile Include="Forms\AddUserForm.cs">
       <SubType>Form</SubType>
