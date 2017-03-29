@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,7 +32,7 @@ namespace EmailStatistics
                 tvMain.SelectedNode.Nodes.Add(new TreeNode()
                 {
                     Text = addUserForm.UserInfo.Name,
-                    Tag = addUserForm.UserInfo.Email
+                    Tag = addUserForm.UserInfo.Email,
                 });
             }
         }
@@ -38,6 +40,7 @@ namespace EmailStatistics
         private void tvMain_MouseDown(object sender, MouseEventArgs e)
         {
             tvMain.SelectedNode = tvMain.GetNodeAt(e.X, e.Y);
+            //tvMain.SelectedNode.SelectedImageKey = tvMain.SelectedNode.ImageKey;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -90,6 +93,36 @@ namespace EmailStatistics
                 worker.ReportProgress(i * 10);
             }
             e.Result = 500;  // надо возвратить коллекцию адресов
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            //using (FileStream file = new FileStream(@"Tree.bin", FileMode.Open))
+            //{
+            //    tvMain.Nodes.Clear();
+            //    BinaryFormatter binFormat = new BinaryFormatter();
+            //    tvMain.Nodes.Add((TreeNode)binFormat.Deserialize(file));
+
+            // Добавляем к узлам 3-го уровня контексное меню
+            //    foreach (TreeNode node2 in tvMain.Nodes[0].Nodes)
+            //    {
+            //        foreach (TreeNode node3 in node2.Nodes)
+            //        {
+            //            node3.ContextMenuStrip = this.contextMenuAddUser;
+            //        }
+            //    }
+            //}
+
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //using (FileStream file = new FileStream(@"Tree.bin", FileMode.Create))
+            //{
+            //    BinaryFormatter binFormat = new BinaryFormatter();
+            //    binFormat.Serialize(file, tvMain.Nodes[0]);
+            //}
+
         }
 
 

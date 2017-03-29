@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Близкие родственники");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Дальние родственники");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Родственники", new System.Windows.Forms.TreeNode[] {
@@ -48,13 +49,11 @@
             treeNode3,
             treeNode6,
             treeNode9});
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.contextMenuAddUser = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmiAddUser = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.mainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.tvMain = new System.Windows.Forms.TreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -64,6 +63,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tvMain = new System.Windows.Forms.TreeView();
             this.contextMenuAddUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -120,56 +120,6 @@
             this.splitContainer1.SplitterDistance = 312;
             this.splitContainer1.TabIndex = 2;
             // 
-            // tvMain
-            // 
-            this.tvMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tvMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tvMain.ImageIndex = 0;
-            this.tvMain.ImageList = this.imageList1;
-            this.tvMain.Location = new System.Drawing.Point(0, 0);
-            this.tvMain.Name = "tvMain";
-            treeNode1.ContextMenuStrip = this.contextMenuAddUser;
-            treeNode1.ImageKey = "2.png";
-            treeNode1.Name = "Node4";
-            treeNode1.Text = "Близкие родственники";
-            treeNode2.ContextMenuStrip = this.contextMenuAddUser;
-            treeNode2.ImageKey = "2.png";
-            treeNode2.Name = "Node5";
-            treeNode2.Text = "Дальние родственники";
-            treeNode3.ImageKey = "2.png";
-            treeNode3.Name = "Node1";
-            treeNode3.Text = "Родственники";
-            treeNode4.ContextMenuStrip = this.contextMenuAddUser;
-            treeNode4.ImageKey = "1.png";
-            treeNode4.Name = "Node6";
-            treeNode4.Text = "Отдела";
-            treeNode5.ContextMenuStrip = this.contextMenuAddUser;
-            treeNode5.Name = "Node7";
-            treeNode5.Text = "Фирмы";
-            treeNode6.ImageKey = "1.png";
-            treeNode6.Name = "Node2";
-            treeNode6.Text = "Сотрудники";
-            treeNode7.ContextMenuStrip = this.contextMenuAddUser;
-            treeNode7.ImageKey = "3.png";
-            treeNode7.Name = "Node8";
-            treeNode7.Text = "Лучшие друзья";
-            treeNode8.ContextMenuStrip = this.contextMenuAddUser;
-            treeNode8.ImageKey = "3.png";
-            treeNode8.Name = "Node9";
-            treeNode8.Text = "Друзья по команде";
-            treeNode9.ImageKey = "3.png";
-            treeNode9.Name = "Node3";
-            treeNode9.Text = "Друзья";
-            treeNode10.ImageKey = "4.png";
-            treeNode10.Name = "Node0";
-            treeNode10.Text = "Получатели";
-            this.tvMain.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode10});
-            this.tvMain.SelectedImageIndex = 3;
-            this.tvMain.Size = new System.Drawing.Size(312, 481);
-            this.tvMain.TabIndex = 0;
-            this.tvMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tvMain_MouseDown);
-            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -178,6 +128,8 @@
             this.imageList1.Images.SetKeyName(1, "2.png");
             this.imageList1.Images.SetKeyName(2, "3.png");
             this.imageList1.Images.SetKeyName(3, "4.png");
+            this.imageList1.Images.SetKeyName(4, "5.png");
+            this.imageList1.Images.SetKeyName(5, "6.png");
             // 
             // tabControl1
             // 
@@ -261,6 +213,67 @@
             this.tabPage3.Text = "Настройки";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // tvMain
+            // 
+            this.tvMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tvMain.ImageIndex = 5;
+            this.tvMain.ImageList = this.imageList1;
+            this.tvMain.Location = new System.Drawing.Point(0, 0);
+            this.tvMain.Name = "tvMain";
+            treeNode1.ContextMenuStrip = this.contextMenuAddUser;
+            treeNode1.ImageKey = "2.png";
+            treeNode1.Name = "Node4";
+            treeNode1.SelectedImageKey = "2.png";
+            treeNode1.Text = "Близкие родственники";
+            treeNode2.ContextMenuStrip = this.contextMenuAddUser;
+            treeNode2.ImageKey = "2.png";
+            treeNode2.Name = "Node5";
+            treeNode2.SelectedImageKey = "2.png";
+            treeNode2.Text = "Дальние родственники";
+            treeNode3.ImageKey = "2.png";
+            treeNode3.Name = "Node1";
+            treeNode3.SelectedImageKey = "2.png";
+            treeNode3.Text = "Родственники";
+            treeNode4.ContextMenuStrip = this.contextMenuAddUser;
+            treeNode4.ImageKey = "1.png";
+            treeNode4.Name = "Node6";
+            treeNode4.SelectedImageKey = "1.png";
+            treeNode4.Text = "Отдела";
+            treeNode5.ContextMenuStrip = this.contextMenuAddUser;
+            treeNode5.ImageKey = "1.png";
+            treeNode5.Name = "Node7";
+            treeNode5.SelectedImageKey = "1.png";
+            treeNode5.Text = "Фирмы";
+            treeNode6.ImageKey = "1.png";
+            treeNode6.Name = "Node2";
+            treeNode6.SelectedImageKey = "1.png";
+            treeNode6.Text = "Сотрудники";
+            treeNode7.ContextMenuStrip = this.contextMenuAddUser;
+            treeNode7.ImageKey = "5.png";
+            treeNode7.Name = "Node8";
+            treeNode7.SelectedImageKey = "5.png";
+            treeNode7.Text = "Лучшие друзья";
+            treeNode8.ContextMenuStrip = this.contextMenuAddUser;
+            treeNode8.ImageKey = "5.png";
+            treeNode8.Name = "Node9";
+            treeNode8.SelectedImageKey = "5.png";
+            treeNode8.Text = "Друзья по команде";
+            treeNode9.ImageKey = "5.png";
+            treeNode9.Name = "Node3";
+            treeNode9.SelectedImageKey = "5.png";
+            treeNode9.Text = "Друзья";
+            treeNode10.ImageKey = "6.png";
+            treeNode10.Name = "Node0";
+            treeNode10.SelectedImageKey = "6.png";
+            treeNode10.Text = "Получатели";
+            this.tvMain.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode10});
+            this.tvMain.SelectedImageIndex = 5;
+            this.tvMain.Size = new System.Drawing.Size(312, 481);
+            this.tvMain.TabIndex = 0;
+            this.tvMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tvMain_MouseDown);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -272,6 +285,8 @@
             this.MainMenuStrip = this.mainMenuStrip;
             this.Name = "MainForm";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.contextMenuAddUser.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -290,7 +305,6 @@
         private System.Windows.Forms.MenuStrip mainMenuStrip;
         private System.Windows.Forms.StatusStrip mainStatusStrip;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.TreeView tvMain;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -302,6 +316,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TreeView tvMain;
     }
 }
 
