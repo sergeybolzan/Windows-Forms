@@ -34,6 +34,7 @@ namespace EmailStatistics
                     Text = addUserForm.UserInfo.Name,
                     Tag = addUserForm.UserInfo.Email,
                 });
+                tvMain.SelectedNode.Expand();
             }
         }
 
@@ -103,7 +104,7 @@ namespace EmailStatistics
             //    BinaryFormatter binFormat = new BinaryFormatter();
             //    tvMain.Nodes.Add((TreeNode)binFormat.Deserialize(file));
 
-            // Добавляем к узлам 3-го уровня контексное меню
+            // //Добавляем к узлам 3-го уровня контексное меню
             //    foreach (TreeNode node2 in tvMain.Nodes[0].Nodes)
             //    {
             //        foreach (TreeNode node3 in node2.Nodes)
@@ -112,7 +113,7 @@ namespace EmailStatistics
             //        }
             //    }
             //}
-
+            tvMain.ExpandAll();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -125,6 +126,69 @@ namespace EmailStatistics
 
         }
 
+
+        private void tvMain_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            if (e.Action != TreeViewAction.Unknown) // Если изменение состояние узла произошло в коде (а не по нажатию пользователем), то в оператор "if" не заходим.
+            {
+                TreeNode parent = e.Node.Parent;
+                while (parent != null) // Выполняем цикл, пока не дойдем до корневого узла
+                {
+                    if (e.Node.Checked) // Если узел отметили, и все соседние узлы также отмечены, то отмечаем и родителя
+                    {
+                        bool state = true;
+                        foreach (TreeNode item in parent.Nodes)
+                        {
+                            if (!item.Checked) state = false;
+                        }
+                        if (state == true) parent.Checked = true;
+                    }
+                    else // А если отметку с узла сняли, то и с родителя также снимаем отметку
+                    {
+                        parent.Checked = false;
+                    }
+                    parent = parent.Parent; // Для выполнения цикла, пока не дойдем до корневого узла
+                }
+                if (e.Node.Nodes.Count > 0)
+                {
+                    this.CheckAllChildNodes(e.Node, e.Node.Checked); // Если узел отметили, то отмечаем все дочерние, и наоборот.
+                }
+
+                selNames = null;
+                tbNames.Text = GetAllNames(tvMain.Nodes[0]);
+            }
+        }
+
+        private string selNames = null;
+
+        string GetAllNames(TreeNode selTN)
+        {
+            for (int i = 0; i < selTN.Nodes.Count; i++)
+            {
+                GetAllNames(selTN.Nodes[i]);
+                if (selTN.Nodes[i].Level >= 3 && selTN.Nodes[i].Checked)
+                {
+                    selNames += selTN.Nodes[i].Text + ";";
+                }
+            }
+            return selNames;
+        }
+        /// <summary>
+        /// Рекурсивный метод установки всех дочерних узлов узла treeNode в состояние nodeChecked
+        /// </summary>
+        /// <param name="treeNode">Узел, состояние дочерних узлов которого необходимо изменить</param>
+        /// <param name="nodeChecked">Состояние, в которое будут изменяться дочерние узлы</param>
+        private void CheckAllChildNodes(TreeNode treeNode, bool nodeChecked)
+        {
+            foreach (TreeNode node in treeNode.Nodes)
+            {
+                node.Checked = nodeChecked;
+                if (node.Nodes.Count > 0)
+                {
+                    this.CheckAllChildNodes(node, nodeChecked);
+                }
+            }
+        }
 
     }
 }
