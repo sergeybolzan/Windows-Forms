@@ -27,6 +27,7 @@ namespace EmailStatistics
             InitializeComponent();
             worker = new BackgroundWorker();
             userEvents = new List<UserEvent>();
+            timer.Start();
         }
 
         private void cmiAddUser_Click(object sender, EventArgs e)
@@ -227,7 +228,21 @@ namespace EmailStatistics
 
         private void btnAddToSchedule_Click(object sender, EventArgs e)
         {
-            //userEvents.Add(new UserEvent(monthCalendar.));
+            DateTime DT = monthCalendar.SelectionRange.Start;
+            DT = DT.AddHours(dateTimePicker.Value.Hour);
+            DT = DT.AddMinutes(dateTimePicker.Value.Minute);
+            userEvents.Add(new UserEvent(DT, tbMessageText.Text, tbTheme.Text));
+            //добавить файл
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            DateTime DT = DateTime.Now;
+            DT = new DateTime(DT.Year, DT.Month, DT.Day, DT.Hour, DT.Minute, 0);
+            foreach (var item in userEvents)
+            {
+                if (item.DateTime == DT) return; // Отправляем сообщения, поставить таймер 60000
+            }
         }
     }
 }

@@ -12,6 +12,10 @@ namespace EmailStatistics.Entities
         public string MessageTheme { get; set; }
         public string MessageText { get; set; }
 
+        public UserEvent()
+        {
+
+        }
         public UserEvent(DateTime datetime, string messageTheme, string messageText)
         {
             this.DateTime = datetime;

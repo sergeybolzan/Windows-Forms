@@ -63,9 +63,18 @@
             this.mainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tvMain = new System.Windows.Forms.TreeView();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnAddToSchedule = new System.Windows.Forms.Button();
+            this.checkBoxAddFile = new System.Windows.Forms.CheckBox();
+            this.tbMessageText = new System.Windows.Forms.TextBox();
+            this.labelMessageText = new System.Windows.Forms.Label();
+            this.tbTheme = new System.Windows.Forms.TextBox();
+            this.labelTheme = new System.Windows.Forms.Label();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.labelTime = new System.Windows.Forms.Label();
+            this.monthCalendar = new System.Windows.Forms.MonthCalendar();
             this.tbEmails = new System.Windows.Forms.TextBox();
             this.tbNames = new System.Windows.Forms.TextBox();
             this.labelEmails = new System.Windows.Forms.Label();
@@ -76,15 +85,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.monthCalendar = new System.Windows.Forms.MonthCalendar();
-            this.labelTime = new System.Windows.Forms.Label();
-            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.labelTheme = new System.Windows.Forms.Label();
-            this.tbTheme = new System.Windows.Forms.TextBox();
-            this.labelMessageText = new System.Windows.Forms.Label();
-            this.tbMessageText = new System.Windows.Forms.TextBox();
-            this.checkBoxAddFile = new System.Windows.Forms.CheckBox();
-            this.btnAddToSchedule = new System.Windows.Forms.Button();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.contextMenuAddUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -148,7 +149,7 @@
             this.tvMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tvMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tvMain.ImageIndex = 5;
-            this.tvMain.ImageList = this.imageList1;
+            this.tvMain.ImageList = this.imageList;
             this.tvMain.Location = new System.Drawing.Point(0, 0);
             this.tvMain.Name = "tvMain";
             treeNode1.Name = "Node0";
@@ -217,16 +218,16 @@
             this.tvMain.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tvMain_AfterCheck);
             this.tvMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tvMain_MouseDown);
             // 
-            // imageList1
+            // imageList
             // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "1.png");
-            this.imageList1.Images.SetKeyName(1, "2.png");
-            this.imageList1.Images.SetKeyName(2, "3.png");
-            this.imageList1.Images.SetKeyName(3, "4.png");
-            this.imageList1.Images.SetKeyName(4, "5.png");
-            this.imageList1.Images.SetKeyName(5, "6.png");
+            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
+            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList.Images.SetKeyName(0, "1.png");
+            this.imageList.Images.SetKeyName(1, "2.png");
+            this.imageList.Images.SetKeyName(2, "3.png");
+            this.imageList.Images.SetKeyName(3, "4.png");
+            this.imageList.Images.SetKeyName(4, "5.png");
+            this.imageList.Images.SetKeyName(5, "6.png");
             // 
             // tabControl1
             // 
@@ -262,6 +263,100 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Основной";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnAddToSchedule
+            // 
+            this.btnAddToSchedule.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnAddToSchedule.ForeColor = System.Drawing.Color.MediumBlue;
+            this.btnAddToSchedule.Location = new System.Drawing.Point(304, 501);
+            this.btnAddToSchedule.Name = "btnAddToSchedule";
+            this.btnAddToSchedule.Size = new System.Drawing.Size(204, 38);
+            this.btnAddToSchedule.TabIndex = 12;
+            this.btnAddToSchedule.Text = "Добавить в расписание";
+            this.btnAddToSchedule.UseVisualStyleBackColor = true;
+            this.btnAddToSchedule.Click += new System.EventHandler(this.btnAddToSchedule_Click);
+            // 
+            // checkBoxAddFile
+            // 
+            this.checkBoxAddFile.AutoSize = true;
+            this.checkBoxAddFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBoxAddFile.ForeColor = System.Drawing.Color.MediumBlue;
+            this.checkBoxAddFile.Location = new System.Drawing.Point(24, 511);
+            this.checkBoxAddFile.Name = "checkBoxAddFile";
+            this.checkBoxAddFile.Size = new System.Drawing.Size(141, 20);
+            this.checkBoxAddFile.TabIndex = 11;
+            this.checkBoxAddFile.Text = "Добавить файл";
+            this.checkBoxAddFile.UseVisualStyleBackColor = true;
+            // 
+            // tbMessageText
+            // 
+            this.tbMessageText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbMessageText.Location = new System.Drawing.Point(24, 405);
+            this.tbMessageText.Multiline = true;
+            this.tbMessageText.Name = "tbMessageText";
+            this.tbMessageText.Size = new System.Drawing.Size(484, 84);
+            this.tbMessageText.TabIndex = 10;
+            // 
+            // labelMessageText
+            // 
+            this.labelMessageText.AutoSize = true;
+            this.labelMessageText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelMessageText.ForeColor = System.Drawing.Color.MediumBlue;
+            this.labelMessageText.Location = new System.Drawing.Point(21, 386);
+            this.labelMessageText.Name = "labelMessageText";
+            this.labelMessageText.Size = new System.Drawing.Size(139, 16);
+            this.labelMessageText.TabIndex = 9;
+            this.labelMessageText.Text = "Текст сообщения:";
+            // 
+            // tbTheme
+            // 
+            this.tbTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbTheme.Location = new System.Drawing.Point(214, 293);
+            this.tbTheme.Multiline = true;
+            this.tbTheme.Name = "tbTheme";
+            this.tbTheme.Size = new System.Drawing.Size(294, 84);
+            this.tbTheme.TabIndex = 8;
+            // 
+            // labelTheme
+            // 
+            this.labelTheme.AutoSize = true;
+            this.labelTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelTheme.ForeColor = System.Drawing.Color.MediumBlue;
+            this.labelTheme.Location = new System.Drawing.Point(211, 274);
+            this.labelTheme.Name = "labelTheme";
+            this.labelTheme.Size = new System.Drawing.Size(134, 16);
+            this.labelTheme.TabIndex = 7;
+            this.labelTheme.Text = "Тема сообщения:";
+            // 
+            // dateTimePicker
+            // 
+            this.dateTimePicker.CustomFormat = "HH\'ч\' : mm\'м\'";
+            this.dateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker.Location = new System.Drawing.Point(214, 234);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.ShowUpDown = true;
+            this.dateTimePicker.Size = new System.Drawing.Size(111, 26);
+            this.dateTimePicker.TabIndex = 6;
+            this.dateTimePicker.Value = new System.DateTime(2017, 3, 31, 0, 0, 0, 0);
+            // 
+            // labelTime
+            // 
+            this.labelTime.AutoSize = true;
+            this.labelTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelTime.ForeColor = System.Drawing.Color.MediumBlue;
+            this.labelTime.Location = new System.Drawing.Point(211, 215);
+            this.labelTime.Name = "labelTime";
+            this.labelTime.Size = new System.Drawing.Size(159, 16);
+            this.labelTime.TabIndex = 5;
+            this.labelTime.Text = "Время отправления:";
+            // 
+            // monthCalendar
+            // 
+            this.monthCalendar.Location = new System.Drawing.Point(24, 215);
+            this.monthCalendar.MaxSelectionCount = 1;
+            this.monthCalendar.Name = "monthCalendar";
+            this.monthCalendar.TabIndex = 4;
             // 
             // tbEmails
             // 
@@ -358,103 +453,15 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(529, 512);
+            this.tabPage3.Size = new System.Drawing.Size(529, 551);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Настройки";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // monthCalendar
+            // timer
             // 
-            this.monthCalendar.Location = new System.Drawing.Point(24, 215);
-            this.monthCalendar.MaxSelectionCount = 1;
-            this.monthCalendar.Name = "monthCalendar";
-            this.monthCalendar.TabIndex = 4;
-            // 
-            // labelTime
-            // 
-            this.labelTime.AutoSize = true;
-            this.labelTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelTime.ForeColor = System.Drawing.Color.MediumBlue;
-            this.labelTime.Location = new System.Drawing.Point(211, 215);
-            this.labelTime.Name = "labelTime";
-            this.labelTime.Size = new System.Drawing.Size(159, 16);
-            this.labelTime.TabIndex = 5;
-            this.labelTime.Text = "Время отправления:";
-            // 
-            // dateTimePicker
-            // 
-            this.dateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker.Location = new System.Drawing.Point(214, 234);
-            this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.ShowUpDown = true;
-            this.dateTimePicker.Size = new System.Drawing.Size(80, 22);
-            this.dateTimePicker.TabIndex = 6;
-            this.dateTimePicker.Value = new System.DateTime(2017, 3, 31, 0, 0, 0, 0);
-            // 
-            // labelTheme
-            // 
-            this.labelTheme.AutoSize = true;
-            this.labelTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelTheme.ForeColor = System.Drawing.Color.MediumBlue;
-            this.labelTheme.Location = new System.Drawing.Point(211, 274);
-            this.labelTheme.Name = "labelTheme";
-            this.labelTheme.Size = new System.Drawing.Size(134, 16);
-            this.labelTheme.TabIndex = 7;
-            this.labelTheme.Text = "Тема сообщения:";
-            // 
-            // tbTheme
-            // 
-            this.tbTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbTheme.Location = new System.Drawing.Point(214, 293);
-            this.tbTheme.Multiline = true;
-            this.tbTheme.Name = "tbTheme";
-            this.tbTheme.Size = new System.Drawing.Size(294, 84);
-            this.tbTheme.TabIndex = 8;
-            // 
-            // labelMessageText
-            // 
-            this.labelMessageText.AutoSize = true;
-            this.labelMessageText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelMessageText.ForeColor = System.Drawing.Color.MediumBlue;
-            this.labelMessageText.Location = new System.Drawing.Point(21, 386);
-            this.labelMessageText.Name = "labelMessageText";
-            this.labelMessageText.Size = new System.Drawing.Size(139, 16);
-            this.labelMessageText.TabIndex = 9;
-            this.labelMessageText.Text = "Текст сообщения:";
-            // 
-            // tbMessageText
-            // 
-            this.tbMessageText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbMessageText.Location = new System.Drawing.Point(24, 405);
-            this.tbMessageText.Multiline = true;
-            this.tbMessageText.Name = "tbMessageText";
-            this.tbMessageText.Size = new System.Drawing.Size(484, 84);
-            this.tbMessageText.TabIndex = 10;
-            // 
-            // checkBoxAddFile
-            // 
-            this.checkBoxAddFile.AutoSize = true;
-            this.checkBoxAddFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBoxAddFile.ForeColor = System.Drawing.Color.MediumBlue;
-            this.checkBoxAddFile.Location = new System.Drawing.Point(24, 511);
-            this.checkBoxAddFile.Name = "checkBoxAddFile";
-            this.checkBoxAddFile.Size = new System.Drawing.Size(141, 20);
-            this.checkBoxAddFile.TabIndex = 11;
-            this.checkBoxAddFile.Text = "Добавить файл";
-            this.checkBoxAddFile.UseVisualStyleBackColor = true;
-            // 
-            // btnAddToSchedule
-            // 
-            this.btnAddToSchedule.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnAddToSchedule.ForeColor = System.Drawing.Color.MediumBlue;
-            this.btnAddToSchedule.Location = new System.Drawing.Point(304, 501);
-            this.btnAddToSchedule.Name = "btnAddToSchedule";
-            this.btnAddToSchedule.Size = new System.Drawing.Size(204, 38);
-            this.btnAddToSchedule.TabIndex = 12;
-            this.btnAddToSchedule.Text = "Добавить в расписание";
-            this.btnAddToSchedule.UseVisualStyleBackColor = true;
-            this.btnAddToSchedule.Click += new System.EventHandler(this.btnAddToSchedule_Click);
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // MainForm
             // 
@@ -494,7 +501,7 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ImageList imageList;
         private System.Windows.Forms.ContextMenuStrip contextMenuAddUser;
         private System.Windows.Forms.ToolStripMenuItem cmiAddUser;
         private System.Windows.Forms.ProgressBar progressBar1;
@@ -515,6 +522,7 @@
         private System.Windows.Forms.Label labelMessageText;
         private System.Windows.Forms.TextBox tbTheme;
         private System.Windows.Forms.Label labelTheme;
+        private System.Windows.Forms.Timer timer;
     }
 }
 
