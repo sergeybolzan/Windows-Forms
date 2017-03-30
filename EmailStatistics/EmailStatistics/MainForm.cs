@@ -1,4 +1,5 @@
-﻿using EmailStatistics.Forms;
+﻿using EmailStatistics.Entities;
+using EmailStatistics.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,11 +20,13 @@ namespace EmailStatistics
         private BackgroundWorker worker;
         private string selNames = null;
         private string selEmails = null;
+        private List<UserEvent> userEvents;
 
         public MainForm()
         {
             InitializeComponent();
             worker = new BackgroundWorker();
+            userEvents = new List<UserEvent>();
         }
 
         private void cmiAddUser_Click(object sender, EventArgs e)
@@ -43,7 +46,6 @@ namespace EmailStatistics
         private void tvMain_MouseDown(object sender, MouseEventArgs e)
         {
             tvMain.SelectedNode = tvMain.GetNodeAt(e.X, e.Y);
-            //tvMain.SelectedNode.SelectedImageKey = tvMain.SelectedNode.ImageKey;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -100,33 +102,33 @@ namespace EmailStatistics
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            using (FileStream file = new FileStream(@"Tree.bin", FileMode.Open))
-            {
-                tvMain.Nodes.Clear();
-                BinaryFormatter binFormat = new BinaryFormatter();
-                tvMain.Nodes.Add((TreeNode)binFormat.Deserialize(file));
+            //using (FileStream file = new FileStream(@"Tree.bin", FileMode.Open))
+            //{
+            //    tvMain.Nodes.Clear();
+            //    BinaryFormatter binFormat = new BinaryFormatter();
+            //    tvMain.Nodes.Add((TreeNode)binFormat.Deserialize(file));
 
-                UncheckAllNodes(tvMain.Nodes[0]);
+            //    UncheckAllNodes(tvMain.Nodes[0]);
 
-                //Добавляем к узлам 3-го уровня контексное меню
-                foreach (TreeNode node2 in tvMain.Nodes[0].Nodes)
-                {
-                    foreach (TreeNode node3 in node2.Nodes)
-                    {
-                        node3.ContextMenuStrip = this.contextMenuAddUser;
-                    }
-                }
-            }
+            //    //Добавляем к узлам 3-го уровня контексное меню
+            //    foreach (TreeNode node2 in tvMain.Nodes[0].Nodes)
+            //    {
+            //        foreach (TreeNode node3 in node2.Nodes)
+            //        {
+            //            node3.ContextMenuStrip = this.contextMenuAddUser;
+            //        }
+            //    }
+            //}
             tvMain.ExpandAll();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            using (FileStream file = new FileStream(@"Tree.bin", FileMode.Create))
-            {
-                BinaryFormatter binFormat = new BinaryFormatter();
-                binFormat.Serialize(file, tvMain.Nodes[0]);
-            }
+            //using (FileStream file = new FileStream(@"Tree.bin", FileMode.Create))
+            //{
+            //    BinaryFormatter binFormat = new BinaryFormatter();
+            //    binFormat.Serialize(file, tvMain.Nodes[0]);
+            //}
 
         }
 
@@ -206,6 +208,10 @@ namespace EmailStatistics
                 }
             }
         }
+        /// <summary>
+        /// Снимает все отметки с узла treeNode и с его дочерних узлов
+        /// </summary>
+        /// <param name="treeNode"></param>
         private void UncheckAllNodes(TreeNode treeNode)
         {
             treeNode.Checked = false;
@@ -217,6 +223,11 @@ namespace EmailStatistics
                     this.UncheckAllNodes(node);
                 }
             }
+        }
+
+        private void btnAddToSchedule_Click(object sender, EventArgs e)
+        {
+            //userEvents.Add(new UserEvent(monthCalendar.));
         }
     }
 }
