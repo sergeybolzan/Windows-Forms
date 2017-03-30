@@ -29,29 +29,33 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Мама");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Папа");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Близкие родственники", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Дальние родственники");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Родственники", new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode4});
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Отдела");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Фирмы");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Сотрудники", new System.Windows.Forms.TreeNode[] {
-            treeNode6,
-            treeNode7});
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Лучшие друзья");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Друзья по команде");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Друзья", new System.Windows.Forms.TreeNode[] {
-            treeNode9,
-            treeNode10});
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Получатели", new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode8,
-            treeNode11});
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Мама");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Папа");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Близкие родственники", new System.Windows.Forms.TreeNode[] {
+            treeNode15,
+            treeNode16});
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Дядя");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Тетя");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Дальние родственники", new System.Windows.Forms.TreeNode[] {
+            treeNode18,
+            treeNode19});
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Родственники", new System.Windows.Forms.TreeNode[] {
+            treeNode17,
+            treeNode20});
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Отдела");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Фирмы");
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Сотрудники", new System.Windows.Forms.TreeNode[] {
+            treeNode22,
+            treeNode23});
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Лучшие друзья");
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Друзья по команде");
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Друзья", new System.Windows.Forms.TreeNode[] {
+            treeNode25,
+            treeNode26});
+            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Получатели", new System.Windows.Forms.TreeNode[] {
+            treeNode21,
+            treeNode24,
+            treeNode27});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.contextMenuAddUser = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmiAddUser = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,17 +66,16 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tbEmails = new System.Windows.Forms.TextBox();
+            this.tbNames = new System.Windows.Forms.TextBox();
+            this.labelEmails = new System.Windows.Forms.Label();
+            this.labelNames = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.labelNames = new System.Windows.Forms.Label();
-            this.labelEmails = new System.Windows.Forms.Label();
-            this.tbNames = new System.Windows.Forms.TextBox();
-            this.tbEmails = new System.Windows.Forms.TextBox();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.contextMenuAddUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -139,60 +142,66 @@
             this.tvMain.ImageList = this.imageList1;
             this.tvMain.Location = new System.Drawing.Point(0, 0);
             this.tvMain.Name = "tvMain";
-            treeNode1.Name = "Node0";
-            treeNode1.Tag = "mama@mail.ru";
-            treeNode1.Text = "Мама";
-            treeNode2.Name = "Node1";
-            treeNode2.Tag = "papa@mail.ru";
-            treeNode2.Text = "Папа";
-            treeNode3.ContextMenuStrip = this.contextMenuAddUser;
-            treeNode3.ImageKey = "2.png";
-            treeNode3.Name = "Node4";
-            treeNode3.SelectedImageKey = "2.png";
-            treeNode3.Text = "Близкие родственники";
-            treeNode4.ContextMenuStrip = this.contextMenuAddUser;
-            treeNode4.ImageKey = "2.png";
-            treeNode4.Name = "Node5";
-            treeNode4.SelectedImageKey = "2.png";
-            treeNode4.Text = "Дальние родственники";
-            treeNode5.ImageKey = "2.png";
-            treeNode5.Name = "Node1";
-            treeNode5.SelectedImageKey = "2.png";
-            treeNode5.Text = "Родственники";
-            treeNode6.ContextMenuStrip = this.contextMenuAddUser;
-            treeNode6.ImageKey = "1.png";
-            treeNode6.Name = "Node6";
-            treeNode6.SelectedImageKey = "1.png";
-            treeNode6.Text = "Отдела";
-            treeNode7.ContextMenuStrip = this.contextMenuAddUser;
-            treeNode7.ImageKey = "1.png";
-            treeNode7.Name = "Node7";
-            treeNode7.SelectedImageKey = "1.png";
-            treeNode7.Text = "Фирмы";
-            treeNode8.ImageKey = "1.png";
-            treeNode8.Name = "Node2";
-            treeNode8.SelectedImageKey = "1.png";
-            treeNode8.Text = "Сотрудники";
-            treeNode9.ContextMenuStrip = this.contextMenuAddUser;
-            treeNode9.ImageKey = "5.png";
-            treeNode9.Name = "Node8";
-            treeNode9.SelectedImageKey = "5.png";
-            treeNode9.Text = "Лучшие друзья";
-            treeNode10.ContextMenuStrip = this.contextMenuAddUser;
-            treeNode10.ImageKey = "5.png";
-            treeNode10.Name = "Node9";
-            treeNode10.SelectedImageKey = "5.png";
-            treeNode10.Text = "Друзья по команде";
-            treeNode11.ImageKey = "5.png";
-            treeNode11.Name = "Node3";
-            treeNode11.SelectedImageKey = "5.png";
-            treeNode11.Text = "Друзья";
-            treeNode12.ImageKey = "6.png";
-            treeNode12.Name = "Node0";
-            treeNode12.SelectedImageKey = "6.png";
-            treeNode12.Text = "Получатели";
+            treeNode15.Name = "Node0";
+            treeNode15.Tag = "mother@mail.ru";
+            treeNode15.Text = "Мама";
+            treeNode16.Name = "Node1";
+            treeNode16.Tag = "father@mail.ru";
+            treeNode16.Text = "Папа";
+            treeNode17.ContextMenuStrip = this.contextMenuAddUser;
+            treeNode17.ImageKey = "2.png";
+            treeNode17.Name = "Node4";
+            treeNode17.SelectedImageKey = "2.png";
+            treeNode17.Text = "Близкие родственники";
+            treeNode18.Name = "Node0";
+            treeNode18.Tag = "uncle@mail.ru";
+            treeNode18.Text = "Дядя";
+            treeNode19.Name = "Node1";
+            treeNode19.Tag = "aunt@mail.ru";
+            treeNode19.Text = "Тетя";
+            treeNode20.ContextMenuStrip = this.contextMenuAddUser;
+            treeNode20.ImageKey = "2.png";
+            treeNode20.Name = "Node5";
+            treeNode20.SelectedImageKey = "2.png";
+            treeNode20.Text = "Дальние родственники";
+            treeNode21.ImageKey = "2.png";
+            treeNode21.Name = "Node1";
+            treeNode21.SelectedImageKey = "2.png";
+            treeNode21.Text = "Родственники";
+            treeNode22.ContextMenuStrip = this.contextMenuAddUser;
+            treeNode22.ImageKey = "1.png";
+            treeNode22.Name = "Node6";
+            treeNode22.SelectedImageKey = "1.png";
+            treeNode22.Text = "Отдела";
+            treeNode23.ContextMenuStrip = this.contextMenuAddUser;
+            treeNode23.ImageKey = "1.png";
+            treeNode23.Name = "Node7";
+            treeNode23.SelectedImageKey = "1.png";
+            treeNode23.Text = "Фирмы";
+            treeNode24.ImageKey = "1.png";
+            treeNode24.Name = "Node2";
+            treeNode24.SelectedImageKey = "1.png";
+            treeNode24.Text = "Сотрудники";
+            treeNode25.ContextMenuStrip = this.contextMenuAddUser;
+            treeNode25.ImageKey = "5.png";
+            treeNode25.Name = "Node8";
+            treeNode25.SelectedImageKey = "5.png";
+            treeNode25.Text = "Лучшие друзья";
+            treeNode26.ContextMenuStrip = this.contextMenuAddUser;
+            treeNode26.ImageKey = "5.png";
+            treeNode26.Name = "Node9";
+            treeNode26.SelectedImageKey = "5.png";
+            treeNode26.Text = "Друзья по команде";
+            treeNode27.ImageKey = "5.png";
+            treeNode27.Name = "Node3";
+            treeNode27.SelectedImageKey = "5.png";
+            treeNode27.Text = "Друзья";
+            treeNode28.ImageKey = "6.png";
+            treeNode28.Name = "Node0";
+            treeNode28.SelectedImageKey = "6.png";
+            treeNode28.Text = "Получатели";
             this.tvMain.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode12});
+            treeNode28});
             this.tvMain.SelectedImageIndex = 5;
             this.tvMain.Size = new System.Drawing.Size(369, 538);
             this.tvMain.TabIndex = 0;
@@ -224,7 +233,6 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.checkedListBox1);
             this.tabPage1.Controls.Add(this.tbEmails);
             this.tabPage1.Controls.Add(this.tbNames);
             this.tabPage1.Controls.Add(this.labelEmails);
@@ -237,6 +245,44 @@
             this.tabPage1.Text = "Основной";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // tbEmails
+            // 
+            this.tbEmails.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbEmails.Location = new System.Drawing.Point(93, 115);
+            this.tbEmails.Multiline = true;
+            this.tbEmails.Name = "tbEmails";
+            this.tbEmails.Size = new System.Drawing.Size(415, 79);
+            this.tbEmails.TabIndex = 3;
+            // 
+            // tbNames
+            // 
+            this.tbNames.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbNames.Location = new System.Drawing.Point(93, 15);
+            this.tbNames.Multiline = true;
+            this.tbNames.Name = "tbNames";
+            this.tbNames.Size = new System.Drawing.Size(415, 79);
+            this.tbNames.TabIndex = 2;
+            // 
+            // labelEmails
+            // 
+            this.labelEmails.AutoSize = true;
+            this.labelEmails.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelEmails.Location = new System.Drawing.Point(21, 118);
+            this.labelEmails.Name = "labelEmails";
+            this.labelEmails.Size = new System.Drawing.Size(66, 16);
+            this.labelEmails.TabIndex = 1;
+            this.labelEmails.Text = "Адреса:";
+            // 
+            // labelNames
+            // 
+            this.labelNames.AutoSize = true;
+            this.labelNames.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelNames.Location = new System.Drawing.Point(21, 18);
+            this.labelNames.Name = "labelNames";
+            this.labelNames.Size = new System.Drawing.Size(49, 16);
+            this.labelNames.TabIndex = 0;
+            this.labelNames.Text = "Кому:";
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.button2);
@@ -246,7 +292,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(492, 455);
+            this.tabPage2.Size = new System.Drawing.Size(529, 512);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Результаты рассылки";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -292,56 +338,10 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(492, 455);
+            this.tabPage3.Size = new System.Drawing.Size(529, 512);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Настройки";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // labelNames
-            // 
-            this.labelNames.AutoSize = true;
-            this.labelNames.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelNames.Location = new System.Drawing.Point(21, 18);
-            this.labelNames.Name = "labelNames";
-            this.labelNames.Size = new System.Drawing.Size(49, 16);
-            this.labelNames.TabIndex = 0;
-            this.labelNames.Text = "Кому:";
-            // 
-            // labelEmails
-            // 
-            this.labelEmails.AutoSize = true;
-            this.labelEmails.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelEmails.Location = new System.Drawing.Point(21, 118);
-            this.labelEmails.Name = "labelEmails";
-            this.labelEmails.Size = new System.Drawing.Size(66, 16);
-            this.labelEmails.TabIndex = 1;
-            this.labelEmails.Text = "Адреса:";
-            // 
-            // tbNames
-            // 
-            this.tbNames.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbNames.Location = new System.Drawing.Point(93, 15);
-            this.tbNames.Multiline = true;
-            this.tbNames.Name = "tbNames";
-            this.tbNames.Size = new System.Drawing.Size(415, 79);
-            this.tbNames.TabIndex = 2;
-            // 
-            // tbEmails
-            // 
-            this.tbEmails.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbEmails.Location = new System.Drawing.Point(93, 115);
-            this.tbEmails.Multiline = true;
-            this.tbEmails.Name = "tbEmails";
-            this.tbEmails.Size = new System.Drawing.Size(415, 79);
-            this.tbEmails.TabIndex = 3;
-            // 
-            // checkedListBox1
-            // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(107, 291);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(120, 94);
-            this.checkedListBox1.TabIndex = 4;
             // 
             // MainForm
             // 
@@ -393,7 +393,6 @@
         private System.Windows.Forms.Label labelEmails;
         private System.Windows.Forms.Label labelNames;
         private System.Windows.Forms.TextBox tbEmails;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
     }
 }
 

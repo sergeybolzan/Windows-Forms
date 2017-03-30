@@ -17,6 +17,8 @@ namespace EmailStatistics
     public partial class MainForm : Form
     {
         private BackgroundWorker worker;
+        private string selNames = null;
+        private string selEmails = null;
 
         public MainForm()
         {
@@ -98,38 +100,40 @@ namespace EmailStatistics
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            //using (FileStream file = new FileStream(@"Tree.bin", FileMode.Open))
-            //{
-            //    tvMain.Nodes.Clear();
-            //    BinaryFormatter binFormat = new BinaryFormatter();
-            //    tvMain.Nodes.Add((TreeNode)binFormat.Deserialize(file));
+            using (FileStream file = new FileStream(@"Tree.bin", FileMode.Open))
+            {
+                tvMain.Nodes.Clear();
+                BinaryFormatter binFormat = new BinaryFormatter();
+                tvMain.Nodes.Add((TreeNode)binFormat.Deserialize(file));
 
-            // //Добавляем к узлам 3-го уровня контексное меню
-            //    foreach (TreeNode node2 in tvMain.Nodes[0].Nodes)
-            //    {
-            //        foreach (TreeNode node3 in node2.Nodes)
-            //        {
-            //            node3.ContextMenuStrip = this.contextMenuAddUser;
-            //        }
-            //    }
-            //}
+                UncheckAllNodes(tvMain.Nodes[0]);
+
+                //Добавляем к узлам 3-го уровня контексное меню
+                foreach (TreeNode node2 in tvMain.Nodes[0].Nodes)
+                {
+                    foreach (TreeNode node3 in node2.Nodes)
+                    {
+                        node3.ContextMenuStrip = this.contextMenuAddUser;
+                    }
+                }
+            }
             tvMain.ExpandAll();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //using (FileStream file = new FileStream(@"Tree.bin", FileMode.Create))
-            //{
-            //    BinaryFormatter binFormat = new BinaryFormatter();
-            //    binFormat.Serialize(file, tvMain.Nodes[0]);
-            //}
+            using (FileStream file = new FileStream(@"Tree.bin", FileMode.Create))
+            {
+                BinaryFormatter binFormat = new BinaryFormatter();
+                binFormat.Serialize(file, tvMain.Nodes[0]);
+            }
 
         }
 
 
         private void tvMain_AfterCheck(object sender, TreeViewEventArgs e)
         {
-            if (e.Action != TreeViewAction.Unknown) // Если изменение состояние узла произошло в коде (а не по нажатию пользователем), то в оператор "if" не заходим.
+            if (e.Action != TreeViewAction.Unknown) // Если изменение состояния узла произошло в коде (а не по нажатию пользователем), то в оператор "if" не заходим.
             {
                 TreeNode parent = e.Node.Parent;
                 while (parent != null) // Выполняем цикл, пока не дойдем до корневого узла
@@ -155,23 +159,36 @@ namespace EmailStatistics
                 }
 
                 selNames = null;
+                selEmails = null;
                 tbNames.Text = GetAllNames(tvMain.Nodes[0]);
+                tbEmails.Text = GetAllEmails(tvMain.Nodes[0]);
             }
         }
 
-        private string selNames = null;
-
-        string GetAllNames(TreeNode selTN)
+        private string GetAllNames(TreeNode selTN)
         {
             for (int i = 0; i < selTN.Nodes.Count; i++)
             {
                 GetAllNames(selTN.Nodes[i]);
                 if (selTN.Nodes[i].Level >= 3 && selTN.Nodes[i].Checked)
                 {
-                    selNames += selTN.Nodes[i].Text + ";";
+                    selNames += selTN.Nodes[i].Text + "; ";
                 }
             }
             return selNames;
+        }
+
+        private string GetAllEmails(TreeNode selTN)
+        {
+            for (int i = 0; i < selTN.Nodes.Count; i++)
+            {
+                GetAllEmails(selTN.Nodes[i]);
+                if (selTN.Nodes[i].Level >= 3 && selTN.Nodes[i].Checked)
+                {
+                    selEmails += selTN.Nodes[i].Tag + "; ";
+                }
+            }
+            return selEmails;
         }
         /// <summary>
         /// Рекурсивный метод установки всех дочерних узлов узла treeNode в состояние nodeChecked
@@ -189,6 +206,17 @@ namespace EmailStatistics
                 }
             }
         }
-
+        private void UncheckAllNodes(TreeNode treeNode)
+        {
+            treeNode.Checked = false;
+            foreach (TreeNode node in treeNode.Nodes)
+            {
+                node.Checked = false;
+                if (node.Nodes.Count > 0)
+                {
+                    this.UncheckAllNodes(node);
+                }
+            }
+        }
     }
 }
