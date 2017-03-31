@@ -231,7 +231,7 @@ namespace EmailStatistics
             DateTime DT = monthCalendar.SelectionRange.Start;
             DT = DT.AddHours(dateTimePicker.Value.Hour);
             DT = DT.AddMinutes(dateTimePicker.Value.Minute);
-            userEvents.Add(new UserEvent(DT, tbMessageText.Text, tbTheme.Text));
+            userEvents.Add(new UserEvent(DT, tbMessageText.Text, tbTheme.Text, tbEmails.Text));
             //добавить файл
         }
 
