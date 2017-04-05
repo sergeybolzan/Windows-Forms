@@ -136,24 +136,7 @@ namespace EmailStatistics
         {
             if (e.Action != TreeViewAction.Unknown) // Если изменение состояния узла произошло в коде (а не по нажатию пользователем), то в оператор "if" не заходим.
             {
-                TreeNode parent = e.Node.Parent;
-                while (parent != null) // Выполняем цикл, пока не дойдем до корневого узла
-                {
-                    if (e.Node.Checked) // Если узел отметили, и все соседние узлы также отмечены, то отмечаем и родителя
-                    {
-                        bool state = true;
-                        foreach (TreeNode item in parent.Nodes)
-                        {
-                            if (!item.Checked) state = false;
-                        }
-                        if (state == true) parent.Checked = true;
-                    }
-                    else // А если отметку с узла сняли, то и с родителя также снимаем отметку
-                    {
-                        parent.Checked = false;
-                    }
-                    parent = parent.Parent; // Для выполнения цикла, пока не дойдем до корневого узла
-                }
+                Logic.CheckOrUncheckParentNode(e);
                 if (e.Node.Nodes.Count > 0)
                 {
                     Logic.CheckAllChildNodes(e.Node, e.Node.Checked); // Если узел отметили, то отмечаем все дочерние, и наоборот.
