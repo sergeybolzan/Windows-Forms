@@ -12,13 +12,15 @@ namespace EmailStatistics.Entities
         public DateTime DateTime { get; set; }
         public string MessageTheme { get; set; }
         public string MessageText { get; set; }
+        public string FileName { get; set; }
 
-        public UserEvent(DateTime datetime, string messageTheme, string messageText, string EmailsString)
+        public UserEvent(DateTime datetime, string messageTheme, string messageText, string emails, string fileName)
         {
             this.DateTime = datetime;
             this.MessageTheme = messageTheme;
             this.MessageText = messageText;
-            this.EmailsList = EmailsString.Split(new string[] { "; " }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            this.EmailsList = emails.Split(new string[] { "; " }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            this.FileName = fileName;
         }
     }
 }

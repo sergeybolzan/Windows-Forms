@@ -18,8 +18,6 @@ namespace EmailStatistics
     public partial class MainForm : Form
     {
         private BackgroundWorker worker;
-        private string selNames = null;
-        private string selEmails = null;
         private List<UserEvent> userEvents;
 
         public MainForm()
@@ -158,91 +156,55 @@ namespace EmailStatistics
                 }
                 if (e.Node.Nodes.Count > 0)
                 {
-                    this.CheckAllChildNodes(e.Node, e.Node.Checked); // Если узел отметили, то отмечаем все дочерние, и наоборот.
+                    Logic.CheckAllChildNodes(e.Node, e.Node.Checked); // Если узел отметили, то отмечаем все дочерние, и наоборот.
                 }
 
-                selNames = null;
-                selEmails = null;
-                tbNames.Text = GetAllNames(tvMain.Nodes[0]);
-                tbEmails.Text = GetAllEmails(tvMain.Nodes[0]);
-            }
-        }
-
-        private string GetAllNames(TreeNode selTN)
-        {
-            for (int i = 0; i < selTN.Nodes.Count; i++)
-            {
-                GetAllNames(selTN.Nodes[i]);
-                if (selTN.Nodes[i].Level >= 3 && selTN.Nodes[i].Checked)
-                {
-                    selNames += selTN.Nodes[i].Text + "; ";
-                }
-            }
-            return selNames;
-        }
-
-        private string GetAllEmails(TreeNode selTN)
-        {
-            for (int i = 0; i < selTN.Nodes.Count; i++)
-            {
-                GetAllEmails(selTN.Nodes[i]);
-                if (selTN.Nodes[i].Level >= 3 && selTN.Nodes[i].Checked)
-                {
-                    selEmails += selTN.Nodes[i].Tag + "; ";
-                }
-            }
-            return selEmails;
-        }
-        /// <summary>
-        /// Рекурсивный метод установки всех дочерних узлов узла treeNode в состояние nodeChecked
-        /// </summary>
-        /// <param name="treeNode">Узел, состояние дочерних узлов которого необходимо изменить</param>
-        /// <param name="nodeChecked">Состояние, в которое будут изменяться дочерние узлы</param>
-        private void CheckAllChildNodes(TreeNode treeNode, bool nodeChecked)
-        {
-            foreach (TreeNode node in treeNode.Nodes)
-            {
-                node.Checked = nodeChecked;
-                if (node.Nodes.Count > 0)
-                {
-                    this.CheckAllChildNodes(node, nodeChecked);
-                }
-            }
-        }
-        /// <summary>
-        /// Снимает все отметки с узла treeNode и с его дочерних узлов
-        /// </summary>
-        /// <param name="treeNode"></param>
-        private void UncheckAllNodes(TreeNode treeNode)
-        {
-            treeNode.Checked = false;
-            foreach (TreeNode node in treeNode.Nodes)
-            {
-                node.Checked = false;
-                if (node.Nodes.Count > 0)
-                {
-                    this.UncheckAllNodes(node);
-                }
+                Logic.selNames = null;
+                Logic.selEmails = null;
+                tbNames.Text = Logic.GetAllNames(tvMain.Nodes[0]);
+                tbEmails.Text = Logic.GetAllEmails(tvMain.Nodes[0]);
             }
         }
 
         private void btnAddToSchedule_Click(object sender, EventArgs e)
         {
-            DateTime DT = monthCalendar.SelectionRange.Start;
-            DT = DT.AddHours(dateTimePicker.Value.Hour);
-            DT = DT.AddMinutes(dateTimePicker.Value.Minute);
-            userEvents.Add(new UserEvent(DT, tbMessageText.Text, tbTheme.Text, tbEmails.Text));
-            //добавить файл
+            DateTime dateTime = monthCalendar.SelectionRange.Start;
+            dateTime = dateTime.AddHours(dateTimePicker.Value.Hour);
+            dateTime = dateTime.AddMinutes(dateTimePicker.Value.Minute);
+            userEvents.Add(new UserEvent(dateTime, tbTheme.Text, tbMessageText.Text, tbEmails.Text, tbFileName.Text));
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            DateTime DT = DateTime.Now;
-            DT = new DateTime(DT.Year, DT.Month, DT.Day, DT.Hour, DT.Minute, 0);
-            foreach (var item in userEvents)
+            DateTime currentDateTime = DateTime.Now;
+            currentDateTime = new DateTime(currentDateTime.Year, currentDateTime.Month, currentDateTime.Day, currentDateTime.Hour, currentDateTime.Minute, 0);
+            foreach (var userEvent in userEvents)
             {
-                if (item.DateTime == DT) return; // Отправляем сообщения, поставить таймер 60000
+                if (userEvent.DateTime == currentDateTime)
+                    try
+                    {
+                        Logic.SendMail(userEvent);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
             }
         }
+
+        private void btnAddFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                tbFileName.Text = openFileDialog.FileName;
+            }
+        }
+
+        private void btnDeleteFile_Click(object sender, EventArgs e)
+        {
+            tbFileName.Text = "";
+        }
+
     }
 }

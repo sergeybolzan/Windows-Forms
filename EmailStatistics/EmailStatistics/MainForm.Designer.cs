@@ -67,7 +67,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnAddToSchedule = new System.Windows.Forms.Button();
-            this.checkBoxAddFile = new System.Windows.Forms.CheckBox();
             this.tbMessageText = new System.Windows.Forms.TextBox();
             this.labelMessageText = new System.Windows.Forms.Label();
             this.tbTheme = new System.Windows.Forms.TextBox();
@@ -86,6 +85,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.btnAddFile = new System.Windows.Forms.Button();
+            this.tbFileName = new System.Windows.Forms.TextBox();
+            this.btnDeleteFile = new System.Windows.Forms.Button();
             this.contextMenuAddUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -120,7 +122,7 @@
             // 
             // mainStatusStrip
             // 
-            this.mainStatusStrip.Location = new System.Drawing.Point(0, 601);
+            this.mainStatusStrip.Location = new System.Drawing.Point(0, 639);
             this.mainStatusStrip.Name = "mainStatusStrip";
             this.mainStatusStrip.Size = new System.Drawing.Size(910, 22);
             this.mainStatusStrip.TabIndex = 1;
@@ -139,7 +141,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
-            this.splitContainer1.Size = new System.Drawing.Size(910, 577);
+            this.splitContainer1.Size = new System.Drawing.Size(910, 615);
             this.splitContainer1.SplitterDistance = 369;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -153,10 +155,10 @@
             this.tvMain.Location = new System.Drawing.Point(0, 0);
             this.tvMain.Name = "tvMain";
             treeNode1.Name = "Node0";
-            treeNode1.Tag = "mother@mail.ru";
+            treeNode1.Tag = "bolira@inbox.ru";
             treeNode1.Text = "Мама";
             treeNode2.Name = "Node1";
-            treeNode2.Tag = "father@mail.ru";
+            treeNode2.Tag = "hoaxi@mail.ru";
             treeNode2.Text = "Папа";
             treeNode3.ContextMenuStrip = this.contextMenuAddUser;
             treeNode3.ImageKey = "2.png";
@@ -213,7 +215,7 @@
             this.tvMain.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode14});
             this.tvMain.SelectedImageIndex = 5;
-            this.tvMain.Size = new System.Drawing.Size(369, 577);
+            this.tvMain.Size = new System.Drawing.Size(369, 615);
             this.tvMain.TabIndex = 0;
             this.tvMain.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tvMain_AfterCheck);
             this.tvMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tvMain_MouseDown);
@@ -238,13 +240,15 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(537, 577);
+            this.tabControl1.Size = new System.Drawing.Size(537, 615);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnDeleteFile);
+            this.tabPage1.Controls.Add(this.tbFileName);
+            this.tabPage1.Controls.Add(this.btnAddFile);
             this.tabPage1.Controls.Add(this.btnAddToSchedule);
-            this.tabPage1.Controls.Add(this.checkBoxAddFile);
             this.tabPage1.Controls.Add(this.tbMessageText);
             this.tabPage1.Controls.Add(this.labelMessageText);
             this.tabPage1.Controls.Add(this.tbTheme);
@@ -259,7 +263,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(529, 551);
+            this.tabPage1.Size = new System.Drawing.Size(529, 589);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Основной";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -268,25 +272,13 @@
             // 
             this.btnAddToSchedule.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnAddToSchedule.ForeColor = System.Drawing.Color.MediumBlue;
-            this.btnAddToSchedule.Location = new System.Drawing.Point(304, 501);
+            this.btnAddToSchedule.Location = new System.Drawing.Point(304, 545);
             this.btnAddToSchedule.Name = "btnAddToSchedule";
             this.btnAddToSchedule.Size = new System.Drawing.Size(204, 38);
             this.btnAddToSchedule.TabIndex = 12;
             this.btnAddToSchedule.Text = "Добавить в расписание";
             this.btnAddToSchedule.UseVisualStyleBackColor = true;
             this.btnAddToSchedule.Click += new System.EventHandler(this.btnAddToSchedule_Click);
-            // 
-            // checkBoxAddFile
-            // 
-            this.checkBoxAddFile.AutoSize = true;
-            this.checkBoxAddFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBoxAddFile.ForeColor = System.Drawing.Color.MediumBlue;
-            this.checkBoxAddFile.Location = new System.Drawing.Point(24, 511);
-            this.checkBoxAddFile.Name = "checkBoxAddFile";
-            this.checkBoxAddFile.Size = new System.Drawing.Size(141, 20);
-            this.checkBoxAddFile.TabIndex = 11;
-            this.checkBoxAddFile.Text = "Добавить файл";
-            this.checkBoxAddFile.UseVisualStyleBackColor = true;
             // 
             // tbMessageText
             // 
@@ -407,7 +399,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(529, 551);
+            this.tabPage2.Size = new System.Drawing.Size(529, 582);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Результаты рассылки";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -453,21 +445,53 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(529, 551);
+            this.tabPage3.Size = new System.Drawing.Size(529, 582);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Настройки";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // timer
             // 
-            this.timer.Interval = 1000;
+            this.timer.Interval = 60000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // btnAddFile
+            // 
+            this.btnAddFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnAddFile.ForeColor = System.Drawing.Color.MediumBlue;
+            this.btnAddFile.Location = new System.Drawing.Point(24, 508);
+            this.btnAddFile.Name = "btnAddFile";
+            this.btnAddFile.Size = new System.Drawing.Size(136, 25);
+            this.btnAddFile.TabIndex = 13;
+            this.btnAddFile.Text = "Добавить файл";
+            this.btnAddFile.UseVisualStyleBackColor = true;
+            this.btnAddFile.Click += new System.EventHandler(this.btnAddFile_Click);
+            // 
+            // tbFileName
+            // 
+            this.tbFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbFileName.Location = new System.Drawing.Point(175, 509);
+            this.tbFileName.Name = "tbFileName";
+            this.tbFileName.Size = new System.Drawing.Size(333, 22);
+            this.tbFileName.TabIndex = 14;
+            // 
+            // btnDeleteFile
+            // 
+            this.btnDeleteFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnDeleteFile.ForeColor = System.Drawing.Color.MediumBlue;
+            this.btnDeleteFile.Location = new System.Drawing.Point(24, 539);
+            this.btnDeleteFile.Name = "btnDeleteFile";
+            this.btnDeleteFile.Size = new System.Drawing.Size(136, 25);
+            this.btnDeleteFile.TabIndex = 15;
+            this.btnDeleteFile.Text = "Удалить файл";
+            this.btnDeleteFile.UseVisualStyleBackColor = true;
+            this.btnDeleteFile.Click += new System.EventHandler(this.btnDeleteFile_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(910, 623);
+            this.ClientSize = new System.Drawing.Size(910, 661);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.mainStatusStrip);
             this.Controls.Add(this.mainMenuStrip);
@@ -517,12 +541,14 @@
         private System.Windows.Forms.Label labelTime;
         private System.Windows.Forms.MonthCalendar monthCalendar;
         private System.Windows.Forms.Button btnAddToSchedule;
-        private System.Windows.Forms.CheckBox checkBoxAddFile;
         private System.Windows.Forms.TextBox tbMessageText;
         private System.Windows.Forms.Label labelMessageText;
         private System.Windows.Forms.TextBox tbTheme;
         private System.Windows.Forms.Label labelTheme;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.TextBox tbFileName;
+        private System.Windows.Forms.Button btnAddFile;
+        private System.Windows.Forms.Button btnDeleteFile;
     }
 }
 
