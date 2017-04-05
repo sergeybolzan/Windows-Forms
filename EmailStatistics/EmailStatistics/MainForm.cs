@@ -188,6 +188,5 @@ namespace EmailStatistics
         {
             tbFileName.Text = "";
         }
-
     }
 }
