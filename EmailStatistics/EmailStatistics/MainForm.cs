@@ -19,7 +19,7 @@ namespace EmailStatistics
     public partial class MainForm : Form
     {
         private BackgroundWorker worker;
-        private List<UserEvent> userEvents;
+        private BindingList<UserEvent> userEvents;
         private ServerSettings serverSettings;
 
         public MainForm()
@@ -27,7 +27,7 @@ namespace EmailStatistics
             InitializeComponent();
             timer.Start();
             worker = new BackgroundWorker();
-            userEvents = new List<UserEvent>();
+            userEvents = new BindingList<UserEvent>();
 
             //serverSettings = new ServerSettings()
             //{
@@ -78,6 +78,10 @@ namespace EmailStatistics
             comboBoxServer.DisplayMember = "Name";
             tbUserAccount.Text = serverSettings.Account;
             tbUserPassword.Text = serverSettings.Password;
+
+            dataGridView1.DataSource = userEvents;
+            dataGridView1.Columns[4].HeaderText = "asd";
+            dataGridView1.Columns[5].Visible = false;
         }
         private void btnSaveServerSMTPSettings_Click(object sender, EventArgs e)
         {

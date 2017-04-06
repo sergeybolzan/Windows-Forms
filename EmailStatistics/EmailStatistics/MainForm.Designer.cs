@@ -29,33 +29,33 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Мама");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Папа");
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Близкие родственники", new System.Windows.Forms.TreeNode[] {
-            treeNode15,
-            treeNode16});
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Дядя");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Тетя");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Дальние родственники", new System.Windows.Forms.TreeNode[] {
-            treeNode18,
-            treeNode19});
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Родственники", new System.Windows.Forms.TreeNode[] {
-            treeNode17,
-            treeNode20});
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Отдела");
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Фирмы");
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Сотрудники", new System.Windows.Forms.TreeNode[] {
-            treeNode22,
-            treeNode23});
-            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Лучшие друзья");
-            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Друзья по команде");
-            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Друзья", new System.Windows.Forms.TreeNode[] {
-            treeNode25,
-            treeNode26});
-            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Получатели", new System.Windows.Forms.TreeNode[] {
-            treeNode21,
-            treeNode24,
-            treeNode27});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Мама");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Папа");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Близкие родственники", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2});
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Дядя");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Тетя");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Дальние родственники", new System.Windows.Forms.TreeNode[] {
+            treeNode4,
+            treeNode5});
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Родственники", new System.Windows.Forms.TreeNode[] {
+            treeNode3,
+            treeNode6});
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Отдела");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Фирмы");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Сотрудники", new System.Windows.Forms.TreeNode[] {
+            treeNode8,
+            treeNode9});
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Лучшие друзья");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Друзья по команде");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Друзья", new System.Windows.Forms.TreeNode[] {
+            treeNode11,
+            treeNode12});
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Получатели", new System.Windows.Forms.TreeNode[] {
+            treeNode7,
+            treeNode10,
+            treeNode13});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.contextMenuAddUser = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmiAddUser = new System.Windows.Forms.ToolStripMenuItem();
@@ -101,6 +101,8 @@
             this.comboBoxServer = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.contextMenuAddUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -110,6 +112,11 @@
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuAddUser
@@ -168,66 +175,66 @@
             this.tvMain.ImageList = this.imageList;
             this.tvMain.Location = new System.Drawing.Point(0, 0);
             this.tvMain.Name = "tvMain";
-            treeNode15.Name = "Node0";
-            treeNode15.Tag = "bolira@inbox.ru";
-            treeNode15.Text = "Мама";
-            treeNode16.Name = "Node1";
-            treeNode16.Tag = "hoaxi@mail.ru";
-            treeNode16.Text = "Папа";
-            treeNode17.ContextMenuStrip = this.contextMenuAddUser;
-            treeNode17.ImageKey = "2.png";
-            treeNode17.Name = "Node4";
-            treeNode17.SelectedImageKey = "2.png";
-            treeNode17.Text = "Близкие родственники";
-            treeNode18.Name = "Node0";
-            treeNode18.Tag = "uncle@mail.ru";
-            treeNode18.Text = "Дядя";
-            treeNode19.Name = "Node1";
-            treeNode19.Tag = "aunt@mail.ru";
-            treeNode19.Text = "Тетя";
-            treeNode20.ContextMenuStrip = this.contextMenuAddUser;
-            treeNode20.ImageKey = "2.png";
-            treeNode20.Name = "Node5";
-            treeNode20.SelectedImageKey = "2.png";
-            treeNode20.Text = "Дальние родственники";
-            treeNode21.ImageKey = "2.png";
-            treeNode21.Name = "Node1";
-            treeNode21.SelectedImageKey = "2.png";
-            treeNode21.Text = "Родственники";
-            treeNode22.ContextMenuStrip = this.contextMenuAddUser;
-            treeNode22.ImageKey = "1.png";
-            treeNode22.Name = "Node6";
-            treeNode22.SelectedImageKey = "1.png";
-            treeNode22.Text = "Отдела";
-            treeNode23.ContextMenuStrip = this.contextMenuAddUser;
-            treeNode23.ImageKey = "1.png";
-            treeNode23.Name = "Node7";
-            treeNode23.SelectedImageKey = "1.png";
-            treeNode23.Text = "Фирмы";
-            treeNode24.ImageKey = "1.png";
-            treeNode24.Name = "Node2";
-            treeNode24.SelectedImageKey = "1.png";
-            treeNode24.Text = "Сотрудники";
-            treeNode25.ContextMenuStrip = this.contextMenuAddUser;
-            treeNode25.ImageKey = "5.png";
-            treeNode25.Name = "Node8";
-            treeNode25.SelectedImageKey = "5.png";
-            treeNode25.Text = "Лучшие друзья";
-            treeNode26.ContextMenuStrip = this.contextMenuAddUser;
-            treeNode26.ImageKey = "5.png";
-            treeNode26.Name = "Node9";
-            treeNode26.SelectedImageKey = "5.png";
-            treeNode26.Text = "Друзья по команде";
-            treeNode27.ImageKey = "5.png";
-            treeNode27.Name = "Node3";
-            treeNode27.SelectedImageKey = "5.png";
-            treeNode27.Text = "Друзья";
-            treeNode28.ImageKey = "6.png";
-            treeNode28.Name = "Node0";
-            treeNode28.SelectedImageKey = "6.png";
-            treeNode28.Text = "Получатели";
+            treeNode1.Name = "Node0";
+            treeNode1.Tag = "bolira@inbox.ru";
+            treeNode1.Text = "Мама";
+            treeNode2.Name = "Node1";
+            treeNode2.Tag = "hoaxi@mail.ru";
+            treeNode2.Text = "Папа";
+            treeNode3.ContextMenuStrip = this.contextMenuAddUser;
+            treeNode3.ImageKey = "2.png";
+            treeNode3.Name = "Node4";
+            treeNode3.SelectedImageKey = "2.png";
+            treeNode3.Text = "Близкие родственники";
+            treeNode4.Name = "Node0";
+            treeNode4.Tag = "uncle@mail.ru";
+            treeNode4.Text = "Дядя";
+            treeNode5.Name = "Node1";
+            treeNode5.Tag = "aunt@mail.ru";
+            treeNode5.Text = "Тетя";
+            treeNode6.ContextMenuStrip = this.contextMenuAddUser;
+            treeNode6.ImageKey = "2.png";
+            treeNode6.Name = "Node5";
+            treeNode6.SelectedImageKey = "2.png";
+            treeNode6.Text = "Дальние родственники";
+            treeNode7.ImageKey = "2.png";
+            treeNode7.Name = "Node1";
+            treeNode7.SelectedImageKey = "2.png";
+            treeNode7.Text = "Родственники";
+            treeNode8.ContextMenuStrip = this.contextMenuAddUser;
+            treeNode8.ImageKey = "1.png";
+            treeNode8.Name = "Node6";
+            treeNode8.SelectedImageKey = "1.png";
+            treeNode8.Text = "Отдела";
+            treeNode9.ContextMenuStrip = this.contextMenuAddUser;
+            treeNode9.ImageKey = "1.png";
+            treeNode9.Name = "Node7";
+            treeNode9.SelectedImageKey = "1.png";
+            treeNode9.Text = "Фирмы";
+            treeNode10.ImageKey = "1.png";
+            treeNode10.Name = "Node2";
+            treeNode10.SelectedImageKey = "1.png";
+            treeNode10.Text = "Сотрудники";
+            treeNode11.ContextMenuStrip = this.contextMenuAddUser;
+            treeNode11.ImageKey = "5.png";
+            treeNode11.Name = "Node8";
+            treeNode11.SelectedImageKey = "5.png";
+            treeNode11.Text = "Лучшие друзья";
+            treeNode12.ContextMenuStrip = this.contextMenuAddUser;
+            treeNode12.ImageKey = "5.png";
+            treeNode12.Name = "Node9";
+            treeNode12.SelectedImageKey = "5.png";
+            treeNode12.Text = "Друзья по команде";
+            treeNode13.ImageKey = "5.png";
+            treeNode13.Name = "Node3";
+            treeNode13.SelectedImageKey = "5.png";
+            treeNode13.Text = "Друзья";
+            treeNode14.ImageKey = "6.png";
+            treeNode14.Name = "Node0";
+            treeNode14.SelectedImageKey = "6.png";
+            treeNode14.Text = "Получатели";
             this.tvMain.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode28});
+            treeNode14});
             this.tvMain.SelectedImageIndex = 5;
             this.tvMain.Size = new System.Drawing.Size(369, 615);
             this.tvMain.TabIndex = 0;
@@ -438,10 +445,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.button2);
-            this.tabPage2.Controls.Add(this.progressBar1);
-            this.tabPage2.Controls.Add(this.button1);
-            this.tabPage2.Controls.Add(this.label1);
+            this.tabPage2.Controls.Add(this.splitContainer2);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -452,7 +456,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(350, 36);
+            this.button2.Location = new System.Drawing.Point(242, 37);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 3;
@@ -462,14 +466,14 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(16, 77);
+            this.progressBar1.Location = new System.Drawing.Point(61, 82);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(396, 23);
+            this.progressBar1.Size = new System.Drawing.Size(244, 23);
             this.progressBar1.TabIndex = 2;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(244, 37);
+            this.button1.Location = new System.Drawing.Point(136, 38);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -480,7 +484,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 37);
+            this.label1.Location = new System.Drawing.Point(61, 42);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 0;
@@ -645,6 +649,36 @@
             this.timer.Interval = 60000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(523, 291);
+            this.dataGridView1.TabIndex = 4;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.dataGridView1);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.progressBar1);
+            this.splitContainer2.Panel2.Controls.Add(this.button2);
+            this.splitContainer2.Panel2.Controls.Add(this.label1);
+            this.splitContainer2.Panel2.Controls.Add(this.button1);
+            this.splitContainer2.Size = new System.Drawing.Size(523, 583);
+            this.splitContainer2.SplitterDistance = 291;
+            this.splitContainer2.TabIndex = 4;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -668,9 +702,14 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -722,6 +761,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbServerPort;
         private System.Windows.Forms.Button btnSaveServerSMTPSettings;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.SplitContainer splitContainer2;
     }
 }
 

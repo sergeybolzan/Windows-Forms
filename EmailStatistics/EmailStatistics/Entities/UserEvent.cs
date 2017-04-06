@@ -14,6 +14,7 @@ namespace EmailStatistics.Entities
         public string MessageTheme { get; set; }
         public string MessageText { get; set; }
         public string FileName { get; set; }
+        public string Emails { get; set; }
         public EventServerSettings EventServerSettings { get; set; }
 
         public UserEvent(DateTime datetime, string messageTheme, string messageText, string emails, string fileName, EventServerSettings eventServerSettings)
@@ -21,6 +22,7 @@ namespace EmailStatistics.Entities
             this.DateTime = datetime;
             this.MessageTheme = messageTheme;
             this.MessageText = messageText;
+            this.Emails = emails;
             this.EmailsList = emails.Split(new string[] { "; " }, StringSplitOptions.RemoveEmptyEntries).ToList();
             this.FileName = fileName;
             this.EventServerSettings = eventServerSettings;
