@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EmailStatistics.Entities
+namespace EmailStatistics.MailSettings
 {
     [Serializable]
     public class ServerSettings

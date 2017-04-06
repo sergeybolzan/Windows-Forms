@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace EmailStatistics.Entities
@@ -12,7 +13,11 @@ namespace EmailStatistics.Entities
         public string Name
         {
             get { return name; }
-            set { name = value; }
+            set
+            {
+                if (String.IsNullOrEmpty(value)) throw new ArgumentException("Введите имя");
+                name = value;
+            }
         }
 
 
@@ -22,8 +27,8 @@ namespace EmailStatistics.Entities
             get { return email; }
             set 
             { 
-                // validate correct email
-                if(!value.Contains("@")) throw new ArgumentException("Некорректный email");
+                string pattern = @"([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}";
+                if (!Regex.IsMatch(value, pattern)) throw new ArgumentException("Некорректный email");
                 email = value; 
             }
         }

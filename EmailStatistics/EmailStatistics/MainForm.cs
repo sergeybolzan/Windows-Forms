@@ -1,5 +1,6 @@
 ﻿using EmailStatistics.Entities;
 using EmailStatistics.Forms;
+using EmailStatistics.MailSettings;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -82,6 +83,13 @@ namespace EmailStatistics
         {
             serverSettings.Account = tbUserAccount.Text;
             serverSettings.Password = tbUserPassword.Text;
+            if (comboBoxServer.SelectedItem != null)
+            {
+                serverSettings.MailServerSettings[comboBoxServer.SelectedIndex].Address = tbServerAddress.Text;
+                int port;
+                if (Int32.TryParse(tbServerPort.Text, out port)) serverSettings.MailServerSettings[comboBoxServer.SelectedIndex].Port = port;
+            }
+
             using (FileStream file = new FileStream(@"SMTPServerSettings.bin", FileMode.Create))
             {
                 BinaryFormatter binFormat = new BinaryFormatter();
@@ -206,7 +214,7 @@ namespace EmailStatistics
                 if (userEvent.DateTime == currentDateTime)
                     try
                     {
-                        Logic.SendMail(userEvent);
+                        Mail.SendMail(userEvent);
                     }
                     catch (Exception ex)
                     {
