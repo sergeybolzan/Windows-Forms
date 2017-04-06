@@ -101,12 +101,12 @@ namespace EmailStatistics.Entities
             try
             {
                 //Создание SMTP  клиента (выбираем один из SMTP-серверов)                
-                SmtpClient Smtp = new SmtpClient("smtp.mail.ru", 2525);
+                SmtpClient Smtp = new SmtpClient(userEvent.EventServerSettings.MailServerSettings.Address, userEvent.EventServerSettings.MailServerSettings.Port);
                 // авторизируем подключение, указываем email и пароль, 
                 // которые были ранее зарегистрированы (можно воспользоваться указанными!!!)                             
-                Smtp.Credentials = new NetworkCredential("ivanitstep@mail.ru", "ivan123456789");
+                Smtp.Credentials = new NetworkCredential(userEvent.EventServerSettings.Account, userEvent.EventServerSettings.Password);
                 //включаем поддержку SSL (некоторые сервера это требуют)                             
-                Smtp.EnableSsl = true;
+                Smtp.EnableSsl = userEvent.EventServerSettings.MailServerSettings.IsEnabledSSL;
 
                 //Формирование письма
                 MailMessage message = new MailMessage();

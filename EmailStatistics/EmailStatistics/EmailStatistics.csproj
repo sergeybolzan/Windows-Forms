@@ -45,6 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Logic.cs" />
+    <Compile Include="Entities\MailServerSettings.cs" />
+    <Compile Include="Entities\ServerSettings.cs" />
+    <Compile Include="Entities\EventServerSettings.cs" />
     <Compile Include="Entities\UserEvent.cs" />
     <Compile Include="Entities\UserInfo.cs" />
     <Compile Include="Forms\AddUserForm.cs">

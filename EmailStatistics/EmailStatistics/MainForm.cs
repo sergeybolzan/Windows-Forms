@@ -19,13 +19,74 @@ namespace EmailStatistics
     {
         private BackgroundWorker worker;
         private List<UserEvent> userEvents;
+        private ServerSettings serverSettings;
 
         public MainForm()
         {
             InitializeComponent();
+            timer.Start();
             worker = new BackgroundWorker();
             userEvents = new List<UserEvent>();
-            timer.Start();
+
+            //serverSettings = new ServerSettings()
+            //{
+            //    MailServerSettings = new BindingList<MailServerSettings>()
+            //    {
+            //    new MailServerSettings(){ Name = "MAIL.RU", Address = "smtp.mail.ru", Port = 2525, IsEnabledSSL = true },
+            //    new MailServerSettings(){ Name = "Gmail", Address = "smtp.gmail.com", Port = 58, IsEnabledSSL = true },
+            //    new MailServerSettings(){ Name = "YANDEX", Address = "smtp.yandex.ru", Port = 25, IsEnabledSSL = true }
+            //    },
+            //    Account = "ivanitstep@mail.ru",
+            //    Password = "ivan123456789"
+            //};
+
+            //comboBoxServer.DataSource = serverSettings.MailServerSettings;
+            //comboBoxServer.DisplayMember = "Name";
+
+            //tbUserAccount.Text = serverSettings.Account;
+            //tbUserPassword.Text = serverSettings.Password;
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            //using (FileStream file = new FileStream(@"Tree.bin", FileMode.Open))
+            //{
+            //    tvMain.Nodes.Clear();
+            //    BinaryFormatter binFormat = new BinaryFormatter();
+            //    tvMain.Nodes.Add((TreeNode)binFormat.Deserialize(file));
+
+            //    Logic.UncheckAllNodes(tvMain.Nodes[0]);
+
+            //    //Добавляем к узлам 3-го уровня контексное меню
+            //    foreach (TreeNode node2 in tvMain.Nodes[0].Nodes)
+            //    {
+            //        foreach (TreeNode node3 in node2.Nodes)
+            //        {
+            //            node3.ContextMenuStrip = this.contextMenuAddUser;
+            //        }
+            //    }
+            //}
+            tvMain.ExpandAll();
+
+            using (FileStream file = new FileStream(@"SMTPServerSettings.bin", FileMode.Open))
+            {
+                BinaryFormatter binFormat = new BinaryFormatter();
+                serverSettings = (ServerSettings)binFormat.Deserialize(file);
+            }
+            comboBoxServer.DataSource = serverSettings.MailServerSettings;
+            comboBoxServer.DisplayMember = "Name";
+            tbUserAccount.Text = serverSettings.Account;
+            tbUserPassword.Text = serverSettings.Password;
+        }
+        private void btnSaveServerSMTPSettings_Click(object sender, EventArgs e)
+        {
+            serverSettings.Account = tbUserAccount.Text;
+            serverSettings.Password = tbUserPassword.Text;
+            using (FileStream file = new FileStream(@"SMTPServerSettings.bin", FileMode.Create))
+            {
+                BinaryFormatter binFormat = new BinaryFormatter();
+                binFormat.Serialize(file, serverSettings);
+            }
         }
 
         private void cmiAddUser_Click(object sender, EventArgs e)
@@ -99,27 +160,6 @@ namespace EmailStatistics
             e.Result = 500;  // надо возвратить коллекцию адресов
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            //using (FileStream file = new FileStream(@"Tree.bin", FileMode.Open))
-            //{
-            //    tvMain.Nodes.Clear();
-            //    BinaryFormatter binFormat = new BinaryFormatter();
-            //    tvMain.Nodes.Add((TreeNode)binFormat.Deserialize(file));
-
-            //    UncheckAllNodes(tvMain.Nodes[0]);
-
-            //    //Добавляем к узлам 3-го уровня контексное меню
-            //    foreach (TreeNode node2 in tvMain.Nodes[0].Nodes)
-            //    {
-            //        foreach (TreeNode node3 in node2.Nodes)
-            //        {
-            //            node3.ContextMenuStrip = this.contextMenuAddUser;
-            //        }
-            //    }
-            //}
-            tvMain.ExpandAll();
-        }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -154,7 +194,7 @@ namespace EmailStatistics
             DateTime dateTime = monthCalendar.SelectionRange.Start;
             dateTime = dateTime.AddHours(dateTimePicker.Value.Hour);
             dateTime = dateTime.AddMinutes(dateTimePicker.Value.Minute);
-            userEvents.Add(new UserEvent(dateTime, tbTheme.Text, tbMessageText.Text, tbEmails.Text, tbFileName.Text));
+            userEvents.Add(new UserEvent(dateTime, tbTheme.Text, tbMessageText.Text, tbEmails.Text, tbFileName.Text, new EventServerSettings(new MailServerSettings(comboBoxServer.Text, tbServerAddress.Text, Int32.Parse(tbServerPort.Text), checkBoxIsEnabledSSL.Checked), tbUserAccount.Text, tbUserPassword.Text)));
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -188,5 +228,17 @@ namespace EmailStatistics
         {
             tbFileName.Text = "";
         }
+
+        private void comboBoxServer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxServer.SelectedItem != null)
+            {
+                MailServerSettings selItem = (MailServerSettings)comboBoxServer.SelectedItem;
+                tbServerAddress.Text = selItem.Address;
+                tbServerPort.Text = selItem.Port.ToString();
+                checkBoxIsEnabledSSL.Checked = selItem.IsEnabledSSL;
+            }
+        }
+
     }
 }
