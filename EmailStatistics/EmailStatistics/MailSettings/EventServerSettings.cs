@@ -6,16 +6,46 @@ using System.Threading.Tasks;
 
 namespace EmailStatistics.MailSettings
 {
+    [Serializable]
     public class EventServerSettings
     {
-        public MailServerSettings MailServerSettings { get; set; }
-        public string Account { get; set; }
-        public string Password { get; set; }
+        #region FIELDS
+        private MailServerSettings mailServerSettings;
+        private string account;
+        private string password;
+        #endregion
+
+        #region PROPERTIES
+        public MailServerSettings MailServerSettings
+        {
+            get { return mailServerSettings; }
+            set { mailServerSettings = value; }
+        }
+
+        public string Account
+        {
+            get { return account; }
+            set { account = value; }
+        }
+
+        public string Password
+        {
+            get { return password; }
+            set { password = value; }
+        }
+        #endregion
+
+        #region CTORS
+        public EventServerSettings()
+        {
+
+        }
         public EventServerSettings(MailServerSettings mailServerSettings, string account, string password)
         {
-            this.MailServerSettings = mailServerSettings;
-            this.Account = account;
-            this.Password = password;
+            this.mailServerSettings = mailServerSettings;
+            this.account = account;
+            this.password = password;
         }
+        #endregion
     }
 }

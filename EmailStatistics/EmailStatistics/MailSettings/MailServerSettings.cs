@@ -42,7 +42,7 @@ namespace EmailStatistics.MailSettings
         }
         #endregion
 
-        #region CTOR
+        #region CTORS
         public MailServerSettings()
         {
 

@@ -29,7 +29,8 @@ namespace EmailStatistics.Entities
                 message.From = new MailAddress("ivanitstep@mail.ru");
 
                 //указываем адрес получателя!
-                foreach (var email in userEvent.EmailsList)
+                var emailsList = userEvent.Emails.Split(new string[] { "; " }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                foreach (var email in emailsList)
                 {
                     message.To.Add(new MailAddress(email));
                 }

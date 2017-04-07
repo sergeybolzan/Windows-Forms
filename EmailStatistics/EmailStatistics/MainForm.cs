@@ -28,7 +28,6 @@ namespace EmailStatistics
             timer.Start();
             worker = new BackgroundWorker();
             userEvents = new BindingList<UserEvent>();
-
             //serverSettings = new ServerSettings()
             //{
             //    MailServerSettings = new BindingList<MailServerSettings>()
@@ -79,10 +78,31 @@ namespace EmailStatistics
             tbUserAccount.Text = serverSettings.Account;
             tbUserPassword.Text = serverSettings.Password;
 
-            dataGridView1.DataSource = userEvents;
-            dataGridView1.Columns[4].HeaderText = "asd";
-            dataGridView1.Columns[5].Visible = false;
+            MyDataGridView.DataSource = userEvents;
+            MyDataGridView.Columns["EventServerSettings"].Visible = false;
+            MyDataGridView.Columns["DateTime"].HeaderText = "Время";
+            MyDataGridView.Columns["Emails"].HeaderText = "Email адреса";
+            MyDataGridView.Columns["MessageTheme"].HeaderText = "Тема письма";
+            MyDataGridView.Columns["MessageText"].HeaderText = "Текст письма";
+            MyDataGridView.Columns["FileName"].HeaderText = "Файл";
+            MyDataGridView.Columns["DateTime"].DefaultCellStyle.Format = "yyyy.MM.dd HH-mm";
+
+            dateTimePicker.Value = dateTimePicker.Value.AddHours(DateTime.Now.Hour);
+            dateTimePicker.Value = dateTimePicker.Value.AddMinutes(DateTime.Now.Minute);
+
+            MyDataGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MyDataGridView_MouseDown);
         }
+
+        private void MyDataGridView_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                var hti = MyDataGridView.HitTest(e.X, e.Y);
+                MyDataGridView.ClearSelection();
+                if (hti.RowIndex > -1) MyDataGridView.Rows[hti.RowIndex].Selected = true;
+            }
+        }
+
         private void btnSaveServerSMTPSettings_Click(object sender, EventArgs e)
         {
             serverSettings.Account = tbUserAccount.Text;
@@ -113,6 +133,12 @@ namespace EmailStatistics
                 });
                 tvMain.SelectedNode.Expand();
             }
+        }
+
+        private void cmiDeleteUser_Click(object sender, EventArgs e)
+        {
+            int rowToDelete = MyDataGridView.Rows.GetFirstRow(DataGridViewElementStates.Selected);
+            if (rowToDelete > -1) userEvents.RemoveAt(rowToDelete);
         }
 
         private void tvMain_MouseDown(object sender, MouseEventArgs e)
@@ -181,6 +207,11 @@ namespace EmailStatistics
             //    binFormat.Serialize(file, tvMain.Nodes[0]);
             //}
 
+            using (FileStream file = new FileStream(@"UserEvents.bin", FileMode.Create))
+            {
+                BinaryFormatter binFormat = new BinaryFormatter();
+                binFormat.Serialize(file, userEvents);
+            }
         }
 
 
@@ -207,6 +238,11 @@ namespace EmailStatistics
             dateTime = dateTime.AddHours(dateTimePicker.Value.Hour);
             dateTime = dateTime.AddMinutes(dateTimePicker.Value.Minute);
             userEvents.Add(new UserEvent(dateTime, tbTheme.Text, tbMessageText.Text, tbEmails.Text, tbFileName.Text, new EventServerSettings(new MailServerSettings(comboBoxServer.Text, tbServerAddress.Text, Int32.Parse(tbServerPort.Text), checkBoxIsEnabledSSL.Checked), tbUserAccount.Text, tbUserPassword.Text)));
+            
+            //Сортировка списка событий после добавления нового события
+            List<UserEvent> sortedList = userEvents.OrderBy(x => x.DateTime).ToList();
+            userEvents = new BindingList<UserEvent>(sortedList);
+            MyDataGridView.DataSource = userEvents;
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -224,6 +260,13 @@ namespace EmailStatistics
                     {
                         MessageBox.Show(ex.Message);
                     }
+            }
+
+            // Событие со временем, меньшим текущего времени, удалится
+            for (int i = 0; i < userEvents.Count; i++)
+            {
+                if (userEvents[i].DateTime < currentDateTime)
+                    userEvents.Remove(userEvents[i]);
             }
         }
 
@@ -251,6 +294,7 @@ namespace EmailStatistics
                 checkBoxIsEnabledSSL.Checked = selItem.IsEnabledSSL;
             }
         }
+
 
     }
 }

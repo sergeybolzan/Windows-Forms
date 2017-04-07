@@ -82,10 +82,12 @@
             this.labelEmails = new System.Windows.Forms.Label();
             this.labelNames = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.MyDataGridView = new System.Windows.Forms.DataGridView();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnSaveServerSMTPSettings = new System.Windows.Forms.Button();
             this.tbServerPort = new System.Windows.Forms.TextBox();
@@ -101,8 +103,8 @@
             this.comboBoxServer = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.contextMenuDeleteEvent = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmiDeleteUser = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuAddUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -111,12 +113,13 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MyDataGridView)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            this.contextMenuDeleteEvent.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuAddUser
@@ -454,6 +457,47 @@
             this.tabPage2.Text = "Результаты рассылки";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.MyDataGridView);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.progressBar1);
+            this.splitContainer2.Panel2.Controls.Add(this.button2);
+            this.splitContainer2.Panel2.Controls.Add(this.label1);
+            this.splitContainer2.Panel2.Controls.Add(this.button1);
+            this.splitContainer2.Size = new System.Drawing.Size(523, 583);
+            this.splitContainer2.SplitterDistance = 291;
+            this.splitContainer2.TabIndex = 4;
+            // 
+            // MyDataGridView
+            // 
+            this.MyDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.MyDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.MyDataGridView.ContextMenuStrip = this.contextMenuDeleteEvent;
+            this.MyDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MyDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.MyDataGridView.Name = "MyDataGridView";
+            this.MyDataGridView.RowHeadersVisible = false;
+            this.MyDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.MyDataGridView.Size = new System.Drawing.Size(523, 291);
+            this.MyDataGridView.TabIndex = 4;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(61, 82);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(244, 23);
+            this.progressBar1.TabIndex = 2;
+            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(242, 37);
@@ -464,12 +508,14 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // progressBar1
+            // label1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(61, 82);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(244, 23);
-            this.progressBar1.TabIndex = 2;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(61, 42);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "label1";
             // 
             // button1
             // 
@@ -480,15 +526,6 @@
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(61, 42);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
             // 
             // tabPage3
             // 
@@ -649,35 +686,19 @@
             this.timer.Interval = 60000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // dataGridView1
+            // contextMenuDeleteEvent
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(523, 291);
-            this.dataGridView1.TabIndex = 4;
+            this.contextMenuDeleteEvent.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmiDeleteUser});
+            this.contextMenuDeleteEvent.Name = "contextMenuDeleteEvent";
+            this.contextMenuDeleteEvent.Size = new System.Drawing.Size(169, 26);
             // 
-            // splitContainer2
+            // cmiDeleteUser
             // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.dataGridView1);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.progressBar1);
-            this.splitContainer2.Panel2.Controls.Add(this.button2);
-            this.splitContainer2.Panel2.Controls.Add(this.label1);
-            this.splitContainer2.Panel2.Controls.Add(this.button1);
-            this.splitContainer2.Size = new System.Drawing.Size(523, 583);
-            this.splitContainer2.SplitterDistance = 291;
-            this.splitContainer2.TabIndex = 4;
+            this.cmiDeleteUser.Name = "cmiDeleteUser";
+            this.cmiDeleteUser.Size = new System.Drawing.Size(168, 22);
+            this.cmiDeleteUser.Text = "Удалить событие";
+            this.cmiDeleteUser.Click += new System.EventHandler(this.cmiDeleteUser_Click);
             // 
             // MainForm
             // 
@@ -702,14 +723,15 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.MyDataGridView)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.contextMenuDeleteEvent.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -761,8 +783,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbServerPort;
         private System.Windows.Forms.Button btnSaveServerSMTPSettings;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView MyDataGridView;
         private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.ContextMenuStrip contextMenuDeleteEvent;
+        private System.Windows.Forms.ToolStripMenuItem cmiDeleteUser;
     }
 }
 
