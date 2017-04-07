@@ -86,6 +86,9 @@ namespace EmailStatistics
             tbUserAccount.Text = serverSettings.Account;
             tbUserPassword.Text = serverSettings.Password;
 
+            dateTimePicker.Value = dateTimePicker.Value.AddHours(DateTime.Now.Hour);
+            dateTimePicker.Value = dateTimePicker.Value.AddMinutes(DateTime.Now.Minute);
+
             MyDataGridView.DataSource = userEvents;
             MyDataGridView.Columns["EventServerSettings"].Visible = false;
             MyDataGridView.Columns["DateTime"].HeaderText = "Время";
@@ -94,9 +97,6 @@ namespace EmailStatistics
             MyDataGridView.Columns["MessageText"].HeaderText = "Текст письма";
             MyDataGridView.Columns["FileName"].HeaderText = "Файл";
             MyDataGridView.Columns["DateTime"].DefaultCellStyle.Format = "yyyy.MM.dd HH-mm";
-
-            dateTimePicker.Value = dateTimePicker.Value.AddHours(DateTime.Now.Hour);
-            dateTimePicker.Value = dateTimePicker.Value.AddMinutes(DateTime.Now.Minute);
 
             MyDataGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MyDataGridView_MouseDown);
         }
@@ -156,20 +156,23 @@ namespace EmailStatistics
 
         private void button1_Click(object sender, EventArgs e)
         {
-            worker.WorkerReportsProgress = true;   //включаем чтобы был отчет о прогрессе
-            worker.WorkerSupportsCancellation = true; // поддержка отмены
-            worker.ProgressChanged += worker_ProgressChanged;
-            worker.DoWork += worker_DoWork;
-            worker.RunWorkerCompleted += worker_RunWorkerCompleted; //обрабочтик вызывается после выполнения работы воркером
-            worker.RunWorkerAsync(10);
-            // if(worker.IsBusy)
+            if (!worker.IsBusy)
+            {
+                worker.WorkerReportsProgress = true;   //включаем чтобы был отчет о прогрессе
+                worker.WorkerSupportsCancellation = true; // поддержка отмены
+                worker.ProgressChanged += worker_ProgressChanged;
+                worker.DoWork += worker_DoWork;
+                worker.RunWorkerCompleted += worker_RunWorkerCompleted; //обрабочтик вызывается после выполнения работы воркером
+                worker.RunWorkerAsync(10);
+            }
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            worker.CancelAsync();
+            if (worker.IsBusy) worker.CancelAsync();
         }
 
         void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        
         {
             //label1.Text = e.ProgressPercentage.ToString() + "%";
             progressBar1.Value = e.ProgressPercentage;
@@ -189,7 +192,7 @@ namespace EmailStatistics
 
         void worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            BackgroundWorker worker = (BackgroundWorker)sender;
+            //BackgroundWorker worker = (BackgroundWorker)sender;
             int count = (int)e.Argument;
             // 5 сек
             for (int i = 1; i <= count; i++)
