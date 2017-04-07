@@ -20,7 +20,6 @@ namespace EmailStatistics.Entities
             }
         }
 
-
         private string email;
         public string Email
         {

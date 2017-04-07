@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace EmailStatistics.MailSettings
 {
+    /// <summary>
+    /// Класс с параметрами сервера для привязки к комбобоксу.
+    /// </summary>
     [Serializable]
     public class MailServerSettings
     {

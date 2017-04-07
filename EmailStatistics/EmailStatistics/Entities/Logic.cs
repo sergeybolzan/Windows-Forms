@@ -7,10 +7,19 @@ using System.Windows.Forms;
 
 namespace EmailStatistics.Entities
 {
+    /// <summary>
+    /// Статический класс, содержащий статические методы для работы с узлами дерева.
+    /// </summary>
     public static class Logic
     {
         public static string selNames { get; set; }
         public static string selEmails { get; set; }
+
+        /// <summary>
+        /// Получение строки с именами в соответсвии с отмеченными узлами дерева.
+        /// </summary>
+        /// <param name="selTN"></param>
+        /// <returns></returns>
         public static string GetAllNames(TreeNode selTN)
         {
             for (int i = 0; i < selTN.Nodes.Count; i++)
@@ -24,6 +33,11 @@ namespace EmailStatistics.Entities
             return selNames;
         }
 
+        /// <summary>
+        /// Получение строки с емейлами в соответсвии с отмеченными узлами дерева.
+        /// </summary>
+        /// <param name="selTN"></param>
+        /// <returns></returns>
         public static string GetAllEmails(TreeNode selTN)
         {
             for (int i = 0; i < selTN.Nodes.Count; i++)
@@ -71,6 +85,11 @@ namespace EmailStatistics.Entities
             }
         }
 
+        /// <summary>
+        /// Метод, отмечающий родительский узел, если некоторый узел отметили, и его соседи также отмечены.
+        /// При наличии всех отмеченных дочерних узлов и снятия отметки с одного из них, отметка с родителя также снимается.
+        /// </summary>
+        /// <param name="e"></param>
         public static void CheckOrUncheckParentNode(TreeViewEventArgs e)
         {
             TreeNode parent = e.Node.Parent;

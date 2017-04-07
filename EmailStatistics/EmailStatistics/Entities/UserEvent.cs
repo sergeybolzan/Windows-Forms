@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace EmailStatistics.Entities
 {
+    /// <summary>
+    /// Класс события отправки письма.
+    /// </summary>
     [Serializable]
     public class UserEvent
     {

@@ -11,6 +11,10 @@ namespace EmailStatistics.Entities
 {
     public static class Mail
     {
+        /// <summary>
+        /// Отправка письма по данным события.
+        /// </summary>
+        /// <param name="userEvent"></param>
         public static void SendMail(UserEvent userEvent)
         {
             try

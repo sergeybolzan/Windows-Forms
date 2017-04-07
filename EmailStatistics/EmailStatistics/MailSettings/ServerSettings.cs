@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace EmailStatistics.MailSettings
 {
+    /// <summary>
+    /// Класс для сериализации все параметров сервера в один файл.
+    /// </summary>
     [Serializable]
     public class ServerSettings
     {

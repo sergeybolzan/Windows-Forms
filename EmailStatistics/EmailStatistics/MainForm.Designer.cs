@@ -85,11 +85,12 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.MyDataGridView = new System.Windows.Forms.DataGridView();
             this.contextMenuDeleteEvent = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.cmiDeleteUser = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmiDeleteUserEvent = new System.Windows.Forms.ToolStripMenuItem();
+            this.tbSendingResult = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCancelSending = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnSaveServerSMTPSettings = new System.Windows.Forms.Button();
             this.tbServerPort = new System.Windows.Forms.TextBox();
@@ -105,7 +106,6 @@
             this.comboBoxServer = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.label8 = new System.Windows.Forms.Label();
             this.contextMenuAddUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -180,10 +180,10 @@
             this.tvMain.Location = new System.Drawing.Point(0, 0);
             this.tvMain.Name = "tvMain";
             treeNode1.Name = "Node0";
-            treeNode1.Tag = "bolira@inbox.ru";
+            treeNode1.Tag = "mother@mail.ru";
             treeNode1.Text = "Мама";
             treeNode2.Name = "Node1";
-            treeNode2.Tag = "hoaxi@mail.ru";
+            treeNode2.Tag = "father@mail.ru";
             treeNode2.Text = "Папа";
             treeNode3.ContextMenuStrip = this.contextMenuAddUser;
             treeNode3.ImageKey = "2.png";
@@ -313,6 +313,7 @@
             this.tbFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbFileName.Location = new System.Drawing.Point(175, 509);
             this.tbFileName.Name = "tbFileName";
+            this.tbFileName.ReadOnly = true;
             this.tbFileName.Size = new System.Drawing.Size(333, 22);
             this.tbFileName.TabIndex = 14;
             // 
@@ -485,13 +486,13 @@
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.tbSendingResult);
             this.splitContainer2.Panel2.Controls.Add(this.label8);
             this.splitContainer2.Panel2.Controls.Add(this.progressBar1);
-            this.splitContainer2.Panel2.Controls.Add(this.button2);
+            this.splitContainer2.Panel2.Controls.Add(this.btnCancelSending);
             this.splitContainer2.Panel2.Controls.Add(this.label1);
-            this.splitContainer2.Panel2.Controls.Add(this.button1);
             this.splitContainer2.Size = new System.Drawing.Size(523, 583);
-            this.splitContainer2.SplitterDistance = 291;
+            this.splitContainer2.SplitterDistance = 355;
             this.splitContainer2.TabIndex = 4;
             // 
             // MyDataGridView
@@ -505,61 +506,75 @@
             this.MyDataGridView.Name = "MyDataGridView";
             this.MyDataGridView.RowHeadersVisible = false;
             this.MyDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.MyDataGridView.Size = new System.Drawing.Size(523, 291);
+            this.MyDataGridView.Size = new System.Drawing.Size(523, 355);
             this.MyDataGridView.TabIndex = 4;
             // 
             // contextMenuDeleteEvent
             // 
             this.contextMenuDeleteEvent.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cmiDeleteUser});
+            this.cmiDeleteUserEvent});
             this.contextMenuDeleteEvent.Name = "contextMenuDeleteEvent";
             this.contextMenuDeleteEvent.Size = new System.Drawing.Size(169, 26);
             // 
-            // cmiDeleteUser
+            // cmiDeleteUserEvent
             // 
-            this.cmiDeleteUser.Name = "cmiDeleteUser";
-            this.cmiDeleteUser.Size = new System.Drawing.Size(168, 22);
-            this.cmiDeleteUser.Text = "Удалить событие";
-            this.cmiDeleteUser.Click += new System.EventHandler(this.cmiDeleteUser_Click);
+            this.cmiDeleteUserEvent.Name = "cmiDeleteUserEvent";
+            this.cmiDeleteUserEvent.Size = new System.Drawing.Size(168, 22);
+            this.cmiDeleteUserEvent.Text = "Удалить событие";
+            this.cmiDeleteUserEvent.Click += new System.EventHandler(this.cmiDeleteUserEvent_Click);
+            // 
+            // tbSendingResult
+            // 
+            this.tbSendingResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbSendingResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbSendingResult.Location = new System.Drawing.Point(183, 74);
+            this.tbSendingResult.Multiline = true;
+            this.tbSendingResult.Name = "tbSendingResult";
+            this.tbSendingResult.ReadOnly = true;
+            this.tbSendingResult.Size = new System.Drawing.Size(324, 74);
+            this.tbSendingResult.TabIndex = 5;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(11, 8);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(206, 16);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "Процесс отправки письма:";
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(15, 46);
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar1.Location = new System.Drawing.Point(14, 36);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(493, 23);
             this.progressBar1.TabIndex = 2;
             // 
-            // button2
+            // btnCancelSending
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(248, 140);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnCancelSending.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelSending.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnCancelSending.Location = new System.Drawing.Point(347, 165);
+            this.btnCancelSending.Name = "btnCancelSending";
+            this.btnCancelSending.Size = new System.Drawing.Size(160, 42);
+            this.btnCancelSending.TabIndex = 3;
+            this.btnCancelSending.Text = "Отменить отправку";
+            this.btnCancelSending.UseVisualStyleBackColor = true;
+            this.btnCancelSending.Click += new System.EventHandler(this.btnCancelSending_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(12, 84);
+            this.label1.Location = new System.Drawing.Point(11, 74);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 16);
+            this.label1.Size = new System.Drawing.Size(165, 16);
             this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(117, 140);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.label1.Text = "Результат отправки:";
             // 
             // tabPage3
             // 
@@ -725,16 +740,6 @@
             this.timer.Interval = 60000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(12, 18);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(206, 16);
-            this.label8.TabIndex = 4;
-            this.label8.Text = "Процесс отправки письма:";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -747,6 +752,7 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Статистика Email";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.contextMenuAddUser.ResumeLayout(false);
@@ -785,9 +791,8 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuAddUser;
         private System.Windows.Forms.ToolStripMenuItem cmiAddUser;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCancelSending;
         private System.Windows.Forms.TreeView tvMain;
         private System.Windows.Forms.TextBox tbNames;
         private System.Windows.Forms.Label labelEmails;
@@ -821,8 +826,9 @@
         private System.Windows.Forms.DataGridView MyDataGridView;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.ContextMenuStrip contextMenuDeleteEvent;
-        private System.Windows.Forms.ToolStripMenuItem cmiDeleteUser;
+        private System.Windows.Forms.ToolStripMenuItem cmiDeleteUserEvent;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox tbSendingResult;
     }
 }
 

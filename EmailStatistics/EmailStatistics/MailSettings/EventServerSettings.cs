@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace EmailStatistics.MailSettings
 {
+    /// <summary>
+    /// Класс для хранения параметров сервера SMTP в событии отправки письма
+    /// </summary>
     [Serializable]
     public class EventServerSettings
     {
