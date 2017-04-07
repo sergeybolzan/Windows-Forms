@@ -76,7 +76,6 @@ namespace EmailStatistics
                 userEvents = (BindingList<UserEvent>)binFormat.Deserialize(file);
             }
 
-
             using (FileStream file = new FileStream(@"SMTPServerSettings.bin", FileMode.Open))
             {
                 BinaryFormatter binFormat = new BinaryFormatter();
@@ -207,7 +206,6 @@ namespace EmailStatistics
             e.Result = 500;  // надо возвратить коллекцию адресов
         }
 
-
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             //using (FileStream file = new FileStream(@"Tree.bin", FileMode.Create))
@@ -222,7 +220,6 @@ namespace EmailStatistics
                 binFormat.Serialize(file, userEvents);
             }
         }
-
 
         private void tvMain_AfterCheck(object sender, TreeViewEventArgs e)
         {
@@ -268,7 +265,6 @@ namespace EmailStatistics
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
-
                     }
             }
             // Событие со временем, меньшим текущего времени, удалится
@@ -307,7 +303,5 @@ namespace EmailStatistics
                 checkBoxIsEnabledSSL.Checked = selItem.IsEnabledSSL;
             }
         }
-
-
     }
 }

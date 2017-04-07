@@ -294,6 +294,7 @@
             // 
             // btnDeleteFile
             // 
+            this.btnDeleteFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDeleteFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnDeleteFile.ForeColor = System.Drawing.Color.MediumBlue;
             this.btnDeleteFile.Location = new System.Drawing.Point(24, 539);
@@ -306,6 +307,8 @@
             // 
             // tbFileName
             // 
+            this.tbFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbFileName.Location = new System.Drawing.Point(175, 509);
             this.tbFileName.Name = "tbFileName";
@@ -314,6 +317,7 @@
             // 
             // btnAddFile
             // 
+            this.btnAddFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAddFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnAddFile.ForeColor = System.Drawing.Color.MediumBlue;
             this.btnAddFile.Location = new System.Drawing.Point(24, 508);
@@ -326,6 +330,7 @@
             // 
             // btnAddToSchedule
             // 
+            this.btnAddToSchedule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddToSchedule.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnAddToSchedule.ForeColor = System.Drawing.Color.MediumBlue;
             this.btnAddToSchedule.Location = new System.Drawing.Point(304, 545);
@@ -338,6 +343,9 @@
             // 
             // tbMessageText
             // 
+            this.tbMessageText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbMessageText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbMessageText.Location = new System.Drawing.Point(24, 405);
             this.tbMessageText.Multiline = true;
@@ -358,6 +366,8 @@
             // 
             // tbTheme
             // 
+            this.tbTheme.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbTheme.Location = new System.Drawing.Point(214, 293);
             this.tbTheme.Multiline = true;
@@ -408,6 +418,8 @@
             // 
             // tbEmails
             // 
+            this.tbEmails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbEmails.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbEmails.Location = new System.Drawing.Point(93, 115);
             this.tbEmails.Multiline = true;
@@ -417,6 +429,8 @@
             // 
             // tbNames
             // 
+            this.tbNames.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbNames.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbNames.Location = new System.Drawing.Point(93, 15);
             this.tbNames.Multiline = true;
@@ -454,7 +468,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(529, 589);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Результаты рассылки";
+            this.tabPage2.Text = "Рассылка";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // splitContainer2
@@ -567,6 +581,7 @@
             // 
             // btnSaveServerSMTPSettings
             // 
+            this.btnSaveServerSMTPSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveServerSMTPSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnSaveServerSMTPSettings.Location = new System.Drawing.Point(355, 268);
             this.btnSaveServerSMTPSettings.Name = "btnSaveServerSMTPSettings";
@@ -607,6 +622,8 @@
             // 
             // tbUserPassword
             // 
+            this.tbUserPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbUserPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbUserPassword.Location = new System.Drawing.Point(100, 189);
             this.tbUserPassword.Name = "tbUserPassword";
@@ -627,6 +644,8 @@
             // 
             // tbUserAccount
             // 
+            this.tbUserAccount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbUserAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbUserAccount.Location = new System.Drawing.Point(100, 149);
             this.tbUserAccount.Name = "tbUserAccount";
