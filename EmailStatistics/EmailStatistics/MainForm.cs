@@ -27,7 +27,9 @@ namespace EmailStatistics
             InitializeComponent();
             timer.Start();
             worker = new BackgroundWorker();
-            userEvents = new BindingList<UserEvent>();
+
+            //userEvents = new BindingList<UserEvent>();
+
             //serverSettings = new ServerSettings()
             //{
             //    MailServerSettings = new BindingList<MailServerSettings>()
@@ -67,6 +69,13 @@ namespace EmailStatistics
             //    }
             //}
             tvMain.ExpandAll();
+
+            using (FileStream file = new FileStream(@"UserEvents.bin", FileMode.Open))
+            {
+                BinaryFormatter binFormat = new BinaryFormatter();
+                userEvents = (BindingList<UserEvent>)binFormat.Deserialize(file);
+            }
+
 
             using (FileStream file = new FileStream(@"SMTPServerSettings.bin", FileMode.Open))
             {
@@ -259,16 +268,20 @@ namespace EmailStatistics
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
+
                     }
             }
-
             // Событие со временем, меньшим текущего времени, удалится
             for (int i = 0; i < userEvents.Count; i++)
             {
                 if (userEvents[i].DateTime < currentDateTime)
+                {
                     userEvents.Remove(userEvents[i]);
+                    i--;
+                }
             }
         }
+        
 
         private void btnAddFile_Click(object sender, EventArgs e)
         {

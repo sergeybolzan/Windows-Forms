@@ -84,6 +84,8 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.MyDataGridView = new System.Windows.Forms.DataGridView();
+            this.contextMenuDeleteEvent = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmiDeleteUser = new System.Windows.Forms.ToolStripMenuItem();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -103,8 +105,6 @@
             this.comboBoxServer = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.contextMenuDeleteEvent = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.cmiDeleteUser = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuAddUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -118,8 +118,8 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MyDataGridView)).BeginInit();
-            this.tabPage3.SuspendLayout();
             this.contextMenuDeleteEvent.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuAddUser
@@ -480,6 +480,7 @@
             // 
             // MyDataGridView
             // 
+            this.MyDataGridView.AllowUserToAddRows = false;
             this.MyDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.MyDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.MyDataGridView.ContextMenuStrip = this.contextMenuDeleteEvent;
@@ -490,6 +491,20 @@
             this.MyDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.MyDataGridView.Size = new System.Drawing.Size(523, 291);
             this.MyDataGridView.TabIndex = 4;
+            // 
+            // contextMenuDeleteEvent
+            // 
+            this.contextMenuDeleteEvent.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmiDeleteUser});
+            this.contextMenuDeleteEvent.Name = "contextMenuDeleteEvent";
+            this.contextMenuDeleteEvent.Size = new System.Drawing.Size(169, 26);
+            // 
+            // cmiDeleteUser
+            // 
+            this.cmiDeleteUser.Name = "cmiDeleteUser";
+            this.cmiDeleteUser.Size = new System.Drawing.Size(168, 22);
+            this.cmiDeleteUser.Text = "Удалить событие";
+            this.cmiDeleteUser.Click += new System.EventHandler(this.cmiDeleteUser_Click);
             // 
             // progressBar1
             // 
@@ -686,20 +701,6 @@
             this.timer.Interval = 60000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // contextMenuDeleteEvent
-            // 
-            this.contextMenuDeleteEvent.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cmiDeleteUser});
-            this.contextMenuDeleteEvent.Name = "contextMenuDeleteEvent";
-            this.contextMenuDeleteEvent.Size = new System.Drawing.Size(169, 26);
-            // 
-            // cmiDeleteUser
-            // 
-            this.cmiDeleteUser.Name = "cmiDeleteUser";
-            this.cmiDeleteUser.Size = new System.Drawing.Size(168, 22);
-            this.cmiDeleteUser.Text = "Удалить событие";
-            this.cmiDeleteUser.Click += new System.EventHandler(this.cmiDeleteUser_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -729,9 +730,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MyDataGridView)).EndInit();
+            this.contextMenuDeleteEvent.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            this.contextMenuDeleteEvent.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
