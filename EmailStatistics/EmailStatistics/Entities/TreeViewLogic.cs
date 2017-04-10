@@ -10,7 +10,7 @@ namespace EmailStatistics.Entities
     /// <summary>
     /// Статический класс, содержащий статические методы для работы с узлами дерева.
     /// </summary>
-    public static class Logic
+    public static class TreeViewLogic
     {
         public static string selNames { get; set; }
         public static string selEmails { get; set; }

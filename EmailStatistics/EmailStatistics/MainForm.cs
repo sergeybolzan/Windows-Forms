@@ -33,63 +33,41 @@ namespace EmailStatistics
             worker.ProgressChanged += worker_ProgressChanged;
             worker.DoWork += worker_DoWork;
             worker.RunWorkerCompleted += worker_RunWorkerCompleted; //обрабочтик вызывается после выполнения работы воркером
-
-            //userEvents = new BindingList<UserEvent>();
-
-            //serverSettings = new ServerSettings()
-            //{
-            //    MailServerSettings = new BindingList<MailServerSettings>()
-            //    {
-            //    new MailServerSettings(){ Name = "MAIL.RU", Address = "smtp.mail.ru", Port = 2525, IsEnabledSSL = true },
-            //    new MailServerSettings(){ Name = "Gmail", Address = "smtp.gmail.com", Port = 58, IsEnabledSSL = true },
-            //    new MailServerSettings(){ Name = "YANDEX", Address = "smtp.yandex.ru", Port = 25, IsEnabledSSL = true }
-            //    },
-            //    Account = "ivanitstep@mail.ru",
-            //    Password = "ivan123456789"
-            //};
-            //comboBoxServer.DataSource = serverSettings.MailServerSettings;
-            //comboBoxServer.DisplayMember = "Name";
-            //tbUserAccount.Text = serverSettings.Account;
-            //tbUserPassword.Text = serverSettings.Password;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            using (FileStream file = new FileStream(@"Tree.bin", FileMode.Open))
-            {
-                //Нарисованное узлы дерева в дизайнере затираем и добавляем десериализованные узлы.
-                tvMain.Nodes.Clear();
-                BinaryFormatter binFormat = new BinaryFormatter();
-                tvMain.Nodes.Add((TreeNode)binFormat.Deserialize(file));
 
-                //Убираем отметки со всех узлов
-                Logic.UncheckAllNodes(tvMain.Nodes[0]);
-
-                //Добавляем к узлам 3-го уровня контексное меню "Добавить".
-                foreach (TreeNode node2 in tvMain.Nodes[0].Nodes)
-                {
-                    foreach (TreeNode node3 in node2.Nodes)
-                    {
-                        node3.ContextMenuStrip = this.contextMenuAddUser;
-                    }
-                }
-            }
-            //Раскрываем все узлы дерева.
-            tvMain.ExpandAll();
-
+            #region Десериализация
             //Десериализация событий отправки писем.
-            using (FileStream file = new FileStream(@"UserEvents.bin", FileMode.Open))
-            {
-                BinaryFormatter binFormat = new BinaryFormatter();
-                userEvents = (BindingList<UserEvent>)binFormat.Deserialize(file);
-            }
+            Serializing.Deserialize<BindingList<UserEvent>>(@"UserEvents.bin", ref userEvents);
 
             //Десериализация настроек SMTP сервера.
-            using (FileStream file = new FileStream(@"SMTPServerSettings.bin", FileMode.Open))
+            Serializing.Deserialize<ServerSettings>(@"SMTPServerSettings.bin", ref serverSettings);
+
+            //Десериализация дерева.
+            TreeNode tempNode = new TreeNode();
+            Serializing.Deserialize<TreeNode>(@"Tree.bin", ref tempNode);
+            //Нарисованные узлы дерева в дизайнере затираем и добавляем десериализованные узлы.
+            tvMain.Nodes.Clear();
+            tvMain.Nodes.Add(tempNode);
+            #endregion
+
+
+            //Убираем отметки со всех узлов
+            TreeViewLogic.UncheckAllNodes(tvMain.Nodes[0]);
+
+            //Добавляем к узлам 3-го уровня контексное меню "Добавить".
+            foreach (TreeNode node2 in tvMain.Nodes[0].Nodes)
             {
-                BinaryFormatter binFormat = new BinaryFormatter();
-                serverSettings = (ServerSettings)binFormat.Deserialize(file);
+                foreach (TreeNode node3 in node2.Nodes)
+                {
+                    node3.ContextMenuStrip = this.contextMenuAddUser;
+                }
             }
+
+            //Раскрываем все узлы дерева.
+            tvMain.ExpandAll();
 
             //Заполнение элементов настроек десериализованными данными.
             comboBoxServer.DataSource = serverSettings.MailServerSettings;
@@ -115,11 +93,9 @@ namespace EmailStatistics
             MyDataGridView.MouseDown += MyDataGridView_MouseDown;
         }
 
-        /// <summary>
-        /// По нажатию правой кнопки мыши по строке, строка выделяется. По нажатию на пустое место таблицы, выделение пропадает.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
+        #region Обработчики нажатий по таблице
+        // По нажатию правой кнопки мыши по строке, строка выделяется. По нажатию на пустое место таблицы, выделение пропадает.
         private void MyDataGridView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -130,22 +106,24 @@ namespace EmailStatistics
             }
         }
 
-        /// <summary>
-        /// Удаление события, соответствующего выделенной строке в таблице.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        // Удаление события, соответствующего выделенной строке в таблице.
         private void cmiDeleteUserEvent_Click(object sender, EventArgs e)
         {
             int rowToDelete = MyDataGridView.Rows.GetFirstRow(DataGridViewElementStates.Selected);
             if (rowToDelete > -1) userEvents.RemoveAt(rowToDelete);
         }
+        #endregion
 
-        /// <summary>
-        /// Сериализация настроек SMTP сервера.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
+        #region Сериализация
+        // Сериализация узлов дерева и событий отправки писем.
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Serializing.Serialize(@"Tree.bin", tvMain.Nodes[0]);
+            Serializing.Serialize(@"UserEvents.bin", userEvents);
+        }
+
+        // По нажатию на кнопку "Сохранить" происходит сериализация настроек SMTP сервера.
         private void btnSaveServerSMTPSettings_Click(object sender, EventArgs e)
         {
             serverSettings.Account = tbUserAccount.Text;
@@ -157,18 +135,13 @@ namespace EmailStatistics
                 if (Int32.TryParse(tbServerPort.Text, out port)) serverSettings.MailServerSettings[comboBoxServer.SelectedIndex].Port = port;
             }
 
-            using (FileStream file = new FileStream(@"SMTPServerSettings.bin", FileMode.Create))
-            {
-                BinaryFormatter binFormat = new BinaryFormatter();
-                binFormat.Serialize(file, serverSettings);
-            }
+            Serializing.Serialize(@"SMTPServerSettings.bin", serverSettings);
         }
+        #endregion
 
-        /// <summary>
-        /// По нажатию на пункт "Добавить" контекстного меню дерева открывается окно для добавления нового получателя.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
+        #region Работа с деревом
+        // По нажатию на пункт "Добавить" контекстного меню дерева открывается окно для добавления нового получателя.
         private void cmiAddUser_Click(object sender, EventArgs e)
         {
             AddUserForm addUserForm = new AddUserForm();
@@ -183,16 +156,33 @@ namespace EmailStatistics
             }
         }
 
-        /// <summary>
-        /// Выделение узла дерева, находящегося под курсором мыши во время нажатия.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        // Выделение узла дерева, находящегося под курсором мыши во время нажатия.
         private void tvMain_MouseDown(object sender, MouseEventArgs e)
         {
             tvMain.SelectedNode = tvMain.GetNodeAt(e.X, e.Y);
         }
 
+        // После отметки узла дерева изменение состояния родительских и дочерних узлов. Заполнение текстбоксов в соответствии с отмеченными узлами дерева.
+        private void tvMain_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            if (e.Action != TreeViewAction.Unknown) // Если изменение состояния узла произошло в коде (а не по нажатию пользователем), то в оператор "if" не заходим.
+            {
+                TreeViewLogic.CheckOrUncheckParentNode(e);
+                if (e.Node.Nodes.Count > 0)
+                {
+                    TreeViewLogic.CheckAllChildNodes(e.Node, e.Node.Checked); // Если узел отметили, то отмечаем все дочерние, и наоборот.
+                }
+
+                TreeViewLogic.selNames = null;
+                TreeViewLogic.selEmails = null;
+                tbNames.Text = TreeViewLogic.GetAllNames(tvMain.Nodes[0]);
+                tbEmails.Text = TreeViewLogic.GetAllEmails(tvMain.Nodes[0]);
+            }
+        }
+        #endregion
+
+
+        #region Отправка письма в отдельном потоке
         /// <summary>
         /// Запуск отдельного потока и передача в поток одного события отпраки письма.
         /// </summary>
@@ -205,31 +195,19 @@ namespace EmailStatistics
             }
         }
 
-        /// <summary>
-        /// Отмена отправки письма.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        // Отмена отправки письма.
         private void btnCancelSending_Click(object sender, EventArgs e)
         {
             if (worker.IsBusy) worker.CancelAsync();
         }
 
-        /// <summary>
-        /// Изменение прогрессбара в соответствии с выполнением отдельного потока.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        // Изменение прогрессбара в соответствии с выполнением отдельного потока.
         void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBar1.Value = e.ProgressPercentage;
         }
 
-        /// <summary>
-        /// Результат выполнения отдельного потока.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        // Результат выполнения отдельного потока.
         void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (e.Cancelled)
@@ -246,18 +224,14 @@ namespace EmailStatistics
             }
         }
 
-        /// <summary>
-        /// Выполнение отдельного потока.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        // Выполнение отдельного потока.
         void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             //BackgroundWorker worker = (BackgroundWorker)sender;
             UserEvent userEvent = (UserEvent)e.Argument;
             for (int i = 1; i <= 10; i++)
             {
-                if(worker.CancellationPending)
+                if (worker.CancellationPending)
                 {
                     e.Cancel = true;
                     worker.ReportProgress(0);
@@ -279,54 +253,10 @@ namespace EmailStatistics
             }
             e.Result = userEvent.Emails; // передача списка емеилов в обработчик окончания выполнения отдельного потока
         }
+        #endregion
 
-        /// <summary>
-        /// Сериализация узлов дерева и событий отправки писем.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            using (FileStream file = new FileStream(@"Tree.bin", FileMode.Create))
-            {
-                BinaryFormatter binFormat = new BinaryFormatter();
-                binFormat.Serialize(file, tvMain.Nodes[0]);
-            }
 
-            using (FileStream file = new FileStream(@"UserEvents.bin", FileMode.Create))
-            {
-                BinaryFormatter binFormat = new BinaryFormatter();
-                binFormat.Serialize(file, userEvents);
-            }
-        }
-
-        /// <summary>
-        /// После отметки узла дерева изменение состояния родительских и дочерних узлов. Заполнение текстбоксов в соответствии с отмеченными узлами дерева.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tvMain_AfterCheck(object sender, TreeViewEventArgs e)
-        {
-            if (e.Action != TreeViewAction.Unknown) // Если изменение состояния узла произошло в коде (а не по нажатию пользователем), то в оператор "if" не заходим.
-            {
-                Logic.CheckOrUncheckParentNode(e);
-                if (e.Node.Nodes.Count > 0)
-                {
-                    Logic.CheckAllChildNodes(e.Node, e.Node.Checked); // Если узел отметили, то отмечаем все дочерние, и наоборот.
-                }
-
-                Logic.selNames = null;
-                Logic.selEmails = null;
-                tbNames.Text = Logic.GetAllNames(tvMain.Nodes[0]);
-                tbEmails.Text = Logic.GetAllEmails(tvMain.Nodes[0]);
-            }
-        }
-
-        /// <summary>
-        /// Обработчик нажатия кнопки "Добавить в расписание". Добавление всех данных в список событий отправки писем.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        // Обработчик нажатия кнопки "Добавить в расписание". Добавление всех данных в список событий отправки писем.
         private void btnAddToSchedule_Click(object sender, EventArgs e)
         {
             DateTime dateTime = monthCalendar.SelectionRange.Start;
@@ -340,11 +270,7 @@ namespace EmailStatistics
             MyDataGridView.DataSource = userEvents;
         }
 
-        /// <summary>
-        /// Обработчик событий таймера с периодом 60 сек.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        // Обработчик событий таймера с периодом 60 сек.
         private void timer_Tick(object sender, EventArgs e)
         {
             DateTime currentDateTime = DateTime.Now;
@@ -372,11 +298,7 @@ namespace EmailStatistics
             }
         }
 
-        /// <summary>
-        /// Добавляем ссылку на файл, который будет вложением к письму.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        // Добавляем ссылку на файл, который будет вложением к письму.
         private void btnAddFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -386,21 +308,13 @@ namespace EmailStatistics
             }
         }
 
-        /// <summary>
-        /// Очистка строки со ссылкой на вложенный файл.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        // Очистка строки со ссылкой на вложенный файл.
         private void btnDeleteFile_Click(object sender, EventArgs e)
         {
             tbFileName.Text = "";
         }
 
-        /// <summary>
-        /// Отображение настроек в соответствии с выбранным сервером SMTP.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        // Отображение настроек в соответствии с выбранным сервером SMTP.
         private void comboBoxServer_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxServer.SelectedItem != null)

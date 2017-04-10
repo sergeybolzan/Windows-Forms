@@ -44,8 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Logic.cs" />
+    <Compile Include="Entities\TreeViewLogic.cs" />
     <Compile Include="Entities\Mail.cs" />
+    <Compile Include="Entities\Serializing.cs" />
     <Compile Include="MailSettings\MailServerSettings.cs" />
     <Compile Include="MailSettings\ServerSettings.cs" />
     <Compile Include="MailSettings\EventServerSettings.cs" />
