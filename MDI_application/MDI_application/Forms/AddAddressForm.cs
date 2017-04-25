@@ -17,40 +17,20 @@ namespace MDI_application.Forms
         {
             InitializeComponent();
             this.ParentButton_miAddAddress = miAddAddress;
+            lbAddresses.DataSource = WorkWithData.AddAddressesToListBox();
         }
 
-        private void AddAddressForm_Load(object sender, EventArgs e)
-        {
-            using (SwitchEntities db = new SwitchEntities())
-            {
-                var addresses = db.Address.OrderBy(x => x.SwitchAddress).Select(x => x.SwitchAddress).ToList();
-                lbAddresses.DataSource = addresses;
-            }
-        }
-
+        //Нажатие на кнопку "Добавить адрес"
         private void btnAddAddress_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(tbAddAddress.Text))
             {
-                using (SwitchEntities db = new SwitchEntities())
-                {
-
-                    Address address = new Address() { SwitchAddress = tbAddAddress.Text };
-                    Address a = db.Address.Where(x => x.SwitchAddress == address.SwitchAddress).FirstOrDefault();
-                    if (a == null)
-                    {
-                        db.Address.Add(address);
-                        db.SaveChanges();
-                        MessageBox.Show("Адрес добавлен в базу");
-                        var addresses = db.Address.OrderBy(x => x.SwitchAddress).Select(x => x.SwitchAddress).ToList();
-                        lbAddresses.DataSource = addresses;
-                    }
-                    else MessageBox.Show("Такой адрес уже есть в базе");
-                }
+                WorkWithData.AddNewAddress(tbAddAddress.Text, lbAddresses);
             }
             else MessageBox.Show("Введите адрес!");
         }
 
+        //При закрытии формы делаем активным пункт меню главного окна
         private void AddAddressForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.ParentButton_miAddAddress.Enabled = true;

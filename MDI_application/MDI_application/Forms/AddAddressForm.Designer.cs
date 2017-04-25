@@ -103,7 +103,6 @@
             this.Name = "AddAddressForm";
             this.Text = "Добавить адрес";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddAddressForm_FormClosed);
-            this.Load += new System.EventHandler(this.AddAddressForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -103,7 +103,6 @@
             this.Name = "AddVLAN_managForm";
             this.Text = "Добавить VLAN";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddVLAN_managForm_FormClosed);
-            this.Load += new System.EventHandler(this.AddVLAN_managForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

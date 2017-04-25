@@ -103,7 +103,6 @@
             this.Name = "AddModelOfSwitchForm";
             this.Text = "Добавить модель";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddModelOfSwitchForm_FormClosed);
-            this.Load += new System.EventHandler(this.AddModelOfSwitchForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

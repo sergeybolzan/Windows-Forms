@@ -17,41 +17,20 @@ namespace MDI_application.Forms
         {
             InitializeComponent();
             this.ParentButton_miAddmodel = miAddModel;
+            lbModels.DataSource = WorkWithData.AddModelsToListBox();
         }
 
-        private void AddModelOfSwitchForm_Load(object sender, EventArgs e)
-        {
-            using (SwitchEntities db = new SwitchEntities())
-            {
-                var models = db.Model.OrderBy(x => x.SwitchModel).Select(x => x.SwitchModel).ToList();
-                lbModels.DataSource = models;
-            }
-
-        }
-
+        //Нажатие на кнопку "Добавить модель"
         private void btnAddModel_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(tbAddModel.Text))
             {
-                using (SwitchEntities db = new SwitchEntities())
-                {
-
-                    Model model = new Model() { SwitchModel = tbAddModel.Text };
-                    Model a = db.Model.Where(x => x.SwitchModel == model.SwitchModel).FirstOrDefault();
-                    if (a == null)
-                    {
-                        db.Model.Add(model);
-                        db.SaveChanges();
-                        MessageBox.Show("Модель добавлена в базу");
-                        var models = db.Model.OrderBy(x => x.SwitchModel).Select(x => x.SwitchModel).ToList();
-                        lbModels.DataSource = models;
-                    }
-                    else MessageBox.Show("Такая модель коммутатора уже есть в базе");
-                }
+                WorkWithData.AddNewModel(tbAddModel.Text, lbModels);
             }
             else MessageBox.Show("Введите модель коммутатора!");
         }
 
+        //При закрытии формы делаем активным пункт меню главного окна
         private void AddModelOfSwitchForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.ParentButton_miAddmodel.Enabled = true;

@@ -36,7 +36,6 @@ namespace MDI_application.Forms
             dgvSwitches.Columns["Address"].ReadOnly = true;
             dgvSwitches.Columns["Model"].ReadOnly = true;
             dgvSwitches.Columns["VLAN_manag"].ReadOnly = true;
-
         }
 
         private void btnSaveChanges_Click(object sender, EventArgs e)
