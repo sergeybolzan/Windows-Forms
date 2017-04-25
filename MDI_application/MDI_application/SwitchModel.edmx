@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SwitchesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SwitchAddress" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Model">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SwitchModel" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Switch">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IP_address" Type="nvarchar" MaxLength="255" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="VLAN_subscriber" Type="nvarchar" MaxLength="255" />
+          <Property Name="Firmware" Type="nvarchar" MaxLength="255" />
+          <Property Name="Features" Type="nvarchar" MaxLength="255" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="255" />
+          <Property Name="Address_ID" Type="int" Nullable="false" />
+          <Property Name="VLAN_manag_ID" Type="int" Nullable="false" />
+          <Property Name="Model_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VLAN_manag">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SwitchVLAN" Type="int" />
+        </EntityType>
+        <Association Name="FK_Switch_Address1">
+          <End Role="Address" Type="Self.Address" Multiplicity="1" />
+          <End Role="Switch" Type="Self.Switch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Switch">
+              <PropertyRef Name="Address_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Switch_Model1">
+          <End Role="Model" Type="Self.Model" Multiplicity="1" />
+          <End Role="Switch" Type="Self.Switch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Switch">
+              <PropertyRef Name="Model_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Switch_VLAN_manag1">
+          <End Role="VLAN_manag" Type="Self.VLAN_manag" Multiplicity="1" />
+          <End Role="Switch" Type="Self.Switch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLAN_manag">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Switch">
+              <PropertyRef Name="VLAN_manag_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SwitchesModelStoreContainer">
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Model" EntityType="Self.Model" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Switch" EntityType="Self.Switch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VLAN_manag" EntityType="Self.VLAN_manag" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Switch_Address1" Association="Self.FK_Switch_Address1">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Switch" EntitySet="Switch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Switch_Model1" Association="Self.FK_Switch_Model1">
+            <End Role="Model" EntitySet="Model" />
+            <End Role="Switch" EntitySet="Switch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Switch_VLAN_manag1" Association="Self.FK_Switch_VLAN_manag1">
+            <End Role="VLAN_manag" EntitySet="VLAN_manag" />
+            <End Role="Switch" EntitySet="Switch" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SwitchesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="SwitchAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Switch" Relationship="Self.FK_Switch_Address1" FromRole="Address" ToRole="Switch" />
+        </EntityType>
+        <EntityType Name="Model">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="SwitchModel" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Switch" Relationship="Self.FK_Switch_Model1" FromRole="Model" ToRole="Switch" />
+        </EntityType>
+        <EntityType Name="Switch">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IP_address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="VLAN_subscriber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Firmware" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Features" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Address_ID" Type="Int32" Nullable="false" />
+          <Property Name="VLAN_manag_ID" Type="Int32" Nullable="false" />
+          <Property Name="Model_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Address" Relationship="Self.FK_Switch_Address1" FromRole="Switch" ToRole="Address" />
+          <NavigationProperty Name="Model" Relationship="Self.FK_Switch_Model1" FromRole="Switch" ToRole="Model" />
+          <NavigationProperty Name="VLAN_manag" Relationship="Self.FK_Switch_VLAN_manag1" FromRole="Switch" ToRole="VLAN_manag" />
+        </EntityType>
+        <EntityType Name="VLAN_manag">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="SwitchVLAN" Type="Int32" />
+          <NavigationProperty Name="Switch" Relationship="Self.FK_Switch_VLAN_manag1" FromRole="VLAN_manag" ToRole="Switch" />
+        </EntityType>
+        <Association Name="FK_Switch_Address1">
+          <End Role="Address" Type="Self.Address" Multiplicity="1" />
+          <End Role="Switch" Type="Self.Switch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Switch">
+              <PropertyRef Name="Address_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Switch_Model1">
+          <End Role="Model" Type="Self.Model" Multiplicity="1" />
+          <End Role="Switch" Type="Self.Switch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Switch">
+              <PropertyRef Name="Model_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Switch_VLAN_manag1">
+          <End Role="VLAN_manag" Type="Self.VLAN_manag" Multiplicity="1" />
+          <End Role="Switch" Type="Self.Switch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLAN_manag">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Switch">
+              <PropertyRef Name="VLAN_manag_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SwitchEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Address" EntityType="Self.Address" />
+          <EntitySet Name="Model" EntityType="Self.Model" />
+          <EntitySet Name="Switch" EntityType="Self.Switch" />
+          <EntitySet Name="VLAN_manag" EntityType="Self.VLAN_manag" />
+          <AssociationSet Name="FK_Switch_Address1" Association="Self.FK_Switch_Address1">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Switch" EntitySet="Switch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Switch_Model1" Association="Self.FK_Switch_Model1">
+            <End Role="Model" EntitySet="Model" />
+            <End Role="Switch" EntitySet="Switch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Switch_VLAN_manag1" Association="Self.FK_Switch_VLAN_manag1">
+            <End Role="VLAN_manag" EntitySet="VLAN_manag" />
+            <End Role="Switch" EntitySet="Switch" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SwitchesModelStoreContainer" CdmEntityContainer="SwitchEntities">
+          <EntitySetMapping Name="Address">
+            <EntityTypeMapping TypeName="SwitchesModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SwitchAddress" ColumnName="SwitchAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Model">
+            <EntityTypeMapping TypeName="SwitchesModel.Model">
+              <MappingFragment StoreEntitySet="Model">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SwitchModel" ColumnName="SwitchModel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Switch">
+            <EntityTypeMapping TypeName="SwitchesModel.Switch">
+              <MappingFragment StoreEntitySet="Switch">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IP_address" ColumnName="IP_address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="VLAN_subscriber" ColumnName="VLAN_subscriber" />
+                <ScalarProperty Name="Firmware" ColumnName="Firmware" />
+                <ScalarProperty Name="Features" ColumnName="Features" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Address_ID" ColumnName="Address_ID" />
+                <ScalarProperty Name="VLAN_manag_ID" ColumnName="VLAN_manag_ID" />
+                <ScalarProperty Name="Model_ID" ColumnName="Model_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VLAN_manag">
+            <EntityTypeMapping TypeName="SwitchesModel.VLAN_manag">
+              <MappingFragment StoreEntitySet="VLAN_manag">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SwitchVLAN" ColumnName="SwitchVLAN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
