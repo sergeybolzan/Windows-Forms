@@ -23,5 +23,9 @@ namespace MDI_application
         public string SwitchAddress { get; set; }
     
         public virtual ICollection<Switch> Switch { get; set; }
+        public override string ToString()
+        {
+            return SwitchAddress;
+        }
     }
 }
