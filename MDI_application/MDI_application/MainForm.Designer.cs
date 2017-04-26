@@ -38,10 +38,10 @@
             this.windowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miCascade = new System.Windows.Forms.ToolStripMenuItem();
             this.miHorizontal = new System.Windows.Forms.ToolStripMenuItem();
+            this.miVertical = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.minimizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.maximizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.miVertical = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -131,6 +131,13 @@
             this.miHorizontal.Text = "Горизонтально";
             this.miHorizontal.Click += new System.EventHandler(this.miHorizontal_Click);
             // 
+            // miVertical
+            // 
+            this.miVertical.Name = "miVertical";
+            this.miVertical.Size = new System.Drawing.Size(175, 22);
+            this.miVertical.Text = "Вертикально";
+            this.miVertical.Click += new System.EventHandler(this.miVertical_Click);
+            // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
@@ -150,13 +157,6 @@
             this.maximizeToolStripMenuItem.Text = "Максимизировать";
             this.maximizeToolStripMenuItem.Click += new System.EventHandler(this.maximizeToolStripMenuItem_Click);
             // 
-            // miVertical
-            // 
-            this.miVertical.Name = "miVertical";
-            this.miVertical.Size = new System.Drawing.Size(175, 22);
-            this.miVertical.Text = "Вертикально";
-            this.miVertical.Click += new System.EventHandler(this.miVertical_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -167,7 +167,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Картотека коммутаторов";
+            this.Text = "Switches";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

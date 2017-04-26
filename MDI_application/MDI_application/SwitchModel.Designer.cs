@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'd:\Study\Komarov\WF\Day6\EntityFramework + Mdi + GDI\TestMDI\SwitchModel.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\Study\GitHub\Windows-Forms\MDI_application\MDI_application\SwitchModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

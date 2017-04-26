@@ -23,10 +23,5 @@ namespace MDI_application
         public string SwitchModel { get; set; }
     
         public virtual ICollection<Switch> Switch { get; set; }
-        public override string ToString()
-        {
-            return SwitchModel;
-        }
-
     }
 }
