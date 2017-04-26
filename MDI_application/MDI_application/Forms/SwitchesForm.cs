@@ -22,6 +22,7 @@ namespace MDI_application.Forms
             dgvSwitches.DataSource = db.Switch.Local.ToBindingList();
         }
 
+        //Настройка таблицы
         private void AuthorForm_Load(object sender, EventArgs e)
         {
             dgvSwitches.Columns["Address_ID"].Visible = false;
@@ -38,6 +39,7 @@ namespace MDI_application.Forms
             dgvSwitches.Columns["VLAN_manag"].ReadOnly = true;
         }
 
+        //Сохранение внесенных в таблицу изменений
         private void btnSaveChanges_Click(object sender, EventArgs e)
         {
             db.SaveChanges();
@@ -45,6 +47,7 @@ namespace MDI_application.Forms
 
 
         #region Обработчики нажатий по таблице
+        // При нажатии правой кнопкой мыши по таблице выделяется строка под курсором мыши
         private void dgvSwitches_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -55,6 +58,7 @@ namespace MDI_application.Forms
             }
         }
 
+        // Нажатие на контексное меню "Удалить"
         private void сmiDelete_Click(object sender, EventArgs e)
         {
             int rowToDelete = dgvSwitches.Rows.GetFirstRow(DataGridViewElementStates.Selected);
