@@ -86,7 +86,7 @@ namespace BanksSearchApp
             //Добавляем в компонент, список маркеров.
             gMapControl.Overlays.Add(markersOverlay);
 
-            // СОБЯТИЯ ПО КАРТЕ !
+            // СОБЫТИЯ ПО КАРТЕ !
             gMapControl.MouseClick += gMapControl1_MouseClick;
 
         }
