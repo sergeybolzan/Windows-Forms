@@ -58,7 +58,7 @@ namespace BanksSearchApp
             markerG.ToolTipMode = MarkerTooltipMode.Always;
             markersOverlay.Markers.Add(markerG);
 
-            GMarkerGoogle markerR = new GMarkerGoogle(new PointLatLng(53.902752, 27.561294), GMarkerGoogleType.red);
+            GMarkerGoogle markerR = new GMarkerGoogle(new PointLatLng(53.90227, 27.560604), GMarkerGoogleType.red);
             markerR.ToolTip = new GMapBaloonToolTip(markerR);
             markerR.ToolTipText = "Объект №2";
             markersOverlay.Markers.Add(markerR);
@@ -90,116 +90,99 @@ namespace BanksSearchApp
 
     }
 
-    public class MyGMapMarkerImage : GMarkerGoogle
+    public class MyGMapMarkerImage : GMapMarker, ISerializable
     {
+        Bitmap Bitmap;
         public MyGMapMarkerImage(PointLatLng p)
-            : base(p, Properties.Resources.label)
+            : base(p)
         {
+            this.Bitmap = Properties.Resources.label;
+            Size = new System.Drawing.Size(Bitmap.Width, Bitmap.Height);
+            Offset = new Point(-Size.Width / 2, -Size.Height);
+        }
+
+        public override void OnRender(Graphics g)
+        {
+            g.DrawImage(Bitmap, LocalPosition.X, LocalPosition.Y, Size.Width, Size.Height);
+            g.DrawString("2.885", new Font("Arial", 13), Brushes.Black, new PointF(LocalPosition.X + 10, LocalPosition.Y + 4));
+        }
+
+        public override void Dispose()
+        {
+            if (Bitmap != null)
+            {
+                Bitmap.Dispose();
+                Bitmap = null;
+            }
+            base.Dispose();
+        }
+
+        #region ISerializable Members
+        void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+        }
+
+        protected MyGMapMarkerImage(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        {
+        }
+        #endregion
+    }
+
+
+
+
+
+
+
+
+    public class GmapMarkerWithLabel : GMapMarker, ISerializable
+    {
+        private Font font;
+        private GMarkerGoogle innerMarker;
+
+        public string Caption;
+
+        public GmapMarkerWithLabel(PointLatLng p, string caption, GMarkerGoogleType type)
+            : base(p)
+        {
+            font = new Font("Arial", 14);
+            innerMarker = new GMarkerGoogle(p, type);
+
+            Caption = caption;
         }
 
         public override void OnRender(Graphics g)
         {
             base.OnRender(g);
-            g.DrawString("2.885", new Font("Arial", 13), Brushes.Black, new PointF(LocalPosition.X + 10, LocalPosition.Y + 4));
+            g.DrawString(Caption, font, Brushes.Black, new PointF(LocalPosition.X - Size.Width / 2, LocalPosition.Y - Size.Height));
         }
 
-
-
-
-
-
-
-
-
-        public class GmapMarkerWithLabel : GMapMarker, ISerializable
+        public override void Dispose()
         {
-            private Font font;
-            private GMarkerGoogle innerMarker;
-
-            public string Caption;
-
-            public GmapMarkerWithLabel(PointLatLng p, string caption, GMarkerGoogleType type)
-                : base(p)
+            if (innerMarker != null)
             {
-                font = new Font("Arial", 14);
-                innerMarker = new GMarkerGoogle(p, type);
-
-                Caption = caption;
+                innerMarker.Dispose();
+                innerMarker = null;
             }
 
-            public override void OnRender(Graphics g)
-            {
-                base.OnRender(g);
-                g.DrawString(Caption, font, Brushes.Black, new PointF(LocalPosition.X - Size.Width / 2, LocalPosition.Y - Size.Height));
-            }
-
-            public override void Dispose()
-            {
-                if (innerMarker != null)
-                {
-                    innerMarker.Dispose();
-                    innerMarker = null;
-                }
-
-                base.Dispose();
-            }
-
-            #region ISerializable Members
-
-            void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
-            {
-                base.GetObjectData(info, context);
-            }
-
-            protected GmapMarkerWithLabel(SerializationInfo info, StreamingContext context)
-                : base(info, context)
-            {
-            }
-
-            #endregion
+            base.Dispose();
         }
 
+        #region ISerializable Members
 
+        void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+        }
 
+        protected GmapMarkerWithLabel(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        {
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //public class GMapMarkerRect : GMarkerGoogle
-        //{
-        //    //public Pen Pen;
-
-        //    public GMapMarkerRect(PointLatLng p, GMarkerGoogleType type)
-        //        : base(p, type)
-        //    {
-        //        //Pen = new Pen(Brushes.Red, 5);
-
-        //        // do not forget set Size of the marker
-        //        // if so, you shall have no event on it ;}
-        //        //Size = new Size(55, 55);
-        //    }
-
-        //    public override void OnRender(Graphics g)
-        //    {
-        //        base.OnRender(g);
-        //        //g.DrawRectangle(Pen, new System.Drawing.Rectangle(LocalPosition.X - Size.Width / 2, LocalPosition.Y - Size.Height / 2, Size.Width, Size.Height));
-        //        var rect = new RectangleF(LocalPosition.X - Size.Width / 2 - 1, LocalPosition.Y - Size.Height / 2, 57, 17);
-        //        g.FillRectangle(Brushes.LightGreen, rect);
-        //        g.DrawString("2.885", new Font("Arial", 14), Brushes.Black, new PointF(LocalPosition.X - Size.Width / 2, LocalPosition.Y - Size.Height / 2 - 2));
-
-        //    }
-        //}
+        #endregion
     }
 }
+
