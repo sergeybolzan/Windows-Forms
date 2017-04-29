@@ -27,6 +27,7 @@ namespace BanksSearchApp
             //{
             //    MessageBox.Show(db.BankSet.Count().ToString());
             //}
+            GetDataFromXML.LoadBanks();
         }
 
         private void MainForm_Load(object sender, EventArgs e)

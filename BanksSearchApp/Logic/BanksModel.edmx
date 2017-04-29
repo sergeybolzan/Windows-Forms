@@ -29,7 +29,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="DateTime" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="DateTime" Type="datetime" Nullable="true" />
     <Property Name="UsdSell" Type="float" Nullable="false" />
     <Property Name="UsdBuy" Type="float" Nullable="false" />
     <Property Name="EurSell" Type="float" Nullable="false" />
@@ -79,7 +79,7 @@
           <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
           <Property Name="Name" Nullable="false" Type="String" />
           <NavigationProperty Name="BranchBank" Relationship="BanksModel.BankBranchBank" FromRole="Bank" ToRole="BranchBank" />
-          <Property Name="DateTime" Type="String" Nullable="true" />
+          <Property Name="DateTime" Type="DateTime" Nullable="true" />
           <Property Name="UsdSell" Type="Double" Nullable="false" />
           <Property Name="UsdBuy" Type="Double" Nullable="false" />
           <Property Name="EurSell" Type="Double" Nullable="false" />

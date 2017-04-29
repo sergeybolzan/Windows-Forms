@@ -21,7 +21,7 @@ namespace Logic
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public string DateTime { get; set; }
+        public Nullable<System.DateTime> DateTime { get; set; }
         public double UsdSell { get; set; }
         public double UsdBuy { get; set; }
         public double EurSell { get; set; }
