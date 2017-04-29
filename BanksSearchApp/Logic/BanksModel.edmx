@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BanksModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="BanksModelStoreContainer">
+    <EntitySet Name="BranchBankSet" EntityType="BanksModel.Store.BranchBankSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BankSet" EntityType="BanksModel.Store.BankSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="BankBranchBank" Association="BanksModel.Store.BankBranchBank">
+      <End Role="Bank" EntitySet="BankSet" />
+      <End Role="BranchBank" EntitySet="BranchBankSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BranchBankSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Latitude" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Longitude" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BankId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BankSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateTime" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="UsdSell" Type="float" Nullable="false" />
+    <Property Name="UsdBuy" Type="float" Nullable="false" />
+    <Property Name="EurSell" Type="float" Nullable="false" />
+    <Property Name="EurBuy" Type="float" Nullable="false" />
+    <Property Name="RurSell" Type="float" Nullable="false" />
+    <Property Name="RurBuy" Type="float" Nullable="false" />
+  </EntityType>
+  <Association Name="BankBranchBank">
+    <End Role="Bank" Type="BanksModel.Store.BankSet" Multiplicity="1" />
+    <End Role="BranchBank" Type="BanksModel.Store.BranchBankSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bank">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BranchBank">
+        <PropertyRef Name="BankId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="BanksModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="BanksModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BranchBankSet" EntityType="BanksModel.BranchBank" />
+          <EntitySet Name="BankSet" EntityType="BanksModel.Bank" />
+          <AssociationSet Name="BankBranchBank" Association="BanksModel.BankBranchBank">
+            <End EntitySet="BankSet" Role="Bank" />
+            <End EntitySet="BranchBankSet" Role="BranchBank" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BranchBank">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="String" Nullable="false" />
+          <Property Name="Latitude" Type="String" Nullable="false" />
+          <Property Name="Longitude" Type="String" Nullable="false" />
+          <NavigationProperty Name="Bank" Relationship="BanksModel.BankBranchBank" FromRole="BranchBank" ToRole="Bank" />
+          <Property Name="BankId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Name" Nullable="false" Type="String" />
+          <NavigationProperty Name="BranchBank" Relationship="BanksModel.BankBranchBank" FromRole="Bank" ToRole="BranchBank" />
+          <Property Name="DateTime" Type="String" Nullable="true" />
+          <Property Name="UsdSell" Type="Double" Nullable="false" />
+          <Property Name="UsdBuy" Type="Double" Nullable="false" />
+          <Property Name="EurSell" Type="Double" Nullable="false" />
+          <Property Name="EurBuy" Type="Double" Nullable="false" />
+          <Property Name="RurSell" Type="Double" Nullable="false" />
+          <Property Name="RurBuy" Type="Double" Nullable="false" />
+        </EntityType>
+        <Association Name="BankBranchBank">
+          <End Type="BanksModel.Bank" Multiplicity="1" Role="Bank" />
+          <End Type="BanksModel.BranchBank" Multiplicity="*" Role="BranchBank" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BranchBank">
+              <PropertyRef Name="BankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BanksModelStoreContainer" CdmEntityContainer="BanksModelContainer">
+    <EntitySetMapping Name="BranchBankSet">
+      <EntityTypeMapping TypeName="IsTypeOf(BanksModel.BranchBank)">
+        <MappingFragment StoreEntitySet="BranchBankSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="BankId" ColumnName="BankId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BankSet">
+      <EntityTypeMapping TypeName="IsTypeOf(BanksModel.Bank)">
+        <MappingFragment StoreEntitySet="BankSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="UsdSell" ColumnName="UsdSell" />
+          <ScalarProperty Name="UsdBuy" ColumnName="UsdBuy" />
+          <ScalarProperty Name="EurSell" ColumnName="EurSell" />
+          <ScalarProperty Name="EurBuy" ColumnName="EurBuy" />
+          <ScalarProperty Name="RurSell" ColumnName="RurSell" />
+          <ScalarProperty Name="RurBuy" ColumnName="RurBuy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

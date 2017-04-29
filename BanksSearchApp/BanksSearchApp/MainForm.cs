@@ -2,6 +2,7 @@
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using GMap.NET.WindowsForms.ToolTips;
+using Logic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,10 @@ namespace BanksSearchApp
         public MainForm()
         {
             InitializeComponent();
+            //using (BanksModelContainer db = new BanksModelContainer())
+            //{
+            //    MessageBox.Show(db.BankSet.Count().ToString());
+            //}
         }
 
         private void MainForm_Load(object sender, EventArgs e)
