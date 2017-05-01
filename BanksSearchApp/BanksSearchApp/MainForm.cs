@@ -100,14 +100,23 @@ namespace BanksSearchApp
         {
             GetDataFromXML.UpdateBanksInfo();
             var branchsBanks = GetDataFromDB.GetBranchsBanksInfo();
-            markersOverlay.Markers.Clear();
-            foreach (var branchBank in branchsBanks)
+            if (tscbSelectAction.SelectedIndex == 1)
             {
-                MyGMapMarkerImage marker = new MyGMapMarkerImage(new PointLatLng(branchBank.Latitude, branchBank.Longitude), branchBank.Bank.UsdBuy.ToString());
-                markersOverlay.Markers.Add(marker);
+                if (tscbSelectCurrency.SelectedIndex == 0)
+                {
+                    markersOverlay.Markers.Clear();
+                    foreach (var branchBank in branchsBanks)
+                    {
+                        MyGMapMarkerImage marker = new MyGMapMarkerImage(new PointLatLng(branchBank.Latitude, branchBank.Longitude), branchBank.Bank.UsdBuy.ToString());
+                        markersOverlay.Markers.Add(marker);
+                    }
+                }
             }
 
+            if (tscbSelectCurrency.Text == "Купить")
+            {
 
+            }
             gMapControl.Refresh();
         }
 
