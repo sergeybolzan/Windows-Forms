@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/29/2017 15:45:13
+-- Date Created: 05/01/2017 10:51:56
 -- Generated from EDMX file: D:\Study\GitHub\Windows-Forms\BanksSearchApp\Logic\BanksModel.edmx
 -- --------------------------------------------------
 
@@ -49,7 +49,7 @@ GO
 -- Creating table 'BankSet'
 CREATE TABLE [dbo].[BankSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Name] nvarchar(max)  NOT NULL,
+    [Name] nvarchar(max)  NULL,
     [DateTime] datetime  NULL,
     [UsdSell] float  NOT NULL,
     [UsdBuy] float  NOT NULL,
