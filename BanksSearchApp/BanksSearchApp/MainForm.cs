@@ -19,20 +19,19 @@ namespace BanksSearchApp
 {
     public partial class MainForm : Form
     {
+        GMapOverlay markersOverlay = new GMapOverlay();
         private GMapControl gMapControl;
         public MainForm()
         {
             InitializeComponent();
-            //using (BanksModelContainer db = new BanksModelContainer())
-            //{
-            //    MessageBox.Show(db.BankSet.Count().ToString());
-            //}
-            GetDataFromXML.LoadBanks();
+            GetDataFromXML.UpdateBanksInfo();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             LoadMap();
+            tscbSelectAction.Text = "Продать";
+            tscbSelectCurrency.Text = "1 Доллар США";
         }
 
         private void LoadMap()
@@ -55,7 +54,6 @@ namespace BanksSearchApp
             gMapControl.ShowCenter = false;
             gMapControl.MarkersEnabled = true;
 
-            GMapOverlay markersOverlay = new GMapOverlay();
             gMapControl.Overlays.Add(markersOverlay);
 
 
@@ -76,9 +74,17 @@ namespace BanksSearchApp
             imageMarker2.ToolTipText = "123456789123456789123456789123456789123456789";
             markersOverlay.Markers.Add(imageMarker2);
 
+            var branchsBanks = GetDataFromDB.GetBranchsBanksInfo();
+            foreach (var branchBank in branchsBanks)
+            {
+                MyGMapMarkerImage marker = new MyGMapMarkerImage(new PointLatLng(branchBank.Latitude, branchBank.Longitude), branchBank.Bank.UsdSell.ToString());
+                markersOverlay.Markers.Add(marker);
+            }
+
 
             //gMapControl.MouseClick += gMapControl1_MouseClick;
         }
+
         //void gMapControl1_MouseClick(object sender, MouseEventArgs e)
         //{
         //    double X = gMapControl.FromLocalToLatLng(e.X, e.Y).Lng;
@@ -90,6 +96,21 @@ namespace BanksSearchApp
         //    gMapControl.Overlays.Add(markersOverlay);
         //    markersOverlay.Markers.Add(markerG);
         //}
+        private void tsbtnShow_Click(object sender, EventArgs e)
+        {
+            GetDataFromXML.UpdateBanksInfo();
+            var branchsBanks = GetDataFromDB.GetBranchsBanksInfo();
+            markersOverlay.Markers.Clear();
+            foreach (var branchBank in branchsBanks)
+            {
+                MyGMapMarkerImage marker = new MyGMapMarkerImage(new PointLatLng(branchBank.Latitude, branchBank.Longitude), branchBank.Bank.UsdBuy.ToString());
+                markersOverlay.Markers.Add(marker);
+            }
+
+
+            gMapControl.Refresh();
+        }
+
     }
 
     public class MyGMapMarkerImage : GMapMarker, ISerializable

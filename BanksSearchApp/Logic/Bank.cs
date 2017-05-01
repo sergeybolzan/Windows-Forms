@@ -21,13 +21,13 @@ namespace Logic
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public Nullable<System.DateTime> DateTime { get; set; }
-        public double UsdSell { get; set; }
-        public double UsdBuy { get; set; }
-        public double EurSell { get; set; }
-        public double EurBuy { get; set; }
-        public double RurSell { get; set; }
-        public double RurBuy { get; set; }
+        public System.DateTime DateTime { get; set; }
+        public decimal UsdSell { get; set; }
+        public decimal UsdBuy { get; set; }
+        public decimal EurSell { get; set; }
+        public decimal EurBuy { get; set; }
+        public decimal RurSell { get; set; }
+        public decimal RurBuy { get; set; }
     
         public virtual ICollection<BranchBank> BranchBank { get; set; }
     }

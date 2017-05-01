@@ -19,8 +19,8 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Latitude" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Longitude" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Latitude" Type="float" Nullable="false" />
+    <Property Name="Longitude" Type="float" Nullable="false" />
     <Property Name="BankId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="BankSet">
@@ -28,14 +28,14 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="DateTime" Type="datetime" Nullable="true" />
-    <Property Name="UsdSell" Type="float" Nullable="false" />
-    <Property Name="UsdBuy" Type="float" Nullable="false" />
-    <Property Name="EurSell" Type="float" Nullable="false" />
-    <Property Name="EurBuy" Type="float" Nullable="false" />
-    <Property Name="RurSell" Type="float" Nullable="false" />
-    <Property Name="RurBuy" Type="float" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateTime" Type="datetime" Nullable="false" />
+    <Property Name="UsdSell" Type="decimal" Nullable="false" Scale="3" />
+    <Property Name="UsdBuy" Type="decimal" Nullable="false" Scale="3" />
+    <Property Name="EurSell" Type="decimal" Nullable="false" Scale="3" />
+    <Property Name="EurBuy" Type="decimal" Nullable="false" Scale="3" />
+    <Property Name="RurSell" Type="decimal" Nullable="false" Scale="3" />
+    <Property Name="RurBuy" Type="decimal" Nullable="false" Scale="3" />
   </EntityType>
   <Association Name="BankBranchBank">
     <End Role="Bank" Type="BanksModel.Store.BankSet" Multiplicity="1" />
@@ -67,8 +67,8 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Address" Type="String" Nullable="false" />
-          <Property Name="Latitude" Type="String" Nullable="false" />
-          <Property Name="Longitude" Type="String" Nullable="false" />
+          <Property Name="Latitude" Type="Double" Nullable="false" />
+          <Property Name="Longitude" Type="Double" Nullable="false" />
           <NavigationProperty Name="Bank" Relationship="BanksModel.BankBranchBank" FromRole="BranchBank" ToRole="Bank" />
           <Property Name="BankId" Type="Int32" Nullable="false" />
         </EntityType>
@@ -77,15 +77,15 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
-          <Property Name="Name" Nullable="true" Type="String" />
+          <Property Name="Name" Nullable="false" Type="String" />
           <NavigationProperty Name="BranchBank" Relationship="BanksModel.BankBranchBank" FromRole="Bank" ToRole="BranchBank" />
-          <Property Name="DateTime" Type="DateTime" Nullable="true" />
-          <Property Name="UsdSell" Type="Double" Nullable="false" />
-          <Property Name="UsdBuy" Type="Double" Nullable="false" />
-          <Property Name="EurSell" Type="Double" Nullable="false" />
-          <Property Name="EurBuy" Type="Double" Nullable="false" />
-          <Property Name="RurSell" Type="Double" Nullable="false" />
-          <Property Name="RurBuy" Type="Double" Nullable="false" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" />
+          <Property Name="UsdSell" Type="Decimal" Nullable="false" Scale="3" />
+          <Property Name="UsdBuy" Type="Decimal" Nullable="false" Scale="3" />
+          <Property Name="EurSell" Type="Decimal" Nullable="false" Scale="3" />
+          <Property Name="EurBuy" Type="Decimal" Nullable="false" Scale="3" />
+          <Property Name="RurSell" Type="Decimal" Nullable="false" Scale="3" />
+          <Property Name="RurBuy" Type="Decimal" Nullable="false" Scale="3" />
         </EntityType>
         <Association Name="BankBranchBank">
           <End Type="BanksModel.Bank" Multiplicity="1" Role="Bank" />
