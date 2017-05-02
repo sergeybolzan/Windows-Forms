@@ -33,6 +33,11 @@
             this.tscbSelectAction = new System.Windows.Forms.ToolStripComboBox();
             this.tscbSelectCurrency = new System.Windows.Forms.ToolStripComboBox();
             this.tsbtnShow = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbtnShowMin = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnShowMax = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,7 +46,12 @@
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tscbSelectAction,
             this.tscbSelectCurrency,
-            this.tsbtnShow});
+            this.tsbtnShow,
+            this.toolStripSeparator3,
+            this.toolStripSeparator2,
+            this.toolStripSeparator1,
+            this.tsbtnShowMin,
+            this.tsbtnShowMax});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(1121, 29);
@@ -71,6 +81,7 @@
             // 
             // tsbtnShow
             // 
+            this.tsbtnShow.AutoToolTip = false;
             this.tsbtnShow.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbtnShow.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tsbtnShow.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnShow.Image")));
@@ -79,6 +90,44 @@
             this.tsbtnShow.Size = new System.Drawing.Size(82, 26);
             this.tsbtnShow.Text = "Показать";
             this.tsbtnShow.Click += new System.EventHandler(this.tsbtnShow_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 29);
+            // 
+            // tsbtnShowMin
+            // 
+            this.tsbtnShowMin.AutoToolTip = false;
+            this.tsbtnShowMin.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbtnShowMin.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tsbtnShowMin.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnShowMin.Image")));
+            this.tsbtnShowMin.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnShowMin.Name = "tsbtnShowMin";
+            this.tsbtnShowMin.Size = new System.Drawing.Size(164, 26);
+            this.tsbtnShowMin.Text = "Минимальный курс";
+            this.tsbtnShowMin.Click += new System.EventHandler(this.tsbtnShowMin_Click);
+            // 
+            // tsbtnShowMax
+            // 
+            this.tsbtnShowMax.AutoToolTip = false;
+            this.tsbtnShowMax.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbtnShowMax.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tsbtnShowMax.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnShowMax.Image")));
+            this.tsbtnShowMax.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnShowMax.Name = "tsbtnShowMax";
+            this.tsbtnShowMax.Size = new System.Drawing.Size(169, 26);
+            this.tsbtnShowMax.Text = "Максимальный курс";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 29);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 29);
             // 
             // MainForm
             // 
@@ -103,6 +152,11 @@
         private System.Windows.Forms.ToolStripComboBox tscbSelectAction;
         private System.Windows.Forms.ToolStripComboBox tscbSelectCurrency;
         private System.Windows.Forms.ToolStripButton tsbtnShow;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton tsbtnShowMin;
+        private System.Windows.Forms.ToolStripButton tsbtnShowMax;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using GMap.NET;
+using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using GMap.NET.WindowsForms.ToolTips;
@@ -21,7 +22,7 @@ namespace BanksSearchApp
     {
         private Point mouseLocation;
         private MyGMapMarkerImage clickedMarker;
-        GMapOverlay markersOverlay = new GMapOverlay();
+        private GMapOverlay markersOverlay;
         private GMapControl gMapControl;
         public MainForm()
         {
@@ -34,10 +35,14 @@ namespace BanksSearchApp
             LoadMap();
             tscbSelectAction.Text = "Продать";
             tscbSelectCurrency.Text = "1 Доллар США";
+            gMapControl.OnMarkerClick += gMapControl_OnMarkerClick;
+            gMapControl.MouseClick += gMapControl_MouseClick;
+            gMapControl.MouseDown += gMapControl_MouseDown;
         }
 
         private void LoadMap()
         {
+            markersOverlay = new GMapOverlay();
             gMapControl = new GMapControl();
             gMapControl.Dock = DockStyle.Fill;
             this.Controls.Add(gMapControl);
@@ -57,18 +62,19 @@ namespace BanksSearchApp
             gMapControl.MarkersEnabled = true;
 
             gMapControl.Overlays.Add(markersOverlay);
+            #region oldmarkers
+            //MyGMapMarkerImage imageMarker1 = new MyGMapMarkerImage(new PointLatLng(53.902752, 27.561294), "1.835");
+            //imageMarker1.ToolTip = new MyGMapToolTip(imageMarker1);
+            //imageMarker1.ToolTipMode = MarkerTooltipMode.Never;
+            //imageMarker1.ToolTipText = "qweqweqweqweqweqweqweqweqeqweqweqweqweqwe";
+            //markersOverlay.Markers.Add(imageMarker1);
 
-            MyGMapMarkerImage imageMarker1 = new MyGMapMarkerImage(new PointLatLng(53.902752, 27.561294), "1.835");
-            imageMarker1.ToolTip = new MyGMapToolTip(imageMarker1);
-            imageMarker1.ToolTipMode = MarkerTooltipMode.Never;
-            imageMarker1.ToolTipText = "qweqweqweqweqweqweqweqweqeqweqweqweqweqwe";
-            markersOverlay.Markers.Add(imageMarker1);
-
-            MyGMapMarkerImage imageMarker2 = new MyGMapMarkerImage(new PointLatLng(53.90227, 27.560604), "2.235");
-            imageMarker2.ToolTip = new MyGMapToolTip(imageMarker2);
-            imageMarker2.ToolTipMode = MarkerTooltipMode.Never;
-            imageMarker2.ToolTipText = "123456789123456789123456789123456789123456789";
-            markersOverlay.Markers.Add(imageMarker2);
+            //MyGMapMarkerImage imageMarker2 = new MyGMapMarkerImage(new PointLatLng(53.90227, 27.560604), "2.235");
+            //imageMarker2.ToolTip = new MyGMapToolTip(imageMarker2);
+            //imageMarker2.ToolTipMode = MarkerTooltipMode.Never;
+            //imageMarker2.ToolTipText = "123456789123456789123456789123456789123456789";
+            //markersOverlay.Markers.Add(imageMarker2);
+            #endregion
 
             var branchsBanks = GetDataFromDB.GetBranchsBanksInfo();
             foreach (var branchBank in branchsBanks)
@@ -76,15 +82,11 @@ namespace BanksSearchApp
                 MyGMapMarkerImage marker = new MyGMapMarkerImage(new PointLatLng(branchBank.Latitude, branchBank.Longitude), branchBank.Bank.UsdSell.ToString());
                 marker.ToolTip = new MyGMapToolTip(marker);
                 marker.ToolTipMode = MarkerTooltipMode.Never;
-                marker.ToolTipText = "000000000000000000000000000000000000000000000000000000000000";
+                marker.ToolTipText = branchBank.Bank.Name + "\nАдрес: " + branchBank.Address + "\nКурс обновлен " + branchBank.Bank.DateTime.ToString();
                 markersOverlay.Markers.Add(marker);
             }
-            gMapControl.OnMarkerClick += gMapControl_OnMarkerClick;
-            gMapControl.MouseClick += gMapControl_MouseClick;
-            gMapControl.MouseDown += gMapControl_MouseDown;
+
         }
-
-
         #region Обработчики нажатия мышкой по карте и маркерам
         //Отслеживаем именно нажатие кнопки мыши (не отжатие), чтобы обработчик gMapControl_MouseClick не выполнялся, когда перетаскиваем карту 
         void gMapControl_MouseDown(object sender, MouseEventArgs e)
@@ -121,6 +123,37 @@ namespace BanksSearchApp
         {
             GetDataFromXML.UpdateBanksInfo();
             var branchsBanks = GetDataFromDB.GetBranchsBanksInfo();
+            if (tscbSelectAction.SelectedIndex == 0)
+            {
+                if (tscbSelectCurrency.SelectedIndex == 0)
+                {
+                    markersOverlay.Markers.Clear();
+                    foreach (var branchBank in branchsBanks)
+                    {
+                        MyGMapMarkerImage marker = new MyGMapMarkerImage(new PointLatLng(branchBank.Latitude, branchBank.Longitude), branchBank.Bank.UsdSell.ToString());
+                        markersOverlay.Markers.Add(marker);
+                    }
+                }
+                if (tscbSelectCurrency.SelectedIndex == 1)
+                {
+                    markersOverlay.Markers.Clear();
+                    foreach (var branchBank in branchsBanks)
+                    {
+                        MyGMapMarkerImage marker = new MyGMapMarkerImage(new PointLatLng(branchBank.Latitude, branchBank.Longitude), branchBank.Bank.EurSell.ToString());
+                        markersOverlay.Markers.Add(marker);
+                    }
+                }
+                if (tscbSelectCurrency.SelectedIndex == 2)
+                {
+                    markersOverlay.Markers.Clear();
+                    foreach (var branchBank in branchsBanks)
+                    {
+                        MyGMapMarkerImage marker = new MyGMapMarkerImage(new PointLatLng(branchBank.Latitude, branchBank.Longitude), branchBank.Bank.RurSell.ToString());
+                        markersOverlay.Markers.Add(marker);
+                    }
+                }
+            }
+
             if (tscbSelectAction.SelectedIndex == 1)
             {
                 if (tscbSelectCurrency.SelectedIndex == 0)
@@ -132,13 +165,39 @@ namespace BanksSearchApp
                         markersOverlay.Markers.Add(marker);
                     }
                 }
+                if (tscbSelectCurrency.SelectedIndex == 1)
+                {
+                    markersOverlay.Markers.Clear();
+                    foreach (var branchBank in branchsBanks)
+                    {
+                        MyGMapMarkerImage marker = new MyGMapMarkerImage(new PointLatLng(branchBank.Latitude, branchBank.Longitude), branchBank.Bank.EurBuy.ToString());
+                        markersOverlay.Markers.Add(marker);
+                    }
+                }
+                if (tscbSelectCurrency.SelectedIndex == 2)
+                {
+                    markersOverlay.Markers.Clear();
+                    foreach (var branchBank in branchsBanks)
+                    {
+                        MyGMapMarkerImage marker = new MyGMapMarkerImage(new PointLatLng(branchBank.Latitude, branchBank.Longitude), branchBank.Bank.RurBuy.ToString());
+                        markersOverlay.Markers.Add(marker);
+                    }
+                }
             }
 
-            if (tscbSelectCurrency.Text == "Купить")
-            {
-
-            }
             gMapControl.Refresh();
+        }
+
+        private void tsbtnShowMin_Click(object sender, EventArgs e)
+        {
+            var minRateBranchsBanks = GetDataFromDB.GetBranchsBanksWithMinminumExchangeRate();
+            markersOverlay.Markers.Clear();
+            foreach (var branchBank in minRateBranchsBanks)
+            {
+                MyGMapMarkerImage marker = new MyGMapMarkerImage(new PointLatLng(branchBank.Latitude, branchBank.Longitude), branchBank.Bank.UsdBuy.ToString());
+                markersOverlay.Markers.Add(marker);
+            }
+
         }
 
     }
