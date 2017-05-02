@@ -19,6 +19,8 @@ namespace BanksSearchApp
 {
     public partial class MainForm : Form
     {
+        private Point mouseLocation;
+        private MyGMapMarkerImage clickedMarker;
         GMapOverlay markersOverlay = new GMapOverlay();
         private GMapControl gMapControl;
         public MainForm()
@@ -56,21 +58,15 @@ namespace BanksSearchApp
 
             gMapControl.Overlays.Add(markersOverlay);
 
-
-
-            GMarkerGoogle markerG = new GMarkerGoogle(new PointLatLng(53.902542, 27.561781), GMarkerGoogleType.green);
-            markerG.ToolTip = new GMapRoundedToolTip(markerG);
-            markerG.ToolTipText = "Объект №1";
-            markersOverlay.Markers.Add(markerG);
-
-            GMarkerGoogle markerR = new GMarkerGoogle(new PointLatLng(53.902752, 27.561294), GMarkerGoogleType.red);
-            markerR.ToolTip = new GMapBaloonToolTip(markerR);
-            markerR.ToolTipText = "Объект №2";
-            markersOverlay.Markers.Add(markerR);
+            MyGMapMarkerImage imageMarker1 = new MyGMapMarkerImage(new PointLatLng(53.902752, 27.561294), "1.835");
+            imageMarker1.ToolTip = new MyGMapToolTip(imageMarker1);
+            imageMarker1.ToolTipMode = MarkerTooltipMode.Never;
+            imageMarker1.ToolTipText = "qweqweqweqweqweqweqweqweqeqweqweqweqweqwe";
+            markersOverlay.Markers.Add(imageMarker1);
 
             MyGMapMarkerImage imageMarker2 = new MyGMapMarkerImage(new PointLatLng(53.90227, 27.560604), "2.235");
             imageMarker2.ToolTip = new MyGMapToolTip(imageMarker2);
-            imageMarker2.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+            imageMarker2.ToolTipMode = MarkerTooltipMode.Never;
             imageMarker2.ToolTipText = "123456789123456789123456789123456789123456789";
             markersOverlay.Markers.Add(imageMarker2);
 
@@ -78,24 +74,49 @@ namespace BanksSearchApp
             foreach (var branchBank in branchsBanks)
             {
                 MyGMapMarkerImage marker = new MyGMapMarkerImage(new PointLatLng(branchBank.Latitude, branchBank.Longitude), branchBank.Bank.UsdSell.ToString());
+                marker.ToolTip = new MyGMapToolTip(marker);
+                marker.ToolTipMode = MarkerTooltipMode.Never;
+                marker.ToolTipText = "000000000000000000000000000000000000000000000000000000000000";
                 markersOverlay.Markers.Add(marker);
             }
-
-
-            //gMapControl.MouseClick += gMapControl1_MouseClick;
+            gMapControl.OnMarkerClick += gMapControl_OnMarkerClick;
+            gMapControl.MouseClick += gMapControl_MouseClick;
+            gMapControl.MouseDown += gMapControl_MouseDown;
         }
 
-        //void gMapControl1_MouseClick(object sender, MouseEventArgs e)
-        //{
-        //    double X = gMapControl.FromLocalToLatLng(e.X, e.Y).Lng;
-        //    double Y = gMapControl.FromLocalToLatLng(e.X, e.Y).Lat;
-        //    GMapOverlay markersOverlay = new GMapOverlay();
-        //    MyGMapMarkerImage markerG = new MyGMapMarkerImage(new GMap.NET.PointLatLng(Y, X), "3.345");
-        //    markerG.ToolTip = new MyGMapToolTip(markerG);
-        //    markerG.ToolTipText = "Новый объект";
-        //    gMapControl.Overlays.Add(markersOverlay);
-        //    markersOverlay.Markers.Add(markerG);
-        //}
+
+        #region Обработчики нажатия мышкой по карте и маркерам
+        //Отслеживаем именно нажатие кнопки мыши (не отжатие), чтобы обработчик gMapControl_MouseClick не выполнялся, когда перетаскиваем карту 
+        void gMapControl_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseLocation = e.Location;
+        }
+
+        //Убираем tooltip с маркера при нажатии на карту или на другой маркер
+        void gMapControl_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (mouseLocation == e.Location)
+            {
+                if (clickedMarker != null)
+                {
+                    clickedMarker.ToolTipMode = MarkerTooltipMode.Never;
+                }
+                clickedMarker = null;
+            }
+        }
+
+        //При нажатии на маркер показываем его tooltip
+        void gMapControl_OnMarkerClick(GMapMarker item, MouseEventArgs e)
+        {
+            if (clickedMarker == null)
+            {
+                item.ToolTipMode = MarkerTooltipMode.Always;
+                clickedMarker = (MyGMapMarkerImage)item;
+            }
+        }
+        #endregion
+
+
         private void tsbtnShow_Click(object sender, EventArgs e)
         {
             GetDataFromXML.UpdateBanksInfo();

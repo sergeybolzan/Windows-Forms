@@ -10,6 +10,9 @@ namespace Logic
 {
     public static class GetDataFromXML
     {
+        /// <summary>
+        /// Метод для обновления данных в таблице BankSet базы данных с сайта www.obmennik.by
+        /// </summary>
         public static void UpdateBanksInfo()
         {
             using (BanksModelContainer db = new BanksModelContainer())
