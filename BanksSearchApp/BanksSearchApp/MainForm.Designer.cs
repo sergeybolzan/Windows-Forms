@@ -33,11 +33,11 @@
             this.tscbSelectAction = new System.Windows.Forms.ToolStripComboBox();
             this.tscbSelectCurrency = new System.Windows.Forms.ToolStripComboBox();
             this.tsbtnShow = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbtnShowMin = new System.Windows.Forms.ToolStripButton();
             this.tsbtnShowMax = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,6 +91,16 @@
             this.tsbtnShow.Text = "Показать";
             this.tsbtnShow.Click += new System.EventHandler(this.tsbtnShow_Click);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 29);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 29);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -118,16 +128,7 @@
             this.tsbtnShowMax.Name = "tsbtnShowMax";
             this.tsbtnShowMax.Size = new System.Drawing.Size(169, 26);
             this.tsbtnShowMax.Text = "Максимальный курс";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 29);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 29);
+            this.tsbtnShowMax.Click += new System.EventHandler(this.tsbtnShowMax_Click);
             // 
             // MainForm
             // 
@@ -138,6 +139,7 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Карта банков";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();

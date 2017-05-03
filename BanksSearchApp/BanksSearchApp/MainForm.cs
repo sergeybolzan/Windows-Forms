@@ -21,7 +21,7 @@ namespace BanksSearchApp
     public partial class MainForm : Form
     {
         private Point mouseLocation;
-        private MyGMapMarkerImage clickedMarker;
+        private MyGMapMarker clickedMarker;
         private GMapOverlay markersOverlay;
         private GMapControl gMapControl;
         public MainForm()
@@ -52,7 +52,7 @@ namespace BanksSearchApp
 
             gMapControl.MaxZoom = 18;
             gMapControl.MinZoom = 2;
-            gMapControl.Zoom = 17;
+            gMapControl.Zoom = 12;
             gMapControl.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
 
             gMapControl.IgnoreMarkerOnMouseWheel = true;
@@ -79,7 +79,9 @@ namespace BanksSearchApp
             var branchsBanks = GetDataFromDB.GetBranchsBanksInfo();
             foreach (var branchBank in branchsBanks)
             {
-                MyGMapMarkerImage marker = new MyGMapMarkerImage(new PointLatLng(branchBank.Latitude, branchBank.Longitude), branchBank.Bank.UsdSell.ToString());
+                MyGMapMarker marker = new MyGMapMarker(new PointLatLng(branchBank.Latitude, branchBank.Longitude), "");
+                marker.MyCurrency = new Currency(branchBank.Bank.UsdSell, branchBank.Bank.UsdBuy, branchBank.Bank.EurSell, branchBank.Bank.EurBuy, branchBank.Bank.RurSell, branchBank.Bank.RurBuy);
+                marker.MyCurrencyTypes = CurrencyTypes.UsdSell;
                 marker.ToolTip = new MyGMapToolTip(marker);
                 marker.ToolTipMode = MarkerTooltipMode.Never;
                 marker.ToolTipText = branchBank.Bank.Name + "\nАдрес: " + branchBank.Address + "\nКурс обновлен " + branchBank.Bank.DateTime.ToString();
@@ -113,7 +115,7 @@ namespace BanksSearchApp
             if (clickedMarker == null)
             {
                 item.ToolTipMode = MarkerTooltipMode.Always;
-                clickedMarker = (MyGMapMarkerImage)item;
+                clickedMarker = (MyGMapMarker)item;
             }
         }
         #endregion
@@ -121,92 +123,96 @@ namespace BanksSearchApp
 
         private void tsbtnShow_Click(object sender, EventArgs e)
         {
-            GetDataFromXML.UpdateBanksInfo();
-            var branchsBanks = GetDataFromDB.GetBranchsBanksInfo();
+            foreach (MyGMapMarker marker in markersOverlay.Markers) marker.IsVisible = true;
             if (tscbSelectAction.SelectedIndex == 0)
             {
-                if (tscbSelectCurrency.SelectedIndex == 0)
-                {
-                    markersOverlay.Markers.Clear();
-                    foreach (var branchBank in branchsBanks)
-                    {
-                        MyGMapMarkerImage marker = new MyGMapMarkerImage(new PointLatLng(branchBank.Latitude, branchBank.Longitude), branchBank.Bank.UsdSell.ToString());
-                        markersOverlay.Markers.Add(marker);
-                    }
-                }
-                if (tscbSelectCurrency.SelectedIndex == 1)
-                {
-                    markersOverlay.Markers.Clear();
-                    foreach (var branchBank in branchsBanks)
-                    {
-                        MyGMapMarkerImage marker = new MyGMapMarkerImage(new PointLatLng(branchBank.Latitude, branchBank.Longitude), branchBank.Bank.EurSell.ToString());
-                        markersOverlay.Markers.Add(marker);
-                    }
-                }
-                if (tscbSelectCurrency.SelectedIndex == 2)
-                {
-                    markersOverlay.Markers.Clear();
-                    foreach (var branchBank in branchsBanks)
-                    {
-                        MyGMapMarkerImage marker = new MyGMapMarkerImage(new PointLatLng(branchBank.Latitude, branchBank.Longitude), branchBank.Bank.RurSell.ToString());
-                        markersOverlay.Markers.Add(marker);
-                    }
-                }
+                if (tscbSelectCurrency.SelectedIndex == 0) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.MyCurrencyTypes = CurrencyTypes.UsdSell;
+                if (tscbSelectCurrency.SelectedIndex == 1) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.MyCurrencyTypes = CurrencyTypes.EurSell;
+                if (tscbSelectCurrency.SelectedIndex == 2) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.MyCurrencyTypes = CurrencyTypes.RurSell;
             }
 
             if (tscbSelectAction.SelectedIndex == 1)
             {
-                if (tscbSelectCurrency.SelectedIndex == 0)
-                {
-                    markersOverlay.Markers.Clear();
-                    foreach (var branchBank in branchsBanks)
-                    {
-                        MyGMapMarkerImage marker = new MyGMapMarkerImage(new PointLatLng(branchBank.Latitude, branchBank.Longitude), branchBank.Bank.UsdBuy.ToString());
-                        markersOverlay.Markers.Add(marker);
-                    }
-                }
-                if (tscbSelectCurrency.SelectedIndex == 1)
-                {
-                    markersOverlay.Markers.Clear();
-                    foreach (var branchBank in branchsBanks)
-                    {
-                        MyGMapMarkerImage marker = new MyGMapMarkerImage(new PointLatLng(branchBank.Latitude, branchBank.Longitude), branchBank.Bank.EurBuy.ToString());
-                        markersOverlay.Markers.Add(marker);
-                    }
-                }
-                if (tscbSelectCurrency.SelectedIndex == 2)
-                {
-                    markersOverlay.Markers.Clear();
-                    foreach (var branchBank in branchsBanks)
-                    {
-                        MyGMapMarkerImage marker = new MyGMapMarkerImage(new PointLatLng(branchBank.Latitude, branchBank.Longitude), branchBank.Bank.RurBuy.ToString());
-                        markersOverlay.Markers.Add(marker);
-                    }
-                }
+                if (tscbSelectCurrency.SelectedIndex == 0) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.MyCurrencyTypes = CurrencyTypes.UsdBuy;
+                if (tscbSelectCurrency.SelectedIndex == 1) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.MyCurrencyTypes = CurrencyTypes.EurBuy;
+                if (tscbSelectCurrency.SelectedIndex == 2) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.MyCurrencyTypes = CurrencyTypes.RurBuy;
             }
-
             gMapControl.Refresh();
         }
 
         private void tsbtnShowMin_Click(object sender, EventArgs e)
         {
-            var minRateBranchsBanks = GetDataFromDB.GetBranchsBanksWithMinminumExchangeRate();
-            markersOverlay.Markers.Clear();
-            foreach (var branchBank in minRateBranchsBanks)
+            decimal minRate = Decimal.MaxValue;
+            decimal markerRate;
+            foreach (MyGMapMarker marker in markersOverlay.Markers)
             {
-                MyGMapMarkerImage marker = new MyGMapMarkerImage(new PointLatLng(branchBank.Latitude, branchBank.Longitude), branchBank.Bank.UsdBuy.ToString());
-                markersOverlay.Markers.Add(marker);
+                markerRate = Convert.ToDecimal(marker.Caption);
+                if (minRate > markerRate) minRate = markerRate;
             }
-
+            foreach (MyGMapMarker marker in markersOverlay.Markers)
+            {
+                marker.IsVisible = true;
+                if (minRate != Convert.ToDecimal(marker.Caption)) marker.IsVisible = false;
+            }
         }
 
+        private void tsbtnShowMax_Click(object sender, EventArgs e)
+        {
+            decimal maxRate = 0;
+            decimal markerRate;
+            foreach (MyGMapMarker marker in markersOverlay.Markers)
+            {
+                markerRate = Convert.ToDecimal(marker.Caption);
+                if (maxRate < markerRate) maxRate = markerRate;
+            }
+            foreach (MyGMapMarker marker in markersOverlay.Markers)
+            {
+                marker.IsVisible = true;
+                if (maxRate != Convert.ToDecimal(marker.Caption)) marker.IsVisible = false;
+            }
+        }
     }
 
-    public class MyGMapMarkerImage : GMapMarker, ISerializable
+    public class MyGMapMarker : GMapMarker, ISerializable
     {
-        Bitmap Bitmap;
-        public string Caption;
-        public MyGMapMarkerImage(PointLatLng p, string caption)
+        private Bitmap Bitmap;
+        public string Caption { get; set; }
+        public Currency MyCurrency { get; set; }
+        private CurrencyTypes myCurrencyTypes;
+        public CurrencyTypes MyCurrencyTypes
+        {
+            get { return myCurrencyTypes; }
+            set 
+            { 
+                myCurrencyTypes = value;
+                if (myCurrencyTypes == CurrencyTypes.UsdSell)
+                {
+                    Caption = MyCurrency.UsdSell.ToString();
+                }
+                if (myCurrencyTypes == CurrencyTypes.UsdBuy)
+                {
+                    Caption = MyCurrency.UsdBuy.ToString();
+                }
+                if (myCurrencyTypes == CurrencyTypes.EurSell)
+                {
+                    Caption = MyCurrency.EurSell.ToString();
+                }
+                if (myCurrencyTypes == CurrencyTypes.EurBuy)
+                {
+                    Caption = MyCurrency.EurBuy.ToString();
+                }
+                if (myCurrencyTypes == CurrencyTypes.RurSell)
+                {
+                    Caption = MyCurrency.RurSell.ToString();
+                }
+                if (myCurrencyTypes == CurrencyTypes.RurBuy)
+                {
+                    Caption = MyCurrency.RurBuy.ToString();
+                }
+            }
+        }
+        
+        public MyGMapMarker(PointLatLng p, string caption)
             : base(p)
         {
             this.Bitmap = Properties.Resources.label;
@@ -237,7 +243,7 @@ namespace BanksSearchApp
             base.GetObjectData(info, context);
         }
 
-        protected MyGMapMarkerImage(SerializationInfo info, StreamingContext context)
+        protected MyGMapMarker(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
