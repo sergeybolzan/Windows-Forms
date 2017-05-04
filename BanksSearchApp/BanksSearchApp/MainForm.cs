@@ -80,14 +80,13 @@ namespace BanksSearchApp
             foreach (var branchBank in branchsBanks)
             {
                 MyGMapMarker marker = new MyGMapMarker(new PointLatLng(branchBank.Latitude, branchBank.Longitude), "");
-                marker.MyCurrency = new Currency(branchBank.Bank.UsdSell, branchBank.Bank.UsdBuy, branchBank.Bank.EurSell, branchBank.Bank.EurBuy, branchBank.Bank.RurSell, branchBank.Bank.RurBuy);
-                marker.MyCurrencyTypes = CurrencyTypes.UsdSell;
+                marker.branchBank = branchBank;
+                marker.CurrencyType = CurrencyTypes.UsdSell;
                 marker.ToolTip = new MyGMapToolTip(marker);
                 marker.ToolTipMode = MarkerTooltipMode.Never;
-                marker.ToolTipText = branchBank.Bank.Name + "\nАдрес: " + branchBank.Address + "\nКурс обновлен " + branchBank.Bank.DateTime.ToString();
+                marker.ToolTipText = marker.branchBank.Bank.Name;// +"\nАдрес: " + branchBank.Address + "\nКурс обновлен " + branchBank.Bank.DateTime.ToString();
                 markersOverlay.Markers.Add(marker);
             }
-
         }
         #region Обработчики нажатия мышкой по карте и маркерам
         //Отслеживаем именно нажатие кнопки мыши (не отжатие), чтобы обработчик gMapControl_MouseClick не выполнялся, когда перетаскиваем карту 
@@ -126,16 +125,16 @@ namespace BanksSearchApp
             foreach (MyGMapMarker marker in markersOverlay.Markers) marker.IsVisible = true;
             if (tscbSelectAction.SelectedIndex == 0)
             {
-                if (tscbSelectCurrency.SelectedIndex == 0) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.MyCurrencyTypes = CurrencyTypes.UsdSell;
-                if (tscbSelectCurrency.SelectedIndex == 1) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.MyCurrencyTypes = CurrencyTypes.EurSell;
-                if (tscbSelectCurrency.SelectedIndex == 2) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.MyCurrencyTypes = CurrencyTypes.RurSell;
+                if (tscbSelectCurrency.SelectedIndex == 0) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.CurrencyType = CurrencyTypes.UsdSell;
+                if (tscbSelectCurrency.SelectedIndex == 1) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.CurrencyType = CurrencyTypes.EurSell;
+                if (tscbSelectCurrency.SelectedIndex == 2) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.CurrencyType = CurrencyTypes.RurSell;
             }
 
             if (tscbSelectAction.SelectedIndex == 1)
             {
-                if (tscbSelectCurrency.SelectedIndex == 0) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.MyCurrencyTypes = CurrencyTypes.UsdBuy;
-                if (tscbSelectCurrency.SelectedIndex == 1) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.MyCurrencyTypes = CurrencyTypes.EurBuy;
-                if (tscbSelectCurrency.SelectedIndex == 2) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.MyCurrencyTypes = CurrencyTypes.RurBuy;
+                if (tscbSelectCurrency.SelectedIndex == 0) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.CurrencyType = CurrencyTypes.UsdBuy;
+                if (tscbSelectCurrency.SelectedIndex == 1) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.CurrencyType = CurrencyTypes.EurBuy;
+                if (tscbSelectCurrency.SelectedIndex == 2) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.CurrencyType = CurrencyTypes.RurBuy;
             }
             gMapControl.Refresh();
         }
@@ -177,37 +176,37 @@ namespace BanksSearchApp
     {
         private Bitmap Bitmap;
         public string Caption { get; set; }
-        public Currency MyCurrency { get; set; }
-        private CurrencyTypes myCurrencyTypes;
-        public CurrencyTypes MyCurrencyTypes
+        public BranchBank branchBank { get; set; }
+        private CurrencyTypes currencyType;
+        public CurrencyTypes CurrencyType
         {
-            get { return myCurrencyTypes; }
+            get { return currencyType; }
             set 
             { 
-                myCurrencyTypes = value;
-                if (myCurrencyTypes == CurrencyTypes.UsdSell)
+                currencyType = value;
+                if (currencyType == CurrencyTypes.UsdSell)
                 {
-                    Caption = MyCurrency.UsdSell.ToString();
+                    Caption = branchBank.Bank.UsdSell.ToString();
                 }
-                if (myCurrencyTypes == CurrencyTypes.UsdBuy)
+                if (currencyType == CurrencyTypes.UsdBuy)
                 {
-                    Caption = MyCurrency.UsdBuy.ToString();
+                    Caption = branchBank.Bank.UsdBuy.ToString();
                 }
-                if (myCurrencyTypes == CurrencyTypes.EurSell)
+                if (currencyType == CurrencyTypes.EurSell)
                 {
-                    Caption = MyCurrency.EurSell.ToString();
+                    Caption = branchBank.Bank.EurSell.ToString();
                 }
-                if (myCurrencyTypes == CurrencyTypes.EurBuy)
+                if (currencyType == CurrencyTypes.EurBuy)
                 {
-                    Caption = MyCurrency.EurBuy.ToString();
+                    Caption = branchBank.Bank.EurBuy.ToString();
                 }
-                if (myCurrencyTypes == CurrencyTypes.RurSell)
+                if (currencyType == CurrencyTypes.RurSell)
                 {
-                    Caption = MyCurrency.RurSell.ToString();
+                    Caption = branchBank.Bank.RurSell.ToString();
                 }
-                if (myCurrencyTypes == CurrencyTypes.RurBuy)
+                if (currencyType == CurrencyTypes.RurBuy)
                 {
-                    Caption = MyCurrency.RurBuy.ToString();
+                    Caption = branchBank.Bank.RurBuy.ToString();
                 }
             }
         }
@@ -276,7 +275,8 @@ namespace BanksSearchApp
                 g.FillPath(Fill, objGP);
                 g.DrawPath(Stroke, objGP);
             }
-            g.DrawString(Marker.ToolTipText, Font, Foreground, rect, Format);
+            MyGMapMarker myMarker = (MyGMapMarker)Marker;
+            g.DrawString(myMarker.ToolTipText, new Font(FontFamily.GenericSansSerif, 15, FontStyle.Bold, GraphicsUnit.Pixel), new SolidBrush(Color.Black), rect.X + 5, rect.Y + 5);
         }
 
         #region ISerializable Members

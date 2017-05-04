@@ -10,22 +10,28 @@ namespace BanksSearchApp
     {
         UsdSell, UsdBuy, EurSell, EurBuy, RurSell, RurBuy
     }
-    public struct Currency
+    public class Currency
     {
-        public decimal UsdSell;
-        public decimal UsdBuy;
-        public decimal EurSell;
-        public decimal EurBuy;
-        public decimal RurSell;
-        public decimal RurBuy;
-        public Currency(decimal UsdSell, decimal UsdBuy, decimal EurSell, decimal EurBuy, decimal RurSell, decimal RurBuy)
+        public string BankName { get; set; }
+        public string BranchAddress { get; set; }
+        public DateTime DateTime { get; set; }
+        public decimal UsdSell { get; set; }
+        public decimal UsdBuy { get; set; }
+        public decimal EurSell { get; set; }
+        public decimal EurBuy { get; set; }
+        public decimal RurSell { get; set; }
+        public decimal RurBuy { get; set; }
+        public Currency(string bankName, string branchAddress, DateTime dateTime, decimal usdSell, decimal usdBuy, decimal eurSell, decimal eurBuy, decimal rurSell, decimal rurBuy)
         {
-            this.UsdSell = UsdSell;
-            this.UsdBuy = UsdBuy;
-            this.EurSell = EurSell;
-            this.EurBuy = EurBuy;
-            this.RurSell = RurSell;
-            this.RurBuy = RurBuy;
+            this.BankName = bankName;
+            this.BranchAddress = branchAddress;
+            this.DateTime = dateTime;
+            this.UsdSell = usdSell;
+            this.UsdBuy = usdBuy;
+            this.EurSell = eurSell;
+            this.EurBuy = eurBuy;
+            this.RurSell = rurSell;
+            this.RurBuy = rurBuy;
         }
     }
 }
