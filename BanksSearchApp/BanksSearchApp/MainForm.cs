@@ -80,11 +80,11 @@ namespace BanksSearchApp
             foreach (var branchBank in branchsBanks)
             {
                 MyGMapMarker marker = new MyGMapMarker(new PointLatLng(branchBank.Latitude, branchBank.Longitude), "");
-                marker.branchBank = branchBank;
-                marker.CurrencyType = CurrencyTypes.UsdSell;
+                marker.BranchBank = branchBank;
+                marker.DisplayedCurrencyType = CurrencyTypes.UsdSell;
                 marker.ToolTip = new MyGMapToolTip(marker);
                 marker.ToolTipMode = MarkerTooltipMode.Never;
-                marker.ToolTipText = marker.branchBank.Bank.Name;// +"\nАдрес: " + branchBank.Address + "\nКурс обновлен " + branchBank.Bank.DateTime.ToString();
+                marker.ToolTipText = " ";// +"\nАдрес: " + branchBank.Address + "\nКурс обновлен " + branchBank.Bank.DateTime.ToString();
                 markersOverlay.Markers.Add(marker);
             }
         }
@@ -125,16 +125,16 @@ namespace BanksSearchApp
             foreach (MyGMapMarker marker in markersOverlay.Markers) marker.IsVisible = true;
             if (tscbSelectAction.SelectedIndex == 0)
             {
-                if (tscbSelectCurrency.SelectedIndex == 0) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.CurrencyType = CurrencyTypes.UsdSell;
-                if (tscbSelectCurrency.SelectedIndex == 1) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.CurrencyType = CurrencyTypes.EurSell;
-                if (tscbSelectCurrency.SelectedIndex == 2) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.CurrencyType = CurrencyTypes.RurSell;
+                if (tscbSelectCurrency.SelectedIndex == 0) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.DisplayedCurrencyType = CurrencyTypes.UsdSell;
+                if (tscbSelectCurrency.SelectedIndex == 1) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.DisplayedCurrencyType = CurrencyTypes.EurSell;
+                if (tscbSelectCurrency.SelectedIndex == 2) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.DisplayedCurrencyType = CurrencyTypes.RurSell;
             }
 
             if (tscbSelectAction.SelectedIndex == 1)
             {
-                if (tscbSelectCurrency.SelectedIndex == 0) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.CurrencyType = CurrencyTypes.UsdBuy;
-                if (tscbSelectCurrency.SelectedIndex == 1) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.CurrencyType = CurrencyTypes.EurBuy;
-                if (tscbSelectCurrency.SelectedIndex == 2) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.CurrencyType = CurrencyTypes.RurBuy;
+                if (tscbSelectCurrency.SelectedIndex == 0) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.DisplayedCurrencyType = CurrencyTypes.UsdBuy;
+                if (tscbSelectCurrency.SelectedIndex == 1) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.DisplayedCurrencyType = CurrencyTypes.EurBuy;
+                if (tscbSelectCurrency.SelectedIndex == 2) foreach (MyGMapMarker marker in markersOverlay.Markers) marker.DisplayedCurrencyType = CurrencyTypes.RurBuy;
             }
             gMapControl.Refresh();
         }
@@ -176,37 +176,37 @@ namespace BanksSearchApp
     {
         private Bitmap Bitmap;
         public string Caption { get; set; }
-        public BranchBank branchBank { get; set; }
-        private CurrencyTypes currencyType;
-        public CurrencyTypes CurrencyType
+        public BranchBank BranchBank { get; set; }
+        private CurrencyTypes displayedCurrencyType;
+        public CurrencyTypes DisplayedCurrencyType
         {
-            get { return currencyType; }
+            get { return displayedCurrencyType; }
             set 
             { 
-                currencyType = value;
-                if (currencyType == CurrencyTypes.UsdSell)
+                displayedCurrencyType = value;
+                if (displayedCurrencyType == CurrencyTypes.UsdSell)
                 {
-                    Caption = branchBank.Bank.UsdSell.ToString();
+                    Caption = BranchBank.Bank.UsdSell.ToString();
                 }
-                if (currencyType == CurrencyTypes.UsdBuy)
+                if (displayedCurrencyType == CurrencyTypes.UsdBuy)
                 {
-                    Caption = branchBank.Bank.UsdBuy.ToString();
+                    Caption = BranchBank.Bank.UsdBuy.ToString();
                 }
-                if (currencyType == CurrencyTypes.EurSell)
+                if (displayedCurrencyType == CurrencyTypes.EurSell)
                 {
-                    Caption = branchBank.Bank.EurSell.ToString();
+                    Caption = BranchBank.Bank.EurSell.ToString();
                 }
-                if (currencyType == CurrencyTypes.EurBuy)
+                if (displayedCurrencyType == CurrencyTypes.EurBuy)
                 {
-                    Caption = branchBank.Bank.EurBuy.ToString();
+                    Caption = BranchBank.Bank.EurBuy.ToString();
                 }
-                if (currencyType == CurrencyTypes.RurSell)
+                if (displayedCurrencyType == CurrencyTypes.RurSell)
                 {
-                    Caption = branchBank.Bank.RurSell.ToString();
+                    Caption = BranchBank.Bank.RurSell.ToString();
                 }
-                if (currencyType == CurrencyTypes.RurBuy)
+                if (displayedCurrencyType == CurrencyTypes.RurBuy)
                 {
-                    Caption = branchBank.Bank.RurBuy.ToString();
+                    Caption = BranchBank.Bank.RurBuy.ToString();
                 }
             }
         }
@@ -260,8 +260,8 @@ namespace BanksSearchApp
 
         public override void OnRender(Graphics g)
         {
-            System.Drawing.Rectangle rect = new System.Drawing.Rectangle(Marker.ToolTipPosition.X, Marker.ToolTipPosition.Y, 240, 160);
-            rect.Offset(Marker.Offset.X - 86, Marker.Offset.Y - 171);
+            System.Drawing.Rectangle rect = new System.Drawing.Rectangle(Marker.ToolTipPosition.X, Marker.ToolTipPosition.Y, 320, 160);
+            rect.Offset(Marker.Offset.X - 125, Marker.Offset.Y - 171);
             using (GraphicsPath objGP = new GraphicsPath())
             {
                 objGP.AddLine(rect.X + rect.Width / 2 + 10, rect.Y + rect.Height, rect.X + rect.Width / 2, rect.Y + rect.Height + 10);
@@ -276,7 +276,16 @@ namespace BanksSearchApp
                 g.DrawPath(Stroke, objGP);
             }
             MyGMapMarker myMarker = (MyGMapMarker)Marker;
-            g.DrawString(myMarker.ToolTipText, new Font(FontFamily.GenericSansSerif, 15, FontStyle.Bold, GraphicsUnit.Pixel), new SolidBrush(Color.Black), rect.X + 5, rect.Y + 5);
+            g.DrawString(myMarker.BranchBank.Bank.Name, new Font(FontFamily.GenericSansSerif, 18, FontStyle.Bold, GraphicsUnit.Pixel), new SolidBrush(Color.Black), rect.X + 5, rect.Y + 5);
+            g.DrawString(myMarker.BranchBank.Address, new Font(FontFamily.GenericSansSerif, 13, GraphicsUnit.Pixel), new SolidBrush(Color.Black), rect.X + 7, rect.Y + 40);
+            
+            string dateTimeText = null;
+            if (myMarker.BranchBank.Bank.DateTime.Date == DateTime.Now.Date) dateTimeText = "Курс обновлен сегодня в " + myMarker.BranchBank.Bank.DateTime.TimeOfDay;
+            else dateTimeText = "Курс обновлен " + myMarker.BranchBank.Bank.DateTime;
+            g.DrawString(dateTimeText, new Font(FontFamily.GenericSansSerif, 13, GraphicsUnit.Pixel), new SolidBrush(Color.Black), rect.X + 7, rect.Y + 70);
+            
+            string currencyText = String.Format("1 Доллар США: покупка - {0}, продажа - {1}\n1 Евро: покупка - {2}, продажа - {3}\n100 Рос. рублей: покупка - {4}, продажа - {5}", myMarker.BranchBank.Bank.UsdSell, myMarker.BranchBank.Bank.UsdBuy, myMarker.BranchBank.Bank.EurSell, myMarker.BranchBank.Bank.EurBuy, myMarker.BranchBank.Bank.RurSell, myMarker.BranchBank.Bank.RurBuy);
+            g.DrawString(currencyText, new Font(FontFamily.GenericSansSerif, 13, GraphicsUnit.Pixel), new SolidBrush(Color.Black), rect.X + 7, rect.Y + 105);
         }
 
         #region ISerializable Members

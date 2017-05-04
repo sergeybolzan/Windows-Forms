@@ -17,14 +17,14 @@ namespace Logic
                 return db.BranchBankSet.ToList();
             }
         }
-        public static IEnumerable<BranchBank> GetBranchsBanksWithMinminumExchangeRate()
-        {
-            using (BanksModelContainer db = new BanksModelContainer())
-            {
-                db.BankSet.Load();
-                var minExchangeRate = db.BankSet.Select(x => x.UsdBuy).Min();
-                return db.BranchBankSet.Where(x => x.Bank.UsdBuy == minExchangeRate).ToList();
-            }
-        }
+        //public static IEnumerable<BranchBank> GetBranchsBanksWithMinminumExchangeRate()
+        //{
+        //    using (BanksModelContainer db = new BanksModelContainer())
+        //    {
+        //        db.BankSet.Load();
+        //        var minExchangeRate = db.BankSet.Select(x => x.UsdBuy).Min();
+        //        return db.BranchBankSet.Where(x => x.Bank.UsdBuy == minExchangeRate).ToList();
+        //    }
+        //}
     }
 }
