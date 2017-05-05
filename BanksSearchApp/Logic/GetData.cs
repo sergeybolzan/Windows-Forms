@@ -9,6 +9,9 @@ using System.Data.Entity;
 
 namespace Logic
 {
+    /// <summary>
+    /// Статический класс с методами для работы с базой данных
+    /// </summary>
     public static class GetData
     {
         /// <summary>

@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
+    /// <summary>
+    /// Класс маркера с картинкой и текстом. Текст маркера меняется при изменении свойства DisplayedCurrencyType.
+    /// </summary>
     public class MyGMapMarker : GMapMarker, ISerializable
     {
         private Bitmap Bitmap;

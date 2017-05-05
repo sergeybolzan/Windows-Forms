@@ -38,6 +38,10 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbtnShowMin = new System.Windows.Forms.ToolStripButton();
             this.tsbtnShowMax = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbtnUpdateData = new System.Windows.Forms.ToolStripButton();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,7 +55,11 @@
             this.toolStripSeparator2,
             this.toolStripSeparator1,
             this.tsbtnShowMin,
-            this.tsbtnShowMax});
+            this.tsbtnShowMax,
+            this.toolStripSeparator4,
+            this.toolStripSeparator5,
+            this.toolStripSeparator6,
+            this.tsbtnUpdateData});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(1121, 29);
@@ -130,12 +138,40 @@
             this.tsbtnShowMax.Text = "Максимальный курс";
             this.tsbtnShowMax.Click += new System.EventHandler(this.tsbtnShowMax_Click);
             // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 29);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 29);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 29);
+            // 
+            // tsbtnUpdateData
+            // 
+            this.tsbtnUpdateData.AutoToolTip = false;
+            this.tsbtnUpdateData.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbtnUpdateData.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tsbtnUpdateData.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnUpdateData.Image")));
+            this.tsbtnUpdateData.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnUpdateData.Name = "tsbtnUpdateData";
+            this.tsbtnUpdateData.Size = new System.Drawing.Size(148, 26);
+            this.tsbtnUpdateData.Text = "Обновить данные";
+            this.tsbtnUpdateData.Click += new System.EventHandler(this.tsbtnUpdateData_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1121, 737);
             this.Controls.Add(this.toolStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Карта банков";
@@ -159,6 +195,10 @@
         private System.Windows.Forms.ToolStripButton tsbtnShowMax;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripButton tsbtnUpdateData;
 
     }
 }

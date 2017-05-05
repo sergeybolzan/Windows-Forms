@@ -26,48 +26,34 @@ namespace BanksSearchApp
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            LoadMap();
-            tscbSelectAction.Text = "Продать";
-            tscbSelectCurrency.Text = "1 Доллар США";
-            gMapControl.OnMarkerClick += gMapControl_OnMarkerClick;
-            gMapControl.MouseClick += gMapControl_MouseClick;
-            gMapControl.MouseDown += gMapControl_MouseDown;
-        }
-
-        private void LoadMap()
-        {
-            markersOverlay = new GMapOverlay();
             gMapControl = new GMapControl();
             gMapControl.Dock = DockStyle.Fill;
             this.Controls.Add(gMapControl);
 
             gMapControl.MapProvider = GMap.NET.MapProviders.GMapProviders.OpenStreetMap;
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerAndCache;
-
             gMapControl.MaxZoom = 18;
             gMapControl.MinZoom = 2;
             gMapControl.Zoom = 12;
             gMapControl.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
-
             gMapControl.IgnoreMarkerOnMouseWheel = true;
             gMapControl.DragButton = MouseButtons.Left;
             gMapControl.Position = new PointLatLng(53.902800, 27.561759);
             gMapControl.ShowCenter = false;
             gMapControl.MarkersEnabled = true;
 
+            markersOverlay = new GMapOverlay();
             gMapControl.Overlays.Add(markersOverlay);
 
             var branchsBanks = GetData.GetBranchsBanksInfoFromDB();
-            foreach (var branchBank in branchsBanks)
-            {
-                MyGMapMarker marker = new MyGMapMarker(new PointLatLng(branchBank.Latitude, branchBank.Longitude), "");
-                marker.BranchBank = branchBank;
-                marker.DisplayedCurrencyType = CurrencyTypes.UsdSell;
-                marker.ToolTip = new MyGMapToolTip(marker);
-                marker.ToolTipMode = MarkerTooltipMode.Never;
-                marker.ToolTipText = " ";
-                markersOverlay.Markers.Add(marker);
-            }
+            LoadMarkers(branchsBanks);
+
+            gMapControl.OnMarkerClick += gMapControl_OnMarkerClick;
+            gMapControl.MouseClick += gMapControl_MouseClick;
+            gMapControl.MouseDown += gMapControl_MouseDown;
+
+            tscbSelectAction.Text = "Продать";
+            tscbSelectCurrency.Text = "1 Доллар США";
         }
 
 
@@ -157,6 +143,38 @@ namespace BanksSearchApp
                 if (maxRate != Convert.ToDecimal(marker.Caption)) marker.IsVisible = false;
             }
         }
+
+        //Нажатие на кнопку "Обновить данные". Обновлается таблица BankSet. Маркеры с обновленными данными по-новому добавляются на карту.
+        private void tsbtnUpdateData_Click(object sender, EventArgs e)
+        {
+            GetData.UpdateBanksInfoFromXMLToDB();
+            markersOverlay.Markers.Clear();
+            var branchsBanks = GetData.GetBranchsBanksInfoFromDB();
+            LoadMarkers(branchsBanks);
+            tscbSelectAction.SelectedIndex = 0;
+            tscbSelectCurrency.SelectedIndex = 0;
+        }
         #endregion
+
+
+        /// <summary>
+        /// Для каждой записи в таблице BranchBankSet создается и добавляется на карту маркер.
+        /// </summary>
+        /// <param name="branchsBanks"></param>
+        private void LoadMarkers(IEnumerable<BranchBank> branchsBanks)
+        {
+            foreach (var branchBank in branchsBanks)
+            {
+                MyGMapMarker marker = new MyGMapMarker(new PointLatLng(branchBank.Latitude, branchBank.Longitude), "");
+                marker.BranchBank = branchBank;
+                marker.DisplayedCurrencyType = CurrencyTypes.UsdSell;
+                marker.ToolTip = new MyGMapToolTip(marker);
+                marker.ToolTipMode = MarkerTooltipMode.Never;
+                marker.ToolTipText = " ";
+                markersOverlay.Markers.Add(marker);
+            }
+        }
+
+
     }
 }

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BanksSearchApp
 {
+    /// <summary>
+    /// Перечисление с типами валют
+    /// </summary>
     public enum CurrencyTypes
     {
         UsdSell, UsdBuy, EurSell, EurBuy, RurSell, RurBuy

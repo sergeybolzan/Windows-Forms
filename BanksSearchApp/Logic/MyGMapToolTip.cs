@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
+    /// <summary>
+    /// Класс подсказки в виде прямоугольника с текстовым отображением информации о банке.
+    /// </summary>
     public class MyGMapToolTip : GMapToolTip, ISerializable
     {
         public MyGMapToolTip(GMapMarker marker)
