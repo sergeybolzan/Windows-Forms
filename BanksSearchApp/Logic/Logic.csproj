@@ -84,8 +84,7 @@
       <DependentUpon>BanksModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CurrencyTypes.cs" />
-    <Compile Include="GetDataFromDB.cs" />
-    <Compile Include="GetDataFromXML.cs" />
+    <Compile Include="GetData.cs" />
     <Compile Include="MyGMapMarker.cs" />
     <Compile Include="MyGMapToolTip.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

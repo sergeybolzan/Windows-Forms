@@ -5,15 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Data.Entity;
 
 namespace Logic
 {
-    public static class GetDataFromXML
+    public static class GetData
     {
         /// <summary>
         /// Метод для обновления данных в таблице BankSet базы данных с сайта www.obmennik.by
         /// </summary>
-        public static void UpdateBanksInfo()
+        public static void UpdateBanksInfoFromXMLToDB()
         {
             using (BanksModelContainer db = new BanksModelContainer())
             {
@@ -41,7 +42,7 @@ namespace Logic
         /// <summary>
         /// Метод для загрузки данных из файла "banks.xml" в таблицу BranchBankSet базы данных
         /// </summary>
-        public static void GetBranchsBanksInfo()
+        public static void GetBranchsBanksInfoFromXMLToDB()
         {
             using (BanksModelContainer db = new BanksModelContainer())
             {
@@ -59,7 +60,19 @@ namespace Logic
                 }
                 db.SaveChanges();
             }
+        }
 
+        /// <summary>
+        /// Метод, возвращающий все данные из базы данных
+        /// </summary>
+        /// <returns></returns>
+        public static IEnumerable<BranchBank> GetBranchsBanksInfoFromDB()
+        {
+            using (BanksModelContainer db = new BanksModelContainer())
+            {
+                db.BankSet.Load();
+                return db.BranchBankSet.ToList();
+            }
         }
     }
 }

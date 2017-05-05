@@ -21,7 +21,7 @@ namespace BanksSearchApp
         public MainForm()
         {
             InitializeComponent();
-            GetDataFromXML.UpdateBanksInfo();
+            GetData.UpdateBanksInfoFromXMLToDB();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -56,21 +56,8 @@ namespace BanksSearchApp
             gMapControl.MarkersEnabled = true;
 
             gMapControl.Overlays.Add(markersOverlay);
-            #region oldmarkers
-            //MyGMapMarkerImage imageMarker1 = new MyGMapMarkerImage(new PointLatLng(53.902752, 27.561294), "1.835");
-            //imageMarker1.ToolTip = new MyGMapToolTip(imageMarker1);
-            //imageMarker1.ToolTipMode = MarkerTooltipMode.Never;
-            //imageMarker1.ToolTipText = "qweqweqweqweqweqweqweqweqeqweqweqweqweqwe";
-            //markersOverlay.Markers.Add(imageMarker1);
 
-            //MyGMapMarkerImage imageMarker2 = new MyGMapMarkerImage(new PointLatLng(53.90227, 27.560604), "2.235");
-            //imageMarker2.ToolTip = new MyGMapToolTip(imageMarker2);
-            //imageMarker2.ToolTipMode = MarkerTooltipMode.Never;
-            //imageMarker2.ToolTipText = "123456789123456789123456789123456789123456789";
-            //markersOverlay.Markers.Add(imageMarker2);
-            #endregion
-
-            var branchsBanks = GetDataFromDB.GetBranchsBanksInfo();
+            var branchsBanks = GetData.GetBranchsBanksInfoFromDB();
             foreach (var branchBank in branchsBanks)
             {
                 MyGMapMarker marker = new MyGMapMarker(new PointLatLng(branchBank.Latitude, branchBank.Longitude), "");
@@ -82,6 +69,8 @@ namespace BanksSearchApp
                 markersOverlay.Markers.Add(marker);
             }
         }
+
+
         #region Обработчики нажатия мышкой по карте и маркерам
         //Отслеживаем именно нажатие кнопки мыши (не отжатие), чтобы обработчик gMapControl_MouseClick не выполнялся, когда перетаскиваем карту 
         void gMapControl_MouseDown(object sender, MouseEventArgs e)
@@ -114,6 +103,8 @@ namespace BanksSearchApp
         #endregion
 
 
+        #region Обработчики нажатий по кнопкам
+        //Нажатие на кнопку "Показать". Меняется отображаемая валюта в маркерах в соответствии с комбобоксами
         private void tsbtnShow_Click(object sender, EventArgs e)
         {
             foreach (MyGMapMarker marker in markersOverlay.Markers) marker.IsVisible = true;
@@ -133,6 +124,7 @@ namespace BanksSearchApp
             gMapControl.Refresh();
         }
 
+        //Нажатие на кнопку "Минимальный курс". Находим минимальное значение в маркерах, и все маркеры с большим значением скрываются.
         private void tsbtnShowMin_Click(object sender, EventArgs e)
         {
             decimal minRate = Decimal.MaxValue;
@@ -149,6 +141,7 @@ namespace BanksSearchApp
             }
         }
 
+        //Нажатие на кнопку "Максимальный курс". Находим максимальное значение в маркерах, и все маркеры с меньшим значением скрываются.
         private void tsbtnShowMax_Click(object sender, EventArgs e)
         {
             decimal maxRate = 0;
@@ -164,5 +157,6 @@ namespace BanksSearchApp
                 if (maxRate != Convert.ToDecimal(marker.Caption)) marker.IsVisible = false;
             }
         }
+        #endregion
     }
 }
